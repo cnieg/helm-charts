@@ -1,0 +1,32 @@
+{{- if .Values.ingress.enabled -}}
+  {{- $ingressPath := .Values.ingress.path -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "h2-database.name" . }}
+  labels:
+    app: {{ template "h2-database.name" . }}
+    chart: {{ template "h2-database.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+  {{ toYaml . | indent 4 }}
+  {{- end }}
+spec:
+  rules:
+    {{- if .Values.ingress.host}}
+    - host: {{ .Values.ingress.host }}
+    {{- else }}
+    - host: {{ template "h2-database.name" . }}.{{ .Release.Namespace }}.cnieg.fr
+      {{- end }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ template "h2-database.name" . }}
+              servicePort: ui
+
+  {{- end }}
+
+

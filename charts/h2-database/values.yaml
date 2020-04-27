@@ -1,0 +1,42 @@
+# Default values for h2-database.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository:  oscarfonts/h2
+  tag: 1.4.199
+  pullPolicy: Always
+
+env:
+
+service:
+  type: ClusterIP
+  port: 1521
+  portUi: 81
+
+ingress:
+  enabled: false
+  #host: h2-database.mydomain.fr
+  annotations:
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+  path: /
+
+readinessProbe:
+  periodSeconds: 10
+  initialDelaySeconds: 10
+
+livenessProbe:
+  periodSeconds: 10
+  initialDelaySeconds: 10
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+
