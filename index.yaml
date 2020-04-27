@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  h2-database:
+  - apiVersion: v1
+    appVersion: 1.4.199
+    created: "2020-04-27T17:50:35.327973992Z"
+    description: A helm chart to deploy h2-database
+    digest: 14f25ceb0a88dedd97e0f69f27336fdfdfccab006423b6b654687c9ed85f104e
+    name: h2-database
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/h2-database-1.0.1/h2-database-1.0.1.tgz
+    version: 1.0.1
+generated: "2020-04-27T17:50:35.216994225Z"
