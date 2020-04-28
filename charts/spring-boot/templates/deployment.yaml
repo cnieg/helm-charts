@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "spring-boot.fullname" . }}
   labels:
-  {{ include "spring-boot.labels" . | indent 4 }}
+{{ include "spring-boot.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -27,10 +27,13 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            {{- if .Values.extraEnv }}
             {{- range $key, $value := .Values.extraEnv }}
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
+            {{- end}}
+            {{- if .Values.secretsEnv}}
             {{- range .Values.secretsEnv }}
             {{- $secretName := .secretName }}
             {{- range $key, $value :=  .env }}
@@ -39,6 +42,7 @@ spec:
                 secretKeyRef:
                   name: {{ $secretName }}
                   key: {{ $value }}
+          {{- end }}
           {{- end }}
           {{- end }}
           ports:

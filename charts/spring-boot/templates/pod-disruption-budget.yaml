@@ -4,7 +4,7 @@ kind: PodDisruptionBudget
 metadata:
   name: {{ include "spring-boot.fullname" . }}
   labels:
-  {{ include "spring-boot.labels" . | indent 4 }}
+{{ include "spring-boot.labels" . | indent 4 }}
 spec:
   minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
   selector:
