@@ -1,5 +1,5 @@
-# podDisruptionBudget:
-#   minAvailable: 1
+podDisruptionBudget:
+  minAvailable: 1
 
 livenessProbe:
   httpGet:
