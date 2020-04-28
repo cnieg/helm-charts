@@ -16,7 +16,7 @@ spec:
         app.kubernetes.io/name: {{ include "spring-boot.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
       annotations:
-    {{ toYaml .Values.podAnnotations | indent 8 }}
+{{ toYaml .Values.podAnnotations | indent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -51,23 +51,23 @@ spec:
               protocol: TCP
           {{- if .Values.livenessProbe }}
           livenessProbe:
-          {{ toYaml .Values.livenessProbe | indent 12 }}
+{{ toYaml .Values.livenessProbe | indent 12 }}
           {{- end }}
           {{- if .Values.readinessProbe }}
           readinessProbe:
-          {{ toYaml .Values.readinessProbe | indent 12 }}
+{{ toYaml .Values.readinessProbe | indent 12 }}
           {{- end }}
           resources:
-      {{- toYaml .Values.resources | nindent 12 }}
+{{ toYaml .Values.resources | indent 12 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
-      {{- toYaml . | nindent 8 }}
+{{ toYaml . | indent 8 }}
       {{- end }}
       {{- with .Values.affinity }}
       affinity:
-      {{- toYaml . | nindent 8 }}
+{{ toYaml . | indent 8 }}
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
-  {{- toYaml . | nindent 8 }}
+{{ toYaml . | indent 8 }}
   {{- end }}
