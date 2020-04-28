@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: stevenacoffman/prometheus-spring-actuator
+  repository: springguides/demo
   tag: latest
   pullPolicy: IfNotPresent
 
