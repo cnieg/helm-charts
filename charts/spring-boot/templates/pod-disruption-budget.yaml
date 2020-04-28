@@ -9,6 +9,6 @@ spec:
   minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
   selector:
     matchLabels:
-      app: {{ template "sirius-common-back.name" . }}
-      release: {{ .Release.Name }}
+      app.kubernetes.io/name: {{ include "spring-boot.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   {{- end }}
