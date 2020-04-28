@@ -29,6 +29,10 @@ jobs:
         # Only build a kind cluster if there are chart changes to test.
         if: steps.lint.outputs.changed == 'true'
 
+      - name: Run chart-testing (install)
+        uses: helm/chart-testing-action@v1.0.0-rc.1
+        with:
+          command: install
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.0.0-rc.1
