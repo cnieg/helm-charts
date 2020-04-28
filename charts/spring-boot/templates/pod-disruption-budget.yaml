@@ -6,7 +6,7 @@ metadata:
   labels:
   {{ include "spring-boot.labels" . | indent 4 }}
 spec:
-  {{ .Values.podDisruptionBudget.rule.type }}: {{.Values.podDisruptionBudget.rule.value}}
+  minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
   selector:
     matchLabels:
       app: {{ template "sirius-common-back.name" . }}
