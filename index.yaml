@@ -22,4 +22,17 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/h2-database-1.0.1/h2-database-1.0.1.tgz
     version: 1.0.1
+  spring-boot:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-04-28T17:21:02.865795545Z"
+    description: A Helm chart for Kubernetes
+    digest: 0bd902fd3f3b5893a9706620293c0a2779d85507732e150ba99e5f25019c4dd0
+    home: https://spring.io/projects/spring-boot
+    maintainers:
+    - name: audig
+    name: spring-boot
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/spring-boot-0.1.0/spring-boot-0.1.0.tgz
+    version: 0.1.0
 generated: "2020-04-27T17:50:35.216994225Z"
