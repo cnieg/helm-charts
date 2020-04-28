@@ -1,0 +1,18 @@
+hpa:
+  enabled: true
+
+podDisruptionBudget:
+  enabled: true
+
+livenessProbe:
+  httpGet:
+    path: /actuator/health
+    port: http
+  initialDelaySeconds: 300
+  periodSeconds: 10
+readinessProbe:
+  httpGet:
+    path: /actuator/health
+    port: http
+  initialDelaySeconds: 60
+  periodSeconds: 10

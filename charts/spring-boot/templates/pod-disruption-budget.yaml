@@ -1,0 +1,14 @@
+{{- if .Values.podDisruptionBudget.enabled -}}
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "spring-boot.fullname" . }}
+  labels:
+  {{ include "spring-boot.labels" . | indent 4 }}
+spec:
+  {{ .Values.podDisruptionBudget.rule.type }}: {{.Values.podDisruptionBudget.rule.value}}
+  selector:
+    matchLabels:
+      app: {{ template "sirius-common-back.name" . }}
+      release: {{ .Release.Name }}
+  {{- end }}
