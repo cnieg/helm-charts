@@ -1,15 +1,14 @@
-podDisruptionBudget:
-  minAvailable: 1
+#podDisruptionBudget:
+#  minAvailable: 1
 
 livenessProbe:
   httpGet:
     path: /actuator/health
     port: http
-  initialDelaySeconds: 300
-  periodSeconds: 10
+  initialDelaySeconds: 10
 readinessProbe:
   httpGet:
     path: /actuator/health
     port: http
-  initialDelaySeconds: 60
-  periodSeconds: 10
+  initialDelaySeconds: 10
+
