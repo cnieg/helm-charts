@@ -39,7 +39,7 @@ spec:
                 secretKeyRef:
                   name: {{ $secretName }}
                   key: {{ $value }}
-            {{- end }}
+          {{- end }}
           {{- end }}
           ports:
             - name: http
@@ -65,5 +65,5 @@ spec:
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
-    {{- toYaml . | nindent 8 }}
+  {{- toYaml . | nindent 8 }}
   {{- end }}

@@ -1,8 +1,11 @@
 hpa:
-  enabled: true
+  minReplicas: 2
+  maxReplicas: 4
+  cpuMax: 80
+  memoryMax: 70
 
 podDisruptionBudget:
-  enabled: true
+  minAvailable: 1
 
 livenessProbe:
   httpGet:
