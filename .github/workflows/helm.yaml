@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  pull_request
 
 jobs:
   release:
@@ -17,7 +18,20 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
+      - name: Run chart-testing (lint)
+        id: lint
+        uses: helm/chart-testing-action@v1.0.0-rc.1
+        with:
+          command: lint
+
+      - name: Create kind cluster
+        uses: helm/kind-action@v1.0.0-alpha.3
+        # Only build a kind cluster if there are chart changes to test.
+        if: steps.lint.outputs.changed == 'true'
+
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.0.0-rc.1
+        if: github.ref == 'refs/heads/master'
         env:
           CR_TOKEN: "${{ secrets.CR_TOKEN }}"
