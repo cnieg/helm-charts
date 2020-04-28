@@ -50,7 +50,7 @@ secretEnv: {}
   #     MYVAR1: Key1InMySecret
   #     MYVAR2: Key2InMySecret
   # - secretName: mysecret2
-#   env:
+  #   env:
 #     MYVAR3: Key3InMySecret
 
 resources: {}

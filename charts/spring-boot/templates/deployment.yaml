@@ -32,6 +32,7 @@ spec:
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
+            {{- if .Values.secretEnv }}
             {{- range .Values.secretEnv }}
             {{- $secretName := .secretName }}
             {{- range $key, $value :=  .env }}
@@ -40,6 +41,7 @@ spec:
                 secretKeyRef:
                   name: {{ $secretName }}
                   key: {{ $value }}
+          {{- end }}
           {{- end }}
           {{- end }}
           {{- end }}
