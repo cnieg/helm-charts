@@ -3,5 +3,6 @@ appVersion: '1.4.199'
 description: A helm chart to deploy h2-database
 name: h2-database
 version: 1.0.2
+home: https://www.h2database.com/
 maintainers:
   - name: audig
