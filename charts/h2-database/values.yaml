@@ -21,7 +21,7 @@ service:
 
 ingress:
   enabled: false
-  #host: h2-database.mydomain.fr
+  # host: h2-database.mydomain.fr
   annotations:
     traefik.ingress.kubernetes.io/redirect-entry-point: https
     traefik.ingress.kubernetes.io/redirect-permanent: "true"
