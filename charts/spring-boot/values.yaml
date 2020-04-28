@@ -41,7 +41,7 @@ extraEnv: {}
   # DATABASE_HOST: mysql
   # DATABASE_NAME: spring
   # DATABASE_USERNAME: spring
-# DATABASE_PASSWORD: spring
+  # DATABASE_PASSWORD: spring
 
 secretEnv: {}
   # Exra environment variables from secret to be inject
@@ -51,7 +51,7 @@ secretEnv: {}
   #     MYVAR2: Key2InMySecret
   # - secretName: mysecret2
   #   env:
-#     MYVAR3: Key3InMySecret
+  #     MYVAR3: Key3InMySecret
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
