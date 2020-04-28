@@ -5,11 +5,14 @@
 replicaCount: 1
 
 image:
-  repository:  oscarfonts/h2
-  tag: 1.4.199
+  repository: oscarfonts/h2
+  tag: alpine
   pullPolicy: Always
 
 env:
+  H2_OPTIONS: "-ifNotExists"
+
+extraArgs:
 
 service:
   type: ClusterIP
@@ -18,7 +21,7 @@ service:
 
 ingress:
   enabled: false
-  #host: h2-database.mydomain.fr
+  # host: h2-database.mydomain.fr
   annotations:
     traefik.ingress.kubernetes.io/redirect-entry-point: https
     traefik.ingress.kubernetes.io/redirect-permanent: "true"
@@ -39,4 +42,3 @@ resources:
   requests:
     cpu: 200m
     memory: 256Mi
-
