@@ -40,17 +40,17 @@ extraEnv: {}
   # DATABASE_ENGINE: mysql
   # DATABASE_HOST: mysql
   # DATABASE_NAME: spring
-# DATABASE_USERNAME: spring
+  # DATABASE_USERNAME: spring
 # DATABASE_PASSWORD: spring
 
-secretsEnv: {}
+secretEnv: {}
   # Exra environment variables from secret to be inject
   # - secretName: mysecret
   #   env:
   #     MYVAR1: Key1InMySecret
   #     MYVAR2: Key2InMySecret
   # - secretName: mysecret2
-  #   env:
+#   env:
 #     MYVAR3: Key3InMySecret
 
 resources: {}

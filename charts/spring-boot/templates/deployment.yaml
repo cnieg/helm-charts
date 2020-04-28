@@ -32,7 +32,7 @@ spec:
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
-            {{- range .Values.secretsEnv }}
+            {{- range .Values.secretEnv }}
             {{- $secretName := .secretName }}
             {{- range $key, $value :=  .env }}
             - name: {{ $key }}
