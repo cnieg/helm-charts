@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository:  oscarfonts/h2
+  repository: oscarfonts/h2
   tag: alpine
   pullPolicy: Always
 
@@ -42,4 +42,3 @@ resources:
   requests:
     cpu: 200m
     memory: 256Mi
-
