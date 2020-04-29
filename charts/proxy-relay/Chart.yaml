@@ -3,6 +3,9 @@ appVersion: '2.4.39'
 description: A Helm chart to proxy request to another url with company proxy or not
 name: proxy-relay
 home: https://httpd.apache.org/docs/2.4/fr/programs/httpd.html
-version: 0.1.0
+version: 1.0.0
+sources:
+  - https://github.com/cnieg/helm-charts/tree/master/charts/proxy-relay
+  - https://cnieg.github.io/helm-charts
 maintainers:
   - name: audig

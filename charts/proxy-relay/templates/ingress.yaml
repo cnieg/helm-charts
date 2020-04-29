@@ -1,14 +1,14 @@
 {{- if .Values.ingress.enabled -}}
-  {{- $fullName := include "proxy-relay.fullname" . -}}
+{{- $fullName := include "proxy-relay.fullname" . -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-  {{ include "proxy-relay.labels" . | indent 4 }}
+{{ include "proxy-relay.labels" . | indent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
-  {{- toYaml . | nindent 4 }}
+{{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
   {{- if .Values.ingress.tls }}
