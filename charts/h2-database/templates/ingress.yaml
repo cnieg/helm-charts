@@ -1,32 +1,36 @@
 {{- if .Values.ingress.enabled -}}
-  {{- $ingressPath := .Values.ingress.path -}}
+  {{- $fullName := include "h2-database.fullname" . -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "h2-database.name" . }}
+  name: {{ $fullName }}
   labels:
-    app: {{ template "h2-database.name" . }}
-    chart: {{ template "h2-database.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+{{ include "h2-database.labels" . | indent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
-  {{ toYaml . | indent 4 }}
+  {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  rules:
-    {{- if .Values.ingress.host}}
-    - host: {{ .Values.ingress.host }}
-    {{- else }}
-    - host: {{ template "h2-database.name" . }}.{{ .Release.Namespace }}.cnieg.fr
+  {{- if .Values.ingress.tls }}
+  tls:
+    {{- range .Values.ingress.tls }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . | quote }}
       {{- end }}
+      secretName: {{ .secretName }}
+  {{- end }}
+  {{- end }}
+  rules:
+    {{- range .Values.ingress.hosts }}
+    - host: {{ .host | quote }}
       http:
         paths:
-          - path: /
+          {{- range .paths }}
+          - path: {{ . }}
             backend:
-              serviceName: {{ template "h2-database.name" . }}
-              servicePort: ui
-
+              serviceName: {{ $fullName }}
+              servicePort: http
   {{- end }}
-
-
+  {{- end }}
+  {{- end }}
