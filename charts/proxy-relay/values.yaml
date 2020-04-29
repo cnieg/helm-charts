@@ -69,13 +69,13 @@ resources: {}
 ## uncomment and modify the following livenessProbe and readinessProbe.
 livenessProbe:
   httpGet:
-    path: /server/status
+    path: /server-status
     port: http
 #   initialDelaySeconds: 300
 #   periodSeconds: 10
 readinessProbe:
   httpGet:
-    path: /server/status
+    path: /server-status
     port: http
 #   initialDelaySeconds: 60
 #   periodSeconds: 10

@@ -14,5 +14,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "proxy-relay.fullname" . }}:{{ .Values.service.port }}/server/status']
+      args:  ['{{ include "proxy-relay.fullname" . }}:{{ .Values.service.port }}/server-status']
   restartPolicy: Never
