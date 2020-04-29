@@ -91,9 +91,9 @@ spec:
         envFrom:
         - configMapRef:
             name: "{{ template "pulsar.fullname" . }}-{{ .Values.bookkeeper.component }}"
-        {{- if .Values.initContainers.resources }}
+        {{- if .Values.bookkeeper.initContainers.resources }}
         resources:
-{{ toYaml .Values.initContainers.resources | indent 10 }}
+{{ toYaml .Values.bookkeeper.initContainers.resources | indent 10 }}
         {{- end }}
         volumeMounts:
         {{- include "pulsar.bookkeeper.certs.volumeMounts" . | nindent 8 }}

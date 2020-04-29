@@ -297,7 +297,7 @@ zookeeper:
       local_storage: true
       ## If you already have an existent storage class and want to reuse it, you can specify its name with the option below
       ##
-      storageClassName: ""
+      # storageClassName: existent-storage-class
       #
       ## Instead if you want to create a new storage class define it below
       ## If left undefined no storage class will be defined along with PVC
@@ -391,6 +391,14 @@ bookkeeper:
   annotations: {}
   tolerations: []
   gracePeriod: 30
+  initContainers:
+    resources:
+      requests:
+        memory: 64Mi
+        cpu: 0.2
+      limits:
+        memory: 512Mi
+        cpu: 0.5
   resources:
     requests:
       memory: 512Mi
@@ -407,7 +415,7 @@ bookkeeper:
       local_storage: true
       ## If you already have an existent storage class and want to reuse it, you can specify its name with the option below
       ##
-      storageClassName: ""
+      # storageClassName: existent-storage-class
       #
       ## Instead if you want to create a new storage class define it below
       ## If left undefined no storage class will be defined along with PVC
@@ -422,7 +430,7 @@ bookkeeper:
       local_storage: true
       ## If you already have an existent storage class and want to reuse it, you can specify its name with the option below
       ##
-      storageClassName: ""
+      # storageClassName: existent-storage-class
       #
       ## Instead if you want to create a new storage class define it below
       ## If left undefined no storage class will be defined along with PVC
@@ -575,6 +583,14 @@ broker:
   annotations: {}
   tolerations: []
   gracePeriod: 30
+  initContainers:
+    resources:
+      requests:
+        memory: 64Mi
+        cpu: 0.2
+      limits:
+        memory: 512Mi
+        cpu: 0.5
   resources:
     requests:
       memory: 512Mi
