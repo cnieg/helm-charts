@@ -32,7 +32,6 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: "{{ template "pulsar.fullname" . }}-{{ .Values.broker.component }}-acct"
-  namespace: {{ .Values.namespace }}
 ---
 
 apiVersion: rbac.authorization.k8s.io/v1beta1
