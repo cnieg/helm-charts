@@ -30,7 +30,7 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-remoteUrl: "https://github.com/"
+remoteUrl: {}
 
 # If you have a proxy you can set it here
 # proxyUrl: http://137.74.35.119:8080
