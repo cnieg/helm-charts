@@ -23,17 +23,17 @@ ingress:
   # kubernetes.io/tls-acme: "true"
   hosts:
     - host: chart-example.local
-      paths: []
+      paths: ["/"]
 
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
 
-remoteUrl: "https://github.com/"
+remoteUrl: {}
 
 # If you have a proxy you can set it here
-# proxyUrl: http://137.74.35.119:8080
+# proxyUrl: http://myproxycompany:8080
 proxyUrl: {}
 
 extraEnv: {}
