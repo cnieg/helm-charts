@@ -1,4 +1,3 @@
 ingress:
   enabled: true
 remoteUrl: "https://github.com/cnieg"
-proxyUrl: "http://137.74.35.119:8080"
