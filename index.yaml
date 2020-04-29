@@ -17,6 +17,18 @@ entries:
   h2-database:
   - apiVersion: v1
     appVersion: 1.4.199
+    created: "2020-04-29T14:02:19.95633236Z"
+    description: A helm chart to deploy h2-database
+    digest: d035c3f650015d9bc7f8ca52072a90f65a6e3b6e322e3deb29082009f685a841
+    home: https://www.h2database.com/
+    maintainers:
+    - name: audig
+    name: h2-database
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/h2-database-1.0.3/h2-database-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v1
+    appVersion: 1.4.199
     created: "2020-04-28T07:47:24.323293546Z"
     description: A helm chart to deploy h2-database
     digest: 076486b38db44228b0235f2d0d776b43619ef1842f67403508ae0b347be0b9c7
