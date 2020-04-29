@@ -32,10 +32,12 @@ spec:
             httpGet:
               path: /
               port: http
+            initialDelaySeconds: 10
           readinessProbe:
             httpGet:
               path: /
               port: http
+            initialDelaySeconds: 10
           volumeMounts:
             - name : data
               mountPath :  /opt/apps/gantt/fichier
