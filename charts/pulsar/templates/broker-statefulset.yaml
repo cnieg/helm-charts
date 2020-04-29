@@ -96,6 +96,7 @@ spec:
             {{- end }}
               echo "pulsar cluster {{ template "pulsar.fullname" . }} isn't initialized yet ... check in 3 seconds ..." && sleep 3;
             done;
+        {{- if .Values.initContainers.resources }}
         resources:
 {{ toYaml .Values.initContainers.resources | indent 10 }}
         {{- end }}
