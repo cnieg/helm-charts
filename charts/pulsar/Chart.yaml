@@ -27,5 +27,5 @@ sources:
 - https://github.com/apache/pulsar
 icon: http://pulsar.apache.org/img/pulsar.svg
 maintainers:
-- name: The Apache Pulsar Team
-  email: dev@pulsar.apache.org
+  - name: The Apache Pulsar Team
+    email: dev@pulsar.apache.org
