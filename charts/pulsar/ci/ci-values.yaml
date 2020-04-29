@@ -1,0 +1,16 @@
+proxy:
+  resources: {}
+zookeeper:
+  resources: {}
+bookeeper:
+  resources: {}
+  initContainers:
+    resources: {}
+broker:
+  resources: {}
+  initContainers:
+    resources: {}
+autorecovery:
+  resources: {}
+pulsar_manager:
+  resources: {}
