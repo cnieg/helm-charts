@@ -12,5 +12,7 @@ broker:
     resources: {}
 autorecovery:
   resources: {}
+  initContainers:
+    resources: {}
 pulsar_manager:
   resources: {}

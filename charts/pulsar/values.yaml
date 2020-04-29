@@ -515,6 +515,14 @@ autorecovery:
   annotations: {}
   # tolerations: []
   gracePeriod: 30
+  initContainers:
+    resources:
+      requests:
+        memory: 64Mi
+        cpu: "0.2"
+      limits:
+        memory: 512Mi
+        cpu: "0.5"
   resources:
     requests:
       memory: 64Mi
