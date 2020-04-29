@@ -17,25 +17,9 @@
 # under the License.
 #
 
-{{- if or .Values.components.pulsar_manager .Values.extra.pulsar_manager }}
+{{- if .Values.namespaceCreate }}
 apiVersion: v1
-kind: Service
+kind: Namespace
 metadata:
-  name: "{{ template "pulsar.fullname" . }}-{{ .Values.pulsar_manager.component }}"
-  namespace: {{ .Values.namespace }}
-  labels:
-    {{- include "pulsar.standardLabels" . | nindent 4 }}
-    component: {{ .Values.pulsar_manager.component }}
-  annotations:
-{{ toYaml .Values.pulsar_manager.service.annotations | indent 4 }}
-spec:
-  type: {{ .Values.pulsar_manager.service.type }}
-  ports:
-    - name: server
-      port: {{ .Values.pulsar_manager.port }}
-      protocol: TCP
-  selector:
-    app: {{ template "pulsar.name" . }}
-    release: {{ .Release.Name }}
-    component: {{ .Values.pulsar_manager.component }}
+  name: {{ .Values.namespace }}
 {{- end }}
