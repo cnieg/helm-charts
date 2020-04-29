@@ -2,7 +2,7 @@ proxy:
   resources: {}
 zookeeper:
   resources: {}
-bookeeper:
+bookkeeper:
   resources: {}
   initContainers:
     resources: {}
