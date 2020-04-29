@@ -284,10 +284,10 @@ zookeeper:
   resources:
     requests:
       memory: 256Mi
-      cpu: 0.1
+      cpu: "0.1"
     limits:
       memory: 1G
-      cpu: 0.5
+      cpu: "0.5"
   volumes:
     # use a persistent volume or emptyDir
     persistence: true
@@ -395,17 +395,17 @@ bookkeeper:
     resources:
       requests:
         memory: 64Mi
-        cpu: 0.2
+        cpu: "0.2"
       limits:
         memory: 512Mi
-        cpu: 0.5
+        cpu: "0.5"
   resources:
     requests:
       memory: 512Mi
-      cpu: 0.2
+      cpu: "0.2"
     limits:
       memory: 512Mi
-      cpu: 0.8
+      cpu: "0.8"
   volumes:
     # use a persistent volume or emptyDir
     persistence: true
@@ -485,8 +485,6 @@ bookkeeper:
     dbStorage_rocksDB_writeBufferSizeMB: "8"
     dbStorage_rocksDB_blockCacheSize: "8388608"
     journalMaxSizeMB: "2048"
-    statsProviderClass: org.apache.bookkeeper.stats.prometheus.PrometheusMetricsProvider
-    useHostNameAsBookieID: "true"
   ## Bookkeeper Service
   ## templates/bookkeeper-service.yaml
   ##
@@ -520,7 +518,7 @@ autorecovery:
   resources:
     requests:
       memory: 64Mi
-      cpu: 0.05
+      cpu: "0.05"
   ## Bookkeeper auto-recovery configmap
   ## templates/autorecovery-configmap.yaml
   ##
@@ -587,17 +585,17 @@ broker:
     resources:
       requests:
         memory: 64Mi
-        cpu: 0.2
+        cpu: "0.2"
       limits:
         memory: 512Mi
-        cpu: 0.5
+        cpu: "0.5"
   resources:
     requests:
       memory: 512Mi
-      cpu: 0.2
+      cpu: "0.2"
     limits:
       memory: 1G
-      cpu: 0.5
+      cpu: "0.5"
   ## Broker configmap
   ## templates/broker-configmap.yaml
   ##
@@ -627,7 +625,6 @@ broker:
     managedLedgerDefaultWriteQuorum: "2"
     managedLedgerDefaultAckQuorum: "1"
     deduplicationEnabled: "false"
-    exposeTopicLevelMetricsInPrometheus: "true"
 
   ## Broker service
   ## templates/broker-service.yaml
@@ -681,10 +678,10 @@ proxy:
   resources:
     requests:
       memory: 64Mi
-      cpu: 0.01
+      cpu: "0.01"
     limits:
       memory: 256Mi
-      cpu: 0.2
+      cpu: "0.2"
   ## Proxy configmap
   ## templates/proxy-configmap.yaml
   ##
@@ -786,7 +783,7 @@ toolset:
   resources:
     requests:
       memory: 256Mi
-      cpu: 0.1
+      cpu: "0.1"
   ## Bastion configmap
   ## templates/bastion-configmap.yaml
   ##
@@ -822,7 +819,7 @@ prometheus:
   resources:
     requests:
       memory: 256Mi
-      cpu: 0.1
+      cpu: "0.1"
   volumes:
     # use a persistent volume or emptyDir
     persistence: true
@@ -862,7 +859,7 @@ grafana:
   resources:
     requests:
       memory: 250Mi
-      cpu: 0.1
+      cpu: "0.1"
   ## Grafana service
   ## templates/grafana-service.yaml
   ##
@@ -910,10 +907,10 @@ pulsar_manager:
   resources:
     requests:
       memory: 64Mi
-      cpu: 0.01
+      cpu: "0.01"
     limits:
       memory: 512Mi
-      cpu: 0.3
+      cpu: "0.3"
   configData:
     REDIRECT_HOST: "http://127.0.0.1"
     REDIRECT_PORT: "9527"
@@ -937,7 +934,7 @@ initContainers:
   resources:
     requests:
       memory: 64Mi
-      cpu: 0.2
+      cpu: "0.2"
     limits:
       memory: 512Mi
-      cpu: 0.5
+      cpu: "0.5"
