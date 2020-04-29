@@ -1,5 +1,19 @@
 apiVersion: v1
 entries:
+  gantt:
+  - apiVersion: v1
+    appVersion: 1.0.2
+    created: "2020-04-29T09:48:29.691258171Z"
+    description: Web app to make gantt diagrams
+    digest: 682f1574d50a18f43022ee398f35a5b6e8dc0362edeb1153731060c14956b4db
+    home: https://github.com/cnieg/gantt
+    maintainers:
+    - email: thomas.hingant@cnieg.fr
+      name: Thomah
+    name: gantt
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/gantt-1.0.0/gantt-1.0.0.tgz
+    version: 1.0.0
   h2-database:
   - apiVersion: v1
     appVersion: 1.4.199
