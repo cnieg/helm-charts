@@ -36,8 +36,6 @@ remoteUrl: "https://github.com/"
 # proxyUrl: http://137.74.35.119:8080
 proxyUrl: {}
 
-
-
 extraEnv: {}
   ## Extra environment variables to be injected
   # DATABASE_ENGINE: mysql
@@ -81,7 +79,6 @@ readinessProbe:
     port: http
 #   initialDelaySeconds: 60
 #   periodSeconds: 10
-
 
 nodeSelector: {}
 
