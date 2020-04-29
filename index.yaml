@@ -36,6 +36,20 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/h2-database-1.0.1/h2-database-1.0.1.tgz
     version: 1.0.1
+  proxy-relay:
+  - apiVersion: v1
+    appVersion: 2.4.39
+    created: "2020-04-29T13:15:07.391127432Z"
+    description: A Helm chart to proxy request to another url with company proxy or
+      not
+    digest: ffa1f7e69f05198a7e8bc97bd8d793a63c6db92daffc7300700418aea1c6621f
+    home: https://httpd.apache.org/docs/2.4/fr/programs/httpd.html
+    maintainers:
+    - name: audig
+    name: proxy-relay
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/proxy-relay-0.1.0/proxy-relay-0.1.0.tgz
+    version: 0.1.0
   spring-boot:
   - apiVersion: v1
     appVersion: "1.0"
