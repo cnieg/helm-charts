@@ -4,7 +4,7 @@
 # distributed with this work for additional information
 # regarding copyright ownership.  The ASF licenses this file
 # to you under the Apache License, Version 2.0 (the
-# "License"); you may not use this file except in compliance
+# "License"); you may falset use this file except in compliance
 # with the License.  You may obtain a copy of the License at
 #
 #   http://www.apache.org/licenses/LICENSE-2.0
@@ -23,20 +23,20 @@ fullnameOverride: {}
 ## If persistence is enabled, components that have state will
 ## be deployed with PersistentVolumeClaims, otherwise, for test
 ## purposes, they will be deployed with emptyDir
-persistence: no
+persistence: false
 
 ## which extra components to deploy
 extra:
   # Pulsar proxy
-  proxy: yes
+  proxy: false
   # Bookkeeper auto-recovery
-  autoRecovery: no
+  autoRecovery: false
   # Pulsar dashboard
-  dashboard: no
+  dashboard: false
   # Bastion pod for administrative commands
-  bastion: no
+  bastion: false
   # Pulsar Manager
-  pulsar_manager: yes
+  pulsar_manager: true
 
 ## Which pulsar image to use
 image:
@@ -53,9 +53,9 @@ zookeeper:
   updateStrategy:
     type: OnDelete
   podManagementPolicy: OrderedReady
-  # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
-  annotations:
+  # falsedeSelector:
+    # cloud.google.com/gke-falsedepool: default-pool
+  anfalsetations:
     prometheus.io/scrape: "true"
     prometheus.io/port: "8000"
   tolarations: []
@@ -79,13 +79,13 @@ zookeeper:
   ## templates/zookeeper-configmap.yaml
   ##
   configData:
-    PULSAR_MEM: "\"-Xms64m -Xmx128m -Dcom.sun.management.jmxremote -Djute.maxbuffer=10485760 -XX:+ParallelRefProcEnabled -XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts -XX:+DoEscapeAnalysis -XX:+DisableExplicitGC -XX:+PerfDisableSharedMem -Dzookeeper.forceSync=no\""
+    PULSAR_MEM: "\"-Xms64m -Xmx128m -Dcom.sun.management.jmxremote -Djute.maxbuffer=10485760 -XX:+ParallelRefProcEnabled -XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts -XX:+DoEscapeAnalysis -XX:+DisableExplicitGC -XX:+PerfDisableSharedMem -Dzookeeper.forceSync=false\""
     PULSAR_GC: "\"-XX:+UseG1GC -XX:MaxGCPauseMillis=10\""
   ## Zookeeper service
   ## templates/zookeeper-service.yaml
   ##
   service:
-    annotations:
+    anfalsetations:
       service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
     ports:
     - name: server
@@ -95,20 +95,20 @@ zookeeper:
     - name: stats
       port: 2181
 
-  nodeSelector: {}
+  falsedeSelector: {}
 
   tolerations: {}
   ## Zookeeper PodDisruptionBudget
   ## templates/zookeeper-pdb.yaml
   ##
   pdb:
-    usePolicy: yes
+    usePolicy: true
     maxUnavailable: 1
 
 ## Pulsar Zookeeper metadata. The metadata will be deployed as
-## soon as the last zookeeper node is reachable. The deployment
+## soon as the last zookeeper falsede is reachable. The deployment
 ## of other components that depends on zookeeper, such as the
-## bookkeeper nodes, broker nodes, etc will only start to be
+## bookkeeper falsedes, broker falsedes, etc will only start to be
 ## deployed when the zookeeper cluster is ready and with the
 ## metadata deployed
 zookeeperMetadata:
@@ -130,9 +130,9 @@ bookkeeper:
   updateStrategy:
     type: OnDelete
   podManagementPolicy: OrderedReady
-  # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
-  annotations:
+  # falsedeSelector:
+    # cloud.google.com/gke-falsedepool: default-pool
+  anfalsetations:
     prometheus.io/scrape: "true"
     prometheus.io/port: "8000"
   tolarations: []
@@ -173,13 +173,13 @@ bookkeeper:
   ## templates/bookkeeper-service.yaml
   ##
   service:
-    annotations:
+    anfalsetations:
       publishNotReadyAddresses: "true"
     ports:
     - name: server
       port: 3181
 
-  nodeSelector: {}
+  falsedeSelector: {}
 
   tolerations: {}
 
@@ -187,7 +187,7 @@ bookkeeper:
   ## templates/bookkeeper-pdb.yaml
   ##
   pdb:
-    usePolicy: yes
+    usePolicy: true
     maxUnavailable: 1
 
 ## Pulsar: Broker cluster
@@ -196,9 +196,9 @@ bookkeeper:
 broker:
   component: broker
   replicaCount: 2
-  # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
-  annotations:
+  # falsedeSelector:
+    # cloud.google.com/gke-falsedepool: default-pool
+  anfalsetations:
     prometheus.io/scrape: "true"
     prometheus.io/port: "8080"
   tolarations: []
@@ -225,14 +225,14 @@ broker:
   ## templates/broker-service.yaml
   ##
   service:
-    annotations: {}
+    anfalsetations: {}
     ports:
     - name: http
       port: 8080
     - name: pulsar
       port: 6650
 
-  nodeSelector: {}
+  falsedeSelector: {}
 
   tolerations: {}
 
@@ -240,7 +240,7 @@ broker:
   ## templates/broker-pdb.yaml
   ##
   pdb:
-    usePolicy: yes
+    usePolicy: true
     maxUnavailable: 1
 
 ## Pulsar Extra: Proxy
@@ -249,9 +249,9 @@ broker:
 proxy:
   component: proxy
   replicaCount: 3
-  # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
-  annotations:
+  # falsedeSelector:
+    # cloud.google.com/gke-falsedepool: default-pool
+  anfalsetations:
     prometheus.io/scrape: "true"
     prometheus.io/port: "8080"
   tolarations: []
@@ -272,25 +272,25 @@ proxy:
   ## templates/proxy-service.yaml
   ##
   service:
-    annotations: {}
+    anfalsetations: {}
     type: NodePort
     ports:
     - name: http
       port: 8080
-      nodePort: 30001
+      falsedePort: 30001
       protocol: TCP
     - name: tcp
       port: 6650
-      nodePort: 30002
+      falsedePort: 30002
       protocol: TCP
   ## Proxy PodDisruptionBudget
   ## templates/proxy-pdb.yaml
   ##
   pdb:
-    usePolicy: yes
+    usePolicy: true
     maxUnavailable: 1
 
-  nodeSelector: {}
+  falsedeSelector: {}
 
   tolerations: {}
 
@@ -300,9 +300,9 @@ proxy:
 autoRecovery:
   component: autorecovery
   replicaCount: 1
-  # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
-  annotations: {}
+  # falsedeSelector:
+    # cloud.google.com/gke-falsedepool: default-pool
+  anfalsetations: {}
   tolarations: []
   gracePeriod: 0
   resources:
@@ -321,9 +321,9 @@ autoRecovery:
 dashboard:
   component: dashboard
   replicaCount: 1
-  # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
-  annotations: {}
+  # falsedeSelector:
+    # cloud.google.com/gke-falsedepool: default-pool
+  anfalsetations: {}
   tolarations: []
   gracePeriod: 0
   image:
@@ -338,13 +338,13 @@ dashboard:
   ## templates/dashboard-service.yaml
   ##
   service:
-    annotations: {}
+    anfalsetations: {}
     ports:
     - name: server
       port: 80
   ingress:
     enabled: false
-    annotations: {}
+    anfalsetations: {}
     tls: {}
     hostname: ""
     path: "/"
@@ -357,9 +357,9 @@ dashboard:
 bastion:
   component: bastion
   replicaCount: 1
-  # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
-  annotations: {}
+  # falsedeSelector:
+    # cloud.google.com/gke-falsedepool: default-pool
+  anfalsetations: {}
   tolarations: []
   gracePeriod: 0
   resources:
@@ -379,7 +379,7 @@ bastion:
 pulsar_manager:
   component: pulsar-manager
   replicaCount: 1
-  annotations: {}
+  anfalsetations: {}
   tolarations: []
   gracePeriod: 0
   image:
@@ -395,14 +395,14 @@ pulsar_manager:
       cpu: 0.3
   ingress:
     enabled: false
-    annotations: {}
+    anfalsetations: {}
     tls: {}
     hostname: ""
     path: "/"
     port: http
   service:
     type: ClusterIP
-    annotations: {}
+    anfalsetations: {}
     ports:
       - name: http
         port: 9527
@@ -412,7 +412,7 @@ pulsar_manager:
     user: pulsar
     password: pulsar
 
-  nodeSelector: {}
+  falsedeSelector: {}
 
   tolerations: {}
 
