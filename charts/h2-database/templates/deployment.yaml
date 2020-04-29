@@ -3,10 +3,7 @@ kind: Deployment
 metadata:
   name: {{ template "h2-database.name" . }}
   labels:
-    app: {{ template "h2-database.name" . }}
-    chart: {{ template "h2-database.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+{{ include "h2-database.labels" . | indent 4 }}
 spec:
   strategy:
     type: RollingUpdate
