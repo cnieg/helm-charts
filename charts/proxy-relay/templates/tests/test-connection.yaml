@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ template "proxy-relay.fullname" . }}
+  labels:
+    app: {{ template "proxy-relay.name" . }}
+    chart: {{ template "proxy-relay.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args:  ['{{ include "proxy-relay.fullname" . }}:{{ .Values.service.port }}/server/status']
+  restartPolicy: Never
