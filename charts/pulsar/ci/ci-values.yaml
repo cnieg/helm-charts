@@ -16,3 +16,5 @@ autorecovery:
     resources: {}
 pulsar_manager:
   resources: {}
+toolset:
+  resources: {}
