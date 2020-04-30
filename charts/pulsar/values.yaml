@@ -484,7 +484,7 @@ bookkeeper:
     dbStorage_rocksDB_blockCacheSize: "8388608"
     journalMaxSizeMB: "2048"
     statsProviderClass: org.apache.bookkeeper.stats.prometheus.PrometheusMetricsProvider
-    #useHostNameAsBookieID: "true"
+    # useHostNameAsBookieID: "true"
   ## Bookkeeper Service
   ## templates/bookkeeper-service.yaml
   ##
@@ -939,3 +939,4 @@ initContainers:
     limits:
       memory: 512Mi
       cpu: "0.5"
+      
