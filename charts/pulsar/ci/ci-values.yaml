@@ -1,20 +1,20 @@
 proxy:
-  resources: {}
+  resources: null
 zookeeper:
-  resources: {}
+  resources: null
 bookkeeper:
-  resources: {}
+  resources: null
   initContainers:
-    resources: {}
+    resources: null
 broker:
-  resources: {}
+  resources: null
   initContainers:
-    resources: {}
+    resources: null
 autorecovery:
-  resources: {}
+  resources: null
   initContainers:
-    resources: {}
+    resources: null
 pulsar_manager:
-  resources: {}
+  resources: null
 toolset:
-  resources: {}
+  resources: null
