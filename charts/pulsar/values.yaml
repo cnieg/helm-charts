@@ -124,38 +124,38 @@ extra:
 ## Control what images to use for each component
 images:
   zookeeper:
-    repository: docker-hub.cnieg.fr/apachepulsar/pulsar-all
+    repository: apachepulsar/pulsar-all
     tag: 2.5.0
     pullPolicy: IfNotPresent
   bookie:
-    repository: docker-hub.cnieg.fr/apachepulsar/pulsar-all
+    repository: apachepulsar/pulsar-all
     tag: 2.5.0
     pullPolicy: IfNotPresent
   autorecovery:
-    repository: docker-hub.cnieg.fr/apachepulsar/pulsar-all
+    repository: apachepulsar/pulsar-all
     tag: 2.5.0
     pullPolicy: IfNotPresent
   broker:
-    repository: docker-hub.cnieg.fr/apachepulsar/pulsar-all
+    repository: apachepulsar/pulsar-all
     tag: 2.5.0
     pullPolicy: IfNotPresent
   proxy:
-    repository: docker-hub.cnieg.fr/apachepulsar/pulsar-all
+    repository: apachepulsar/pulsar-all
     tag: 2.5.0
     pullPolicy: IfNotPresent
   functions:
-    repository: docker-hub.cnieg.fr/apachepulsar/pulsar-all
+    repository: apachepulsar/pulsar-all
     tag: 2.5.0
   prometheus:
-    repository: docker-hub.cnieg.fr/prom/prometheus
+    repository: prom/prometheus
     tag: v1.6.3
     pullPolicy: IfNotPresent
   grafana:
-    repository: docker-hub.cnieg.fr/streamnative/apache-pulsar-grafana-dashboard-k8s
+    repository: streamnative/apache-pulsar-grafana-dashboard-k8s
     tag: 0.0.4
     pullPolicy: IfNotPresent
   pulsar_manager:
-    repository: docker-hub.cnieg.fr/apachepulsar/pulsar-manager
+    repository: apachepulsar/pulsar-manager
     tag: v0.1.0
     pullPolicy: IfNotPresent
     hasCommand: false
@@ -397,14 +397,6 @@ bookkeeper:
   annotations: {}
   tolerations: []
   gracePeriod: 30
-  initContainers:
-    resources:
-      requests:
-        memory: 64Mi
-        cpu: "0.2"
-      limits:
-        memory: 512Mi
-        cpu: "0.5"
   resources:
     requests:
       memory: 512Mi
@@ -523,14 +515,6 @@ autorecovery:
   annotations: {}
   tolerations: []
   gracePeriod: 30
-  initContainers:
-    resources:
-      requests:
-        memory: 64Mi
-        cpu: "0.2"
-      limits:
-        memory: 512Mi
-        cpu: "0.5"
   resources:
     requests:
       memory: 1Gi
@@ -560,14 +544,6 @@ pulsar_metadata:
   ## set an existing configuration store
   configurationStore: {}
   configurationStoreMetadataPrefix: ""
-  initContainers:
-    resources:
-      requests:
-        memory: 64Mi
-        cpu: "0.2"
-      limits:
-        memory: 512Mi
-        cpu: "0.5"
   resources:
     requests:
       memory: 128Mi
@@ -700,14 +676,6 @@ proxy:
   annotations: {}
   tolerations: []
   gracePeriod: 30
-  initContainers:
-    resources:
-      requests:
-        memory: 64Mi
-        cpu: "0.2"
-      limits:
-        memory: 512Mi
-        cpu: "0.5"
   resources:
     requests:
       memory: 64Mi
