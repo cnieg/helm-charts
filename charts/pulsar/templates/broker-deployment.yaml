@@ -19,22 +19,18 @@
 
 {{- if .Values.components.broker }}
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: "{{ template "pulsar.fullname" . }}-{{ .Values.broker.component }}"
   labels:
     {{- include "pulsar.standardLabels" . | nindent 4 }}
     component: {{ .Values.broker.component }}
 spec:
-  serviceName: "{{ template "pulsar.fullname" . }}-{{ .Values.broker.component }}"
   replicas: {{ .Values.broker.replicaCount }}
   selector:
     matchLabels:
       {{- include "pulsar.matchLabels" . | nindent 6 }}
       component: {{ .Values.broker.component }}
-  updateStrategy:
-    type: RollingUpdate
-  podManagementPolicy: Parallel
   template:
     metadata:
       labels:
