@@ -95,9 +95,9 @@ spec:
             {{- end }}
               echo "pulsar cluster {{ template "pulsar.fullname" . }} isn't initialized yet ... check in 3 seconds ..." && sleep 3;
             done;
-        {{- if .Values.broker.initContainers.resources }}
+        {{- if .Values.initContainers.resources }}
         resources:
-{{ toYaml .Values.broker.initContainers.resources | indent 10 }}
+{{ toYaml .Values.initContainers.resources | indent 10 }}
         {{- end }}
         volumeMounts:
         {{- include "pulsar.broker.certs.volumeMounts" . | nindent 8 }}
@@ -126,6 +126,10 @@ spec:
         envFrom:
           - configMapRef:
               name: "{{ template "pulsar.fullname" . }}-{{ .Values.bookkeeper.component }}"
+        {{- if .Values.initContainers.resources }}
+        resources:
+{{ toYaml .Values.initContainers.resources | indent 10 }}
+        {{- end }}
         volumeMounts:
         {{- include "pulsar.broker.certs.volumeMounts" . | nindent 10 }}
       containers:

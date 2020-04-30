@@ -39,7 +39,6 @@ spec:
             until nslookup {{ .Values.pulsar_metadata.configurationStore}}; do
               sleep 3;
             done;
-
       {{- end }}
       - name: wait-zookeeper-ready
         image: "{{ .Values.pulsar_metadata.image.repository }}:{{ .Values.pulsar_metadata.image.tag }}"
@@ -50,6 +49,10 @@ spec:
             until nslookup {{ template "pulsar.fullname" . }}-{{ .Values.zookeeper.component }}-{{ add (.Values.zookeeper.replicaCount | int) -1 }}.{{ template "pulsar.fullname" . }}-{{ .Values.zookeeper.component }}.{{ .Release.Namespace }}; do
               sleep 3;
             done;
+        {{- if .Values.initContainers.resources }}
+        resources:
+{{ toYaml .Values.initContainers.resources | indent 10 }}
+        {{- end }}
       # This initContainer will wait for bookkeeper initnewcluster to complete
       # before initializing pulsar metadata
       - name: pulsar-bookkeeper-verify-clusterid
@@ -66,6 +69,10 @@ spec:
         envFrom:
         - configMapRef:
             name: "{{ template "pulsar.fullname" . }}-{{ .Values.bookkeeper.component }}"
+        {{- if .Values.initContainers.resources }}
+        resources:
+{{ toYaml .Values.initContainers.resources | indent 10 }}
+        {{- end }}
         volumeMounts:
         {{- include "pulsar.toolset.certs.volumeMounts" . | nindent 8 }}
       containers:

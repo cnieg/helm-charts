@@ -26,6 +26,9 @@
 ### Global Settings
 ###
 
+nameOverride: {}
+fullnameOverride: {}
+
 ## Pulsar Metadata Prefix
 ##
 ## By default, pulsar stores all the metadata at root path.
@@ -121,38 +124,38 @@ extra:
 ## Control what images to use for each component
 images:
   zookeeper:
-    repository: apachepulsar/pulsar-all
+    repository: docker-hub.cnieg.fr/apachepulsar/pulsar-all
     tag: 2.5.0
     pullPolicy: IfNotPresent
   bookie:
-    repository: apachepulsar/pulsar-all
+    repository: docker-hub.cnieg.fr/apachepulsar/pulsar-all
     tag: 2.5.0
     pullPolicy: IfNotPresent
   autorecovery:
-    repository: apachepulsar/pulsar-all
+    repository: docker-hub.cnieg.fr/apachepulsar/pulsar-all
     tag: 2.5.0
     pullPolicy: IfNotPresent
   broker:
-    repository: apachepulsar/pulsar-all
+    repository: docker-hub.cnieg.fr/apachepulsar/pulsar-all
     tag: 2.5.0
     pullPolicy: IfNotPresent
   proxy:
-    repository: apachepulsar/pulsar-all
+    repository: docker-hub.cnieg.fr/apachepulsar/pulsar-all
     tag: 2.5.0
     pullPolicy: IfNotPresent
   functions:
-    repository: apachepulsar/pulsar-all
+    repository: docker-hub.cnieg.fr/apachepulsar/pulsar-all
     tag: 2.5.0
   prometheus:
-    repository: prom/prometheus
+    repository: docker-hub.cnieg.fr/prom/prometheus
     tag: v1.6.3
     pullPolicy: IfNotPresent
   grafana:
-    repository: streamnative/apache-pulsar-grafana-dashboard-k8s
+    repository: docker-hub.cnieg.fr/streamnative/apache-pulsar-grafana-dashboard-k8s
     tag: 0.0.4
     pullPolicy: IfNotPresent
   pulsar_manager:
-    repository: apachepulsar/pulsar-manager
+    repository: docker-hub.cnieg.fr/apachepulsar/pulsar-manager
     tag: v0.1.0
     pullPolicy: IfNotPresent
     hasCommand: false
@@ -256,7 +259,7 @@ zookeeper:
     clientTls: 2281
     follower: 2888
     leaderElection: 3888
-  # nodeSelector:
+  nodeSelector: {}
     # cloud.google.com/gke-nodepool: default-pool
   probe:
     liveness:
@@ -358,9 +361,12 @@ bookkeeper:
     ## Set the resources used for running `bin/bookkeeper shell initnewcluster`
     ##
     resources:
-      # requests:
-        # memory: 4Gi
-        # cpu: 2
+      requests:
+        memory: 128Mi
+        cpu: 0.1
+      limits:
+        memory: 1G
+        cpu: 0.5
   replicaCount: 2
   updateStrategy:
     type: RollingUpdate
@@ -368,7 +374,7 @@ bookkeeper:
   ports:
     http: 8000
     bookie: 3181
-  # nodeSelector:
+  nodeSelector: {}
     # cloud.google.com/gke-nodepool: default-pool
   probe:
     liveness:
@@ -404,7 +410,7 @@ bookkeeper:
       memory: 512Mi
       cpu: "0.2"
     limits:
-      memory: 512Mi
+      memory: 1024Mi
       cpu: "0.8"
   volumes:
     # use a persistent volume or emptyDir
@@ -485,6 +491,8 @@ bookkeeper:
     dbStorage_rocksDB_writeBufferSizeMB: "8"
     dbStorage_rocksDB_blockCacheSize: "8388608"
     journalMaxSizeMB: "2048"
+    statsProviderClass: org.apache.bookkeeper.stats.prometheus.PrometheusMetricsProvider
+    #useHostNameAsBookieID: "true"
   ## Bookkeeper Service
   ## templates/bookkeeper-service.yaml
   ##
@@ -508,12 +516,12 @@ autorecovery:
   replicaCount: 1
   ports:
     http: 8000
-  # nodeSelector:
+  nodeSelector: {}
     # cloud.google.com/gke-nodepool: default-pool
   affinity:
     anti_affinity: true
   annotations: {}
-  # tolerations: []
+  tolerations: []
   gracePeriod: 30
   initContainers:
     resources:
@@ -525,8 +533,8 @@ autorecovery:
         cpu: "0.5"
   resources:
     requests:
-      memory: 64Mi
-      cpu: "0.05"
+      memory: 1Gi
+      cpu: 250m
   ## Bookkeeper auto-recovery configmap
   ## templates/autorecovery-configmap.yaml
   ##
@@ -550,8 +558,24 @@ pulsar_metadata:
     tag: 2.5.0
     pullPolicy: IfNotPresent
   ## set an existing configuration store
-  # configurationStore:
+  configurationStore: {}
   configurationStoreMetadataPrefix: ""
+  initContainers:
+    resources:
+      requests:
+        memory: 64Mi
+        cpu: "0.2"
+      limits:
+        memory: 512Mi
+        cpu: "0.5"
+  resources:
+    requests:
+      memory: 128Mi
+      cpu: 0.1
+    limits:
+      memory: 1G
+      cpu: 0.5
+
 
 ## Pulsar: Broker cluster
 ## templates/broker-statefulset.yaml
@@ -566,7 +590,7 @@ broker:
     https: 8443
     pulsar: 6650
     pulsarssl: 6651
-  # nodeSelector:
+  nodeSelector: {}
     # cloud.google.com/gke-nodepool: default-pool
   probe:
     liveness:
@@ -589,20 +613,12 @@ broker:
   annotations: {}
   tolerations: []
   gracePeriod: 30
-  initContainers:
-    resources:
-      requests:
-        memory: 64Mi
-        cpu: "0.2"
-      limits:
-        memory: 512Mi
-        cpu: "0.5"
   resources:
     requests:
       memory: 512Mi
       cpu: "0.2"
     limits:
-      memory: 1G
+      memory: 1280Mi
       cpu: "0.5"
   ## Broker configmap
   ## templates/broker-configmap.yaml
@@ -610,7 +626,7 @@ broker:
   configData:
     PULSAR_MEM: >
       "
-      -Xms128m -Xmx256m -XX:MaxDirectMemorySize=256m
+      -Xms128m -Xmx256m -XX:MaxDirectMemorySize=128m
       -Dio.netty.leakDetectionLevel=disabled
       -Dio.netty.recycler.linkCapacity=1024
       -XX:+ParallelRefProcEnabled
@@ -633,6 +649,7 @@ broker:
     managedLedgerDefaultWriteQuorum: "2"
     managedLedgerDefaultAckQuorum: "1"
     deduplicationEnabled: "false"
+    exposeTopicLevelMetricsInPrometheus: "true"
 
   ## Broker service
   ## templates/broker-service.yaml
@@ -660,7 +677,7 @@ proxy:
   # so the metrics are correctly rendered in grafana dashboard
   component: proxy
   replicaCount: 2
-  # nodeSelector:
+  nodeSelector: {}
     # cloud.google.com/gke-nodepool: default-pool
   probe:
     liveness:
@@ -683,6 +700,14 @@ proxy:
   annotations: {}
   tolerations: []
   gracePeriod: 30
+  initContainers:
+    resources:
+      requests:
+        memory: 64Mi
+        cpu: "0.2"
+      limits:
+        memory: 512Mi
+        cpu: "0.5"
   resources:
     requests:
       memory: 64Mi
@@ -740,7 +765,7 @@ proxy:
 dashboard:
   component: dashboard
   replicaCount: 1
-  # nodeSelector:
+  nodeSelector: {}
     # cloud.google.com/gke-nodepool: default-pool
   annotations: {}
   tolerations: []
@@ -783,7 +808,7 @@ toolset:
   component: toolset
   useProxy: true
   replicaCount: 1
-  # nodeSelector:
+  nodeSelector: {}
     # cloud.google.com/gke-nodepool: default-pool
   annotations: {}
   tolerations: []
@@ -818,7 +843,7 @@ prometheus:
   rbac:
     enabled: true
   replicaCount: 1
-  # nodeSelector:
+  nodeSelector: {}
     # cloud.google.com/gke-nodepool: default-pool
   annotations: {}
   tolerations: []
@@ -858,7 +883,7 @@ prometheus:
 grafana:
   component: grafana
   replicaCount: 1
-  # nodeSelector:
+  nodeSelector: {}
     # cloud.google.com/gke-nodepool: default-pool
   annotations: {}
   tolerations: []
@@ -907,7 +932,7 @@ pulsar_manager:
   component: pulsar-manager
   port: 9527
   replicaCount: 1
-  # nodeSelector:
+  nodeSelector: {}
   # cloud.google.com/gke-nodepool: default-pool
   annotations: {}
   tolerations: []
@@ -937,3 +962,12 @@ pulsar_manager:
   admin:
     user: pulsar
     password: pulsar
+
+initContainers:
+  resources:
+    requests:
+      memory: 64Mi
+      cpu: "0.2"
+    limits:
+      memory: 512Mi
+      cpu: "0.5"

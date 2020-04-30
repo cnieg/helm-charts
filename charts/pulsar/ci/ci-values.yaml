@@ -4,17 +4,13 @@ zookeeper:
   resources: null
 bookkeeper:
   resources: null
-  initContainers:
-    resources: null
 broker:
   resources: null
-  initContainers:
-    resources: null
 autorecovery:
   resources: null
-  initContainers:
-    resources: null
 pulsar_manager:
   resources: null
 toolset:
+  resources: null
+initContainers:
   resources: null

@@ -88,6 +88,10 @@ spec:
             until bin/pulsar zookeeper-shell -server {{ template "pulsar.fullname" . }}-{{ .Values.zookeeper.component }} get {{ .Values.metadataPrefix }}/admin/clusters/{{ template "pulsar.fullname" . }}; do
               sleep 3;
             done;
+        {{- if .Values.initContainers.resources }}
+        resources:
+{{ toYaml .Values.initContainers.resources | indent 10 }}
+        {{- end }}
       # This init container will wait for at least one broker to be ready before
       # deploying the proxy
       - name: wait-broker-ready
@@ -103,6 +107,10 @@ spec:
               sleep 10;
               brokerServiceNumber="$(nslookup -timeout=10 {{ template "pulsar.fullname" . }}-{{ .Values.broker.component }} | grep Name | wc -l)";
             done;
+        {{- if .Values.initContainers.resources }}
+        resources:
+{{ toYaml .Values.initContainers.resources | indent 10 }}
+        {{- end }}
       containers:
       - name: "{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}"
         image: "{{ .Values.images.proxy.repository }}:{{ .Values.images.proxy.tag }}"

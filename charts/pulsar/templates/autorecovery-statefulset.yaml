@@ -92,9 +92,9 @@ spec:
         envFrom:
         - configMapRef:
             name: "{{ template "pulsar.fullname" . }}-{{ .Values.autorecovery.component }}"
-        {{- if .Values.autorecovery.initContainers.resources }}
+        {{- if .Values.initContainers.resources }}
         resources:
-{{ toYaml .Values.autorecovery.initContainers.resources | indent 10 }}
+{{ toYaml .Values.initContainers.resources | indent 10 }}
         {{- end }}
         volumeMounts:
         {{- include "pulsar.autorecovery.certs.volumeMounts" . | nindent 8 }}
