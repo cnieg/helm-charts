@@ -1,5 +1,5 @@
 volumes:
-  persistence: false
+  local_storage: true
 # disabled AntiAffinity
 affinity:
   anti_affinity: false
@@ -7,6 +7,7 @@ affinity:
 # disable auto recovery
 components:
   autorecovery: false
+  pulsar_manager: false
 extra:
   autoRecovery: false
 # disable resources limit & limit to 1 replica
@@ -23,6 +24,11 @@ zookeeper:
 bookkeeper:
   resources: null
   replicaCount: 1
+  configData:
+    diskUsageThreshold: "0.999"
+    diskUsageWarnThreshold: "0.999"
+    PULSAR_PREFIX_diskUsageThreshold: "0.999"
+    PULSAR_PREFIX_diskUsageWarnThreshold: "0.999"
   pdb:
     usePolicy: false
 broker:
@@ -35,9 +41,26 @@ broker:
     managedLedgerDefaultEnsembleSize: "1"
     managedLedgerDefaultWriteQuorum: "1"
     managedLedgerDefaultAckQuorum: "1"
-pulsar_manager:
-  resources: null
 toolset:
   resources: null
 initContainers:
   resources: null
+toolset:
+  useProxy: false
+
+# enable TLS
+tls:
+  enabled: true
+  proxy:
+    enabled: true
+  broker:
+    enabled: true
+  bookie:
+    enabled: true
+  zookeeper:
+    enabled: true
+
+# disable cert-manager
+certs:
+  internal_issuer:
+    enabled: false
