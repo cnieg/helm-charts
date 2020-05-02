@@ -19,18 +19,22 @@
 
 {{- if or .Values.components.proxy .Values.extra.proxy }}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: "{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}"
   labels:
     {{- include "pulsar.standardLabels" . | nindent 4 }}
     component: {{ .Values.proxy.component }}
 spec:
+  serviceName: "{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}"
   replicas: {{ .Values.proxy.replicaCount }}
   selector:
     matchLabels:
       {{- include "pulsar.matchLabels" . | nindent 6 }}
       component: {{ .Values.proxy.component }}
+  updateStrategy:
+    type: RollingUpdate
+  podManagementPolicy: Parallel
   template:
     metadata:
       labels:

@@ -124,28 +124,28 @@ extra:
 ## Control what images to use for each component
 images:
   zookeeper:
-    repository: apachepulsar/pulsar-all
-    tag: 2.5.0
+    repository: apachepulsar/pulsar
+    tag: 2.5.1
     pullPolicy: IfNotPresent
   bookie:
-    repository: apachepulsar/pulsar-all
-    tag: 2.5.0
+    repository: apachepulsar/pulsar
+    tag: 2.5.1
     pullPolicy: IfNotPresent
   autorecovery:
-    repository: apachepulsar/pulsar-all
-    tag: 2.5.0
+    repository: apachepulsar/pulsar
+    tag: 2.5.1
     pullPolicy: IfNotPresent
   broker:
-    repository: apachepulsar/pulsar-all
-    tag: 2.5.0
+    repository: apachepulsar/pulsar
+    tag: 2.5.1
     pullPolicy: IfNotPresent
   proxy:
-    repository: apachepulsar/pulsar-all
-    tag: 2.5.0
+    repository: apachepulsar/pulsar
+    tag: 2.5.1
     pullPolicy: IfNotPresent
   functions:
-    repository: apachepulsar/pulsar-all
-    tag: 2.5.0
+    repository: apachepulsar/pulsar
+    tag: 2.5.1
   prometheus:
     repository: prom/prometheus
     tag: v1.6.3
@@ -355,8 +355,8 @@ bookkeeper:
   metadata:
     image:
       # the image used for running `bookkeeper-cluster-initialize` job
-      repository: apachepulsar/pulsar-all
-      tag: 2.5.0
+      repository: apachepulsar/pulsar
+      tag: 2.5.1
       pullPolicy: IfNotPresent
     ## Set the resources used for running `bin/bookkeeper shell initnewcluster`
     ##
@@ -482,9 +482,6 @@ bookkeeper:
     dbStorage_readAheadCacheMaxSizeMb: "32"
     dbStorage_rocksDB_writeBufferSizeMB: "8"
     dbStorage_rocksDB_blockCacheSize: "8388608"
-    journalMaxSizeMB: "2048"
-    statsProviderClass: org.apache.bookkeeper.stats.prometheus.PrometheusMetricsProvider
-    # useHostNameAsBookieID: "true"
   ## Bookkeeper Service
   ## templates/bookkeeper-service.yaml
   ##
@@ -538,8 +535,8 @@ pulsar_metadata:
   component: pulsar-init
   image:
     # the image used for running `pulsar-cluster-initialize` job
-    repository: apachepulsar/pulsar-all
-    tag: 2.5.0
+    repository: apachepulsar/pulsar
+    tag: 2.5.1
     pullPolicy: IfNotPresent
   ## set an existing configuration store
   configurationStore: {}
@@ -594,7 +591,7 @@ broker:
       memory: 512Mi
       cpu: "0.2"
     limits:
-      memory: 1280Mi
+      memory: 1024Mi
       cpu: "0.5"
   ## Broker configmap
   ## templates/broker-configmap.yaml
@@ -624,8 +621,6 @@ broker:
     managedLedgerDefaultEnsembleSize: "2"
     managedLedgerDefaultWriteQuorum: "2"
     managedLedgerDefaultAckQuorum: "1"
-    deduplicationEnabled: "false"
-    exposeTopicLevelMetricsInPrometheus: "true"
 
   ## Broker service
   ## templates/broker-service.yaml
@@ -719,6 +714,7 @@ proxy:
   service:
     annotations: {}
     type: LoadBalancer
+    nodePortPulsar: {}
   ## Proxy PodDisruptionBudget
   ## templates/proxy-pdb.yaml
   ##

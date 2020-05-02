@@ -38,6 +38,9 @@ spec:
       protocol: TCP
     - name: pulsar
       port: {{ .Values.proxy.ports.pulsar }}
+      {{- if and (eq .Values.proxy.service.type "NodePort") .Values.proxy.service.nodePortPulsar }}
+      nodePort: {{.Values.proxy.service.nodePortPulsar }}
+      {{- end }}
       protocol: TCP
     {{- end }}
     {{- if and .Values.tls.enabled .Values.tls.proxy.enabled }}

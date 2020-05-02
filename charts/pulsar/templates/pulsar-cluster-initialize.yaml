@@ -26,6 +26,7 @@ metadata:
     {{- include "pulsar.standardLabels" . | nindent 4 }}
     component: {{ .Values.pulsar_metadata.component }}
 spec:
+  ttlSecondsAfterFinished: 100
   template:
     spec:
       initContainers:
