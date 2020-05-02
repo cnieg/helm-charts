@@ -713,7 +713,7 @@ proxy:
     pulsarssl: 6651
   service:
     annotations: {}
-    type: LoadBalancer
+    type: ClusterIP
     nodePortPulsar: {}
   ## Proxy PodDisruptionBudget
   ## templates/proxy-pdb.yaml
@@ -763,7 +763,6 @@ dashboard:
     hostname: ""
     path: "/"
     port: 80
-
 
 ## Pulsar ToolSet
 ## templates/toolset-deployment.yaml
@@ -861,7 +860,7 @@ grafana:
   ## templates/grafana-service.yaml
   ##
   service:
-    type: LoadBalancer
+    type: ClusterIP
     annotations: {}
   plugins: []
   ## Grafana ingress
@@ -921,7 +920,7 @@ pulsar_manager:
   ## templates/pulsar-manager-service.yaml
   ##
   service:
-    type: LoadBalancer
+    type: ClusterIP
     annotations: {}
   admin:
     user: pulsar

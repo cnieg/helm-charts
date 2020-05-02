@@ -13,8 +13,6 @@ extra:
 # limit to 1 replica
 proxy:
   replicaCount: 1
-  service:
-    type: ClusterIP
 zookeeper:
   replicaCount: 1
 bookkeeper:
@@ -31,10 +29,5 @@ broker:
     managedLedgerDefaultEnsembleSize: "1"
     managedLedgerDefaultWriteQuorum: "1"
     managedLedgerDefaultAckQuorum: "1"
-pulsar_manager:
-  service:
-    type: ClusterIP
-initContainers: {}
 
-toolset:
-  useProxy: false
+initContainers: {}
