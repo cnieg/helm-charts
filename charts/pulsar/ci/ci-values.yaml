@@ -45,4 +45,3 @@ initContainers:
 
 toolset:
   useProxy: false
-
