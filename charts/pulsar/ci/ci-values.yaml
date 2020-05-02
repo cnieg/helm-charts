@@ -1,6 +1,15 @@
+volumes:
+  persistence: false
+# disabled AntiAffinity
+affinity:
+  anti_affinity: false
+
+# disable auto recovery
+components:
+  autorecovery: false
 proxy:
   resources: null
-  replicaCount: 2
+  replicaCount: 1
 zookeeper:
   resources: null
   replicaCount: 1
@@ -11,6 +20,7 @@ broker:
   resources: null
   replicaCount: 1
   configData:
+    autoSkipNonRecoverableData: "true"
     managedLedgerDefaultEnsembleSize: "1"
     managedLedgerDefaultWriteQuorum: "1"
     managedLedgerDefaultAckQuorum: "1"
