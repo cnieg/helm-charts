@@ -26,6 +26,7 @@ metadata:
     {{- include "pulsar.standardLabels" . | nindent 4 }}
     component: "{{ .Values.bookkeeper.component }}-init"
 spec:
+  ttlSecondsAfterFinished: 500
   template:
     spec:
       initContainers:
