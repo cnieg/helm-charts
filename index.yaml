@@ -78,6 +78,22 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/proxy-relay-0.1.0/proxy-relay-0.1.0.tgz
     version: 0.1.0
+  pulsar:
+  - apiVersion: v1
+    appVersion: 2.5.0
+    created: "2020-05-02T21:54:19.376585668Z"
+    description: Apache Pulsar Helm chart for Kubernetes
+    digest: 86bac26eb5ca3d04a419708a19c02efb37a032963ee85539ceacbf6abab374c3
+    home: https://pulsar.apache.org
+    icon: http://pulsar.apache.org/img/pulsar.svg
+    maintainers:
+    - name: audig
+    name: pulsar
+    sources:
+    - https://github.com/apache/pulsar
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/pulsar-1.0.0/pulsar-1.0.0.tgz
+    version: 1.0.0
   spring-boot:
   - apiVersion: v1
     appVersion: "1.0"
