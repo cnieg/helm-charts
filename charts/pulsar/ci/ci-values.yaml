@@ -1,11 +1,19 @@
 proxy:
   resources: null
+  replicaCount: 2
 zookeeper:
   resources: null
+  replicaCount: 1
 bookkeeper:
   resources: null
+  replicaCount: 1
 broker:
   resources: null
+  replicaCount: 1
+  configData:
+    managedLedgerDefaultEnsembleSize: "2"
+    managedLedgerDefaultWriteQuorum: "2"
+    managedLedgerDefaultAckQuorum: "1"
 autorecovery:
   resources: null
 pulsar_manager:
