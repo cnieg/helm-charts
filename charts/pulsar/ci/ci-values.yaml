@@ -7,10 +7,10 @@ affinity:
 # disable auto recovery
 components:
   autorecovery: false
-  pulsar_manager: false
 extra:
   autoRecovery: false
-# disable resources limit & limit to 1 replica
+
+# limit to 1 replica
 proxy:
   replicaCount: 1
   service:
@@ -34,14 +34,7 @@ broker:
 pulsar_manager:
   service:
     type: ClusterIP
-initContainers:
-  resources:
-    requests:
-      memory: ""
-      cpu: ""
-    limits:
-      memory: ""
-      cpu: ""
+initContainers: {}
 
 toolset:
   useProxy: false
