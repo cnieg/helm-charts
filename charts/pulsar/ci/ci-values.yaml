@@ -12,17 +12,17 @@ extra:
   autoRecovery: false
 # disable resources limit & limit to 1 replica
 proxy:
-  resources: null
+  resources: []
   replicaCount: 1
   pdb:
     usePolicy: false
 zookeeper:
-  resources: null
+  resources: []
   replicaCount: 1
   pdb:
     usePolicy: false
 bookkeeper:
-  resources: null
+  resources: []
   replicaCount: 1
   configData:
     diskUsageThreshold: "0.999"
@@ -32,7 +32,7 @@ bookkeeper:
   pdb:
     usePolicy: false
 broker:
-  resources: null
+  resources: []
   replicaCount: 1
   pdb:
     usePolicy: false
@@ -41,11 +41,10 @@ broker:
     managedLedgerDefaultEnsembleSize: "1"
     managedLedgerDefaultWriteQuorum: "1"
     managedLedgerDefaultAckQuorum: "1"
-toolset:
-  resources: null
 initContainers:
-  resources: null
+  resources: []
 toolset:
+  resources: []
   useProxy: false
 
 # enable TLS
