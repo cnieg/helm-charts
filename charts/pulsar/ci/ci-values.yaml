@@ -13,15 +13,23 @@ extra:
 proxy:
   resources: null
   replicaCount: 1
+  pdb:
+    usePolicy: false
 zookeeper:
   resources: null
   replicaCount: 1
+  pdb:
+    usePolicy: false
 bookkeeper:
   resources: null
   replicaCount: 1
+  pdb:
+    usePolicy: false
 broker:
   resources: null
   replicaCount: 1
+  pdb:
+    usePolicy: false
   configData:
     autoSkipNonRecoverableData: "true"
     managedLedgerDefaultEnsembleSize: "1"
