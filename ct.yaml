@@ -1,1 +1,1 @@
-helm-extra-args: --timeout 1000s
+# helm-extra-args: --timeout 1000s
