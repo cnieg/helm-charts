@@ -11,8 +11,8 @@ broker:
   resources: null
   replicaCount: 1
   configData:
-    managedLedgerDefaultEnsembleSize: "2"
-    managedLedgerDefaultWriteQuorum: "2"
+    managedLedgerDefaultEnsembleSize: "1"
+    managedLedgerDefaultWriteQuorum: "1"
     managedLedgerDefaultAckQuorum: "1"
 autorecovery:
   resources: null
