@@ -7,6 +7,9 @@ affinity:
 # disable auto recovery
 components:
   autorecovery: false
+extra:
+  autoRecovery: false
+# disable resources limit & limit to 1 replica
 proxy:
   resources: null
   replicaCount: 1
@@ -24,8 +27,6 @@ broker:
     managedLedgerDefaultEnsembleSize: "1"
     managedLedgerDefaultWriteQuorum: "1"
     managedLedgerDefaultAckQuorum: "1"
-autorecovery:
-  resources: null
 pulsar_manager:
   resources: null
 toolset:
