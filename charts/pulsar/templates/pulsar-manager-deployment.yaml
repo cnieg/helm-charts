@@ -76,7 +76,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 key: {{ .Values.pulsar_manager.credentials.externalSecret.passwordKey | default "PULSAR_MANAGER_ADMIN_PASSWORD" }}
-                name: "{{ .Values.pulsar_manager.credentials.externalSecret.name | default (printf "%s-%s-secret" (include "pulsar.fullname" .)  .Values.pulsar_manager.component)  }}
+                name: "{{ .Values.pulsar_manager.credentials.externalSecret.name | default (printf "%s-%s-secret" (include "pulsar.fullname" .)  .Values.pulsar_manager.component)  }}"
       volumes:
         - name: pulsar-manager-data
           emptyDir: {}
