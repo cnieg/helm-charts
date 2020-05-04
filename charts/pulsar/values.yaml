@@ -941,9 +941,17 @@ pulsar_manager:
     protocol: http
     path: /
     port: 9527
-  admin:
-    user: pulsar
-    password: pulsar
+  credentials:
+    # credential can be reading from externalSecret if name is not empty
+    externalSecret:
+      name: ""
+      # Key can be set to match your secret (optionnal), otherwise use default value
+      userKey: ""
+      passwordKey: ""
+    # If no external secret name provided use this credential
+    admin:
+      user: pulsar
+      password: pulsar
 
 initContainers:
   resources:
