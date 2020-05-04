@@ -81,6 +81,21 @@ entries:
   pulsar:
   - apiVersion: v1
     appVersion: 2.5.0
+    created: "2020-05-04T16:34:51.519754593Z"
+    description: Apache Pulsar Helm chart for Kubernetes
+    digest: 3f4c9d45e49dcbd0165e2df5920e34c4f448ba3f32dcee2a48844ee2c0aca2a0
+    home: https://pulsar.apache.org
+    icon: http://pulsar.apache.org/img/pulsar.svg
+    maintainers:
+    - name: audig
+    name: pulsar
+    sources:
+    - https://github.com/apache/pulsar
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/pulsar-1.0.3/pulsar-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v1
+    appVersion: 2.5.0
     created: "2020-05-04T15:33:58.435422158Z"
     description: Apache Pulsar Helm chart for Kubernetes
     digest: 903d12cfcf5ed7f90e29c3c5097f1cec6a4ab5eb45c01293f029bfaaa031a956
