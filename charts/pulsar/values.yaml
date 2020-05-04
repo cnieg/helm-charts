@@ -940,7 +940,7 @@ pulsar_manager:
     hostname: ""
     protocol: http
     path: /
-    port: 80
+    port: 9527
   admin:
     user: pulsar
     password: pulsar
