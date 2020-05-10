@@ -1,17 +1,20 @@
 client:
   replicas: 1
+  minimumMasterNodes: 1
   resources:
     requests:
       cpu: 100m
       memory: 100Mi
 data:
   replicas: 1
+  minimumMasterNodes: 1
   resources:
     requests:
       cpu: 100m
       memory: 100Mi
 master:
   replicas: 1
+  minimumMasterNodes: 1
   resources:
     requests:
       cpu: 100m
