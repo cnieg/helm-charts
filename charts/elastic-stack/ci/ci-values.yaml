@@ -8,6 +8,8 @@ client:
 data:
   replicas: 1
   minimumMasterNodes: 1
+  persistence:
+    enabled: false
   resources:
     requests:
       cpu: 100m
@@ -15,6 +17,8 @@ data:
 master:
   replicas: 1
   minimumMasterNodes: 1
+  persistence:
+    enabled: false
   resources:
     requests:
       cpu: 100m
