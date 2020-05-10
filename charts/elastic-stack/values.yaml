@@ -69,7 +69,7 @@ master:
   #     mountPath: "/usr/share/elasticsearch/backup"
 
   volumeClaimTemplate:
-    accessModes: [ "ReadWriteOnce" ]
+    accessModes: ["ReadWriteOnce"]
     resources:
       requests:
         storage: 4Gi
@@ -117,7 +117,7 @@ data:
   #     mountPath: "/usr/share/elasticsearch/backup"
 
   volumeClaimTemplate:
-    accessModes: [ "ReadWriteOnce" ]
+    accessModes: ["ReadWriteOnce"]
     resources:
       requests:
         storage: 20Gi
