@@ -1,18 +1,36 @@
 client:
   replicas: 1
-  resources: {}
+  resources:
+    requests:
+      cpu: ""
+      memory: ""
 data:
   replicas: 1
-  resources: {}
+  resources:
+    requests:
+      cpu: ""
+      memory: ""
 master:
   replicas: 1
-  resources: {}
+  resources:
+    requests:
+      cpu: ""
+      memory: ""
 logstash:
   replicas: 1
-  resources: {}
+  resources:
+    requests:
+      cpu: ""
+      memory: ""
 filebeat:
   replicas: 1
-  resources: {}
+  resources:
+    requests:
+      cpu: ""
+      memory: ""
 kibana:
   replicas: 1
-  resources: {}
+  resources:
+    requests:
+      cpu: ""
+      memory: ""
