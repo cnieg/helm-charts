@@ -1,0 +1,18 @@
+client:
+  replicas: 1
+  resources: {}
+data:
+  replicas: 1
+  resources: {}
+master:
+  replicas: 1
+  resources: {}
+logstash:
+  replicas: 1
+  resources: {}
+filebeat:
+  replicas: 1
+  resources: {}
+kibana:
+  replicas: 1
+  resources: {}
