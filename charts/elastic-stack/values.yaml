@@ -167,9 +167,6 @@ client:
   persistence:
     enabled: false
 
-  sysctlInitContainer:
-    enabled: false
-
 logstash:
   enabled: true
   extraEnvs:

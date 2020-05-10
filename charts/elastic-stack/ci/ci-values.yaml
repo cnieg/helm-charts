@@ -2,35 +2,25 @@ client:
   replicas: 1
   resources:
     requests:
-      cpu: 100m
-      memory: 100Mi
+      cpu: null
+      memory: null
 data:
   replicas: 1
   resources:
-    requests:
-      cpu: 100m
-      memory: 100Mi
+    requests: null
 master:
   replicas: 1
   resources:
-    requests:
-      cpu: 100m
-      memory: 100Mi
+    requests: null
 logstash:
   replicas: 1
   resources:
-    requests:
-      cpu: 100m
-      memory: 100Mi
+    requests: null
 filebeat:
   replicas: 1
   resources:
-    requests:
-      cpu: 100m
-      memory: 100Mi
+    requests: null
 kibana:
   replicas: 1
   resources:
-    requests:
-      cpu: 100m
-      memory: 100Mi
+    requests: null
