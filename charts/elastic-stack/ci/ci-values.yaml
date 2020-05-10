@@ -1,0 +1,43 @@
+client:
+  replicas: 1
+  minimumMasterNodes: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+data:
+  replicas: 1
+  minimumMasterNodes: 1
+  persistence:
+    enabled: false
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+master:
+  replicas: 1
+  minimumMasterNodes: 1
+  persistence:
+    enabled: false
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+logstash:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+filebeat:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+kibana:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
