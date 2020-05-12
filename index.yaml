@@ -3,6 +3,47 @@ entries:
   elastic-stack:
   - apiVersion: v1
     appVersion: 7.6.2
+    created: "2020-05-12T07:49:07.117902362Z"
+    dependencies:
+    - alias: master
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: ^7.6.2
+    - alias: data
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: ^7.6.2
+    - alias: client
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: ^7.6.2
+    - condition: kibana.enabled
+      name: kibana
+      repository: https://helm.elastic.co
+      version: 7.6.2
+    - condition: logstash.enabled
+      name: logstash
+      repository: https://helm.elastic.co
+      version: 7.6.2
+    - condition: filebeat.enabled
+      name: filebeat
+      repository: https://helm.elastic.co
+      version: 7.6.2
+    description: A Helm chart for ELK
+    digest: bd9ada725593d1368ba311c85271e7fa6cb012926ae4a140d69d8e7021ed56ff
+    home: https://www.elastic.co/products
+    icon: https://helm.elastic.co/icons/elasticsearch.png
+    maintainers:
+    - email: maintainers@cnieg.fr
+      name: audig
+    name: elastic-stack
+    sources:
+    - https://github.com/elastic/helm-charts/tree/master/elasticsearch
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/elastic-stack-1.0.0/elastic-stack-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v1
+    appVersion: 7.6.2
     created: "2020-05-10T16:02:03.029168643Z"
     dependencies:
     - alias: master
