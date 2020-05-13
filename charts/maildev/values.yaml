@@ -33,6 +33,16 @@ persistence:
   storageClass: "-"
   existingClaim: ""
 
+# To clean some old mails when persistence is enabled
+cron:
+  enabled: false
+  image:
+    repository: busybox
+    tag: latest
+    pullPolicy: IfNotPresent
+  schedule: 58 * * * *
+  daysToKeep: 15
+
 ingress:
   enabled: true
   annotations: {}

@@ -1,0 +1,42 @@
+{{- if and .Values.cron.enabled .Values.persistence.enabled }}
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ include "maildev.fullname" . }}
+  labels:
+{{ include "maildev.labels" . | indent 4 }}
+spec:
+  schedule: {{ .Values.cron.schedule }}
+  startingDeadlineSeconds: 100
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: delete-mail
+              image: "{{ .Values.cron.image.repository }}:{{ .Values.cron.image.tag }}"
+              imagePullPolicy: {{ .Values.cron.image.pullPolicy }}
+              args:
+                - "find"
+                - "/usr/src/app/mailsave"
+                - "-type"
+                - "f"
+                - "-mtime"
+                - "+{{.Values.cron.daysToKeep }}"
+                - "-exec"
+                - "rm"
+                - "-f"
+                - "{}"
+              volumeMounts:
+                - name: data
+                  mountPath: /usr/src/app/mailsave
+            - name: reload-mail
+              image: "{{ .Values.cron.image.repository }}:{{ .Values.cron.image.tag }}"
+              imagePullPolicy: {{ .Values.cron.image.pullPolicy }}
+              args: ["wget","{{ include "maildev.fullname" . }}-http:{{ .Values.services.http.port}}/reloadMailsFromFolder"]
+          volumes:
+            - name: data
+              persistentVolumeClaim:
+                claimName: {{ .Values.persistence.existingClaim | default (include "maildev.fullname" .) }}
+          restartPolicy: OnFailure
+  {{- end }}
