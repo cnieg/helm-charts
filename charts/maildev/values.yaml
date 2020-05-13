@@ -18,7 +18,7 @@ services:
     type: ClusterIP
     port: 80
   smtp:
-    type: LoadBalancer
+    type: NodePort
     port: 25
 extraArgs: {}
 #  - "--outgoing-host"
