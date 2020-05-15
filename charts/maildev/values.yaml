@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: maildev/maildev
-  tag: 1.1.0
+  repository: cnieg/maildev
+  tag: feat-persistent-mails
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -17,14 +17,18 @@ services:
   http:
     type: ClusterIP
     port: 80
+    containerPort: 1080
   smtp:
     type: NodePort
     port: 25
+    containerPort: 1025
 extraArgs: {}
 #  - "--outgoing-host"
 #  - "smtp.yourdomaine.com"
 #  - "--outgoing-port"
 #  - "25"
+#  - "--persistMails"
+#  - "/home/node/maildev-data"
 
 persistence:
   enabled: false

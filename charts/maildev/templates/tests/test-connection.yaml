@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "maildev.fullname" . }}-http:{{ .Values.services.http.port}}/#/']
+      args:  ['{{ include "maildev.fullname" . }}-http:{{ .Values.services.http.port}}/healthz']
   restartPolicy: Never

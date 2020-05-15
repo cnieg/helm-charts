@@ -25,33 +25,29 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.extraArgs }}
           args:
-            - "--web"
-            - "80"
-            - "--smtp"
-            - "25"
-            {{- if .Values.extraArgs }}
             {{- range .Values.extraArgs }}
             - {{ . | quote }}
             {{- end }}
-            {{- end }}
+           {{- end }}
           volumeMounts:
             - name: data
-              mountPath: /usr/src/app/mailsave
+              mountPath: /home/node/maildev-data
           ports:
             - name: http
-              containerPort: 80
+              containerPort: {{ .Values.services.http.containerPort }}
               protocol: TCP
             - name: smtp
-              containerPort: 25
+              containerPort: {{ .Values.services.smtp.containerPort }}
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /#/
+              path: /healthz
               port: http
           readinessProbe:
             httpGet:
-              path: /#/
+              path: /healthz
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
