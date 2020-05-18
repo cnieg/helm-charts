@@ -128,6 +128,23 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/h2-database-1.0.1/h2-database-1.0.1.tgz
     version: 1.0.1
+  maildev:
+  - apiVersion: v1
+    appVersion: 1.1.0
+    created: "2020-05-18T13:21:17.672620294Z"
+    description: A Helm chart for maildev
+    digest: 3bac64e4f7bc5df691ff014a13f0d83e21fcd4c76e132cd8c616ed18727677a2
+    home: https://github.com/maildev/maildev
+    icon: https://raw.githubusercontent.com/maildev/maildev/master/app/favicon.ico
+    maintainers:
+    - email: maintainers@cnieg.fr
+      name: audig
+    name: maildev
+    sources:
+    - https://github.com/maildev/maildev
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/maildev-1.0.0/maildev-1.0.0.tgz
+    version: 1.0.0
   proxy-relay:
   - apiVersion: v1
     appVersion: 2.4.39
