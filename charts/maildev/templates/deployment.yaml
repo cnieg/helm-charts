@@ -27,19 +27,23 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.extraArgs }}
           args:
+            - "--web"
+            - "1080"
+            - "--smtp"
+            - "1025"
             {{- range .Values.extraArgs }}
             - {{ . | quote }}
             {{- end }}
            {{- end }}
           volumeMounts:
             - name: data
-              mountPath: /home/node/maildev-data
+              mountPath: {{ .Values.persistence.mountPath }}
           ports:
             - name: http
-              containerPort: {{ .Values.services.http.containerPort }}
+              containerPort: 1080
               protocol: TCP
             - name: smtp
-              containerPort: {{ .Values.services.smtp.containerPort }}
+              containerPort: 1025
               protocol: TCP
           livenessProbe:
             httpGet:

@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: cnieg/maildev
-  tag: feat-persistent-mails
+  tag: v1.1.5
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -17,17 +17,15 @@ services:
   http:
     type: ClusterIP
     port: 80
-    containerPort: 1080
   smtp:
     type: NodePort
     port: 25
-    containerPort: 1025
-extraArgs: {}
+extraArgs:
 #  - "--outgoing-host"
 #  - "smtp.yourdomaine.com"
 #  - "--outgoing-port"
 #  - "25"
-#  - "--persistMails"
+#  - "--mail-directory"
 #  - "/home/node/maildev-data"
 
 persistence:
@@ -36,6 +34,7 @@ persistence:
   size: 8Gi
   storageClass: "-"
   existingClaim: ""
+  mountPath: /home/node/maildev-data
 
 # To clean some old mails when persistence is enabled
 cron:
@@ -44,16 +43,16 @@ cron:
     repository: busybox
     tag: latest
     pullPolicy: IfNotPresent
-  schedule: 58 * * * *
+  schedule: 0 1 * * *
   daysToKeep: 15
 
 ingress:
-  enabled: true
+  enabled: false
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: maildev.dev.cnieg.fr
+    - host: maildev.yourdomain.com
       paths: ["/"]
 
   tls: []
