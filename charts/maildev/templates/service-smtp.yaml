@@ -11,6 +11,9 @@ spec:
       targetPort: smtp
       protocol: TCP
       name: smtp
+      {{- if and (eq .Values.services.smtp.type "NodePort") .Values.services.smtp.nodePort }}
+      nodePort: {{ .Values.services.smtp.nodePort }}
+      {{- end }}
   selector:
     app.kubernetes.io/name: {{ include "maildev.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

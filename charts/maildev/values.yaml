@@ -20,6 +20,9 @@ services:
   smtp:
     type: NodePort
     port: 25
+    # nodePort can be set to specify the node port used, or leave blank to get a random node port
+    nodePort:
+
 extraArgs:
 #  - "--outgoing-host"
 #  - "smtp.yourdomaine.com"
@@ -31,7 +34,7 @@ extraArgs:
 persistence:
   enabled: false
   accessMode: ReadWriteMany
-  size: 8Gi
+  size: 512M
   storageClass: "-"
   existingClaim: ""
   mountPath: /home/node/maildev-data
