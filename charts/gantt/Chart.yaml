@@ -8,7 +8,5 @@ sources:
   - https://github.com/cnieg/helm-charts/tree/master/charts/gantt
   - https://github.com/cnieg/gantt
 maintainers:
-  - name: Thomah
-    email: thomas.hingant@cnieg.fr
-  - name: Maintainers CNIEG
+  - name: CNIEG
     email: maintainers@cnieg.fr
