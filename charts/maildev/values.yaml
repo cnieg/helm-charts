@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: cnieg/maildev
-  tag: v1.1.5
+  tag: v1.1.9
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
