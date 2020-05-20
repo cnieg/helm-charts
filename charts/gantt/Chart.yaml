@@ -1,9 +1,11 @@
 apiVersion: v1
-appVersion: "1.0.2"
+appVersion: "1.0.4"
 description: Web app to make gantt diagrams
 name: gantt
 home: https://github.com/cnieg/gantt
-version: 1.0.0
+version: 1.0.1
 maintainers:
   - name: Thomah
     email: thomas.hingant@cnieg.fr
+  - name: Maintainers CNIEG
+    email: maintainers@cnieg.fr
