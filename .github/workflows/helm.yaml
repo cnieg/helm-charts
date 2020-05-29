@@ -29,6 +29,9 @@ jobs:
         # Only build a kind cluster if there are chart changes to test.
         if: steps.lint.outputs.changed == 'true'
 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v2
+
       - name: Run chart-testing (install)
         uses: helm/chart-testing-action@v1.0.0-rc.1
         with:
