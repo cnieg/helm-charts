@@ -18,6 +18,8 @@ clamav:
   # externalHost:
   # externalPort:
   timeout: 1000
+  kubeMeta:
+    deploymentApiVersion: apps/v1
 
 imagePullSecrets: []
 nameOverride: ""
