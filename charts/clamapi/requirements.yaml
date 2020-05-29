@@ -1,0 +1,5 @@
+dependencies:
+- name: clamav
+  version: 1.0.5
+  repository: https://kubernetes-charts.storage.googleapis.com
+  condition: clamav.enabled
