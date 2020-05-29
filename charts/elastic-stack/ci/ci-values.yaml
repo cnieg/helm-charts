@@ -1,5 +1,4 @@
 client:
-  clusterHealthCheckParams: "wait_for_status=green&timeout=60s"
   replicas: 1
   minimumMasterNodes: 1
   resources:
@@ -7,7 +6,6 @@ client:
       cpu: 100m
       memory: 100Mi
 data:
-  clusterHealthCheckParams: "wait_for_status=green&timeout=60s"
   replicas: 1
   minimumMasterNodes: 1
   persistence:
@@ -17,7 +15,6 @@ data:
       cpu: 100m
       memory: 100Mi
 master:
-  clusterHealthCheckParams: "wait_for_status=green&timeout=60s"
   replicas: 1
   minimumMasterNodes: 1
   persistence:
@@ -27,12 +24,14 @@ master:
       cpu: 100m
       memory: 100Mi
 logstash:
+  enabled: false
   replicas: 1
   resources:
     requests:
       cpu: 100m
       memory: 100Mi
 filebeat:
+  enabled: false
   replicas: 1
   resources:
     requests:
