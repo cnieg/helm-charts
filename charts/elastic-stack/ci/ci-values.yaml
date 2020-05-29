@@ -6,6 +6,7 @@ client:
       cpu: 100m
       memory: 100Mi
 data:
+  clusterHealthCheckParams: "wait_for_status=green&timeout=10s"
   replicas: 1
   minimumMasterNodes: 1
   persistence:
