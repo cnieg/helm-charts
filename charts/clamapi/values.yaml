@@ -13,7 +13,7 @@ image:
 clamav:
   enabled: true
   image:
-    tag: 1.7
+    tag: 2.0.3
   # If clamav enabled false, host & port can be specified to use an external clamav
   # externalHost:
   # externalPort:
