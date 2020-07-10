@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "dependency-track.fullname" . }}
+  labels:
+    app: {{ template "dependency-track.name" . }}
+    chart: {{ template "dependency-track.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "dependency-track.name" . }}
+    release: {{ .Release.Name }}

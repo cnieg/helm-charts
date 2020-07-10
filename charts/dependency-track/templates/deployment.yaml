@@ -1,0 +1,66 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "dependency-track.fullname" . }}
+  labels:
+    app: {{ template "dependency-track.name" . }}
+    chart: {{ template "dependency-track.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "dependency-track.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "dependency-track.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      volumes:
+      - name: data
+        nfs:
+          server: {{ .Values.nfs.server }}
+          path: {{ .Values.nfs.path }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+          - name: data
+            mountPath: /data
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /
+            initialDelaySeconds: 45
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /
+            initialDelaySeconds: 45
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          env:
+            {{- /* Variable d'environnements issues de la liste des secrets*/}}
+            {{- range .Values.secretsEnv }}
+            {{- $secretName := .secretName }}
+            {{- range $key, $value :=  .env }}
+            - name: {{ $key }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretName }}
+                  key: {{ $value }}
+            {{- end }}
+            {{- end }}
+            {{- range $key, $value :=  .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+
