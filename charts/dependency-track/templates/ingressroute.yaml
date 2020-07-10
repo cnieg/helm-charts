@@ -1,0 +1,50 @@
+{{- if .Values.ingress.enabled -}}
+  {{- $fullName := include "dependency-track.fullname" . -}}
+  {{- $generalname := include "dependency-track.name" . -}}
+  {{- $servicePort := .Values.service.externalPort -}}
+  {{- $ingressPath := .Values.ingress.path -}}
+  {{- $dot := . }}
+  {{- range .Values.ingress.hosts }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ $fullName }}-insecure
+  labels:
+    app: {{ $generalname }}
+    chart: "{{ $.Chart.Name }}-{{ $.Chart.Version }}"
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`{{ . }}`)
+      kind: Rule
+      services:
+        - name: {{ $fullName }}
+          port: http
+          middlewares:
+            - name: redirecthttps
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ $fullName }}-secure
+  labels:
+    app: {{ $generalname }}
+    chart: "{{ $.Chart.Name }}-{{ $.Chart.Version }}"
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`{{ . }}`)
+      kind: Rule
+      services:
+        - name: {{ $fullName }}
+          port: http
+  tls:
+    secretName: certs-https
+  {{- end }}
+  {{- end }}

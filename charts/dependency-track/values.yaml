@@ -1,0 +1,75 @@
+# Default values for dependency-track.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: owasp/dependency-track
+  tag: 3.8.0
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+nfs:
+  server: nfsserveur.your.domain.com
+  path: /nfsserver/dependency-track/data
+
+env:
+  ALPINE_DATABASE_MODE: external
+  ALPINE_DATABASE_URL: jdbc:postgresql://db-postgres:5432/dtrack"
+  ALPINE_DATABASE_DRIVER: org.postgresql.Driver
+  ALPINE_DATABASE_DRIVER_PATH: /extlib/postgresql-42.2.5.jar
+  ALPINE_DATABASE_POOL_ENABLED: true
+  ALPINE_DATABASE_POOL_MAX_SIZE: 10
+  ALPINE_DATABASE_POOL_IDLE_TIMEOUT: 600000
+  ALPINE_DATABASE_POOL_MAX_LIFETIME: 600000
+  ALPINE_LDAP_ENABLED: "true"
+  ALPINE_LDAP_BASEDN: "DC=your,DC=domain,DC=com"
+  ALPINE_LDAP_SECURITY_AUTH: "simple"
+  ALPINE_LDAP_AUTH_USERNAME_FORMAT: "%s"
+  ALPINE_LDAP_ATTRIBUTE_NAME: "sAMAccountName"
+  ALPINE_LDAP_ATTRIBUTE_MAIL: "mail"
+  ALPINE_LDAP_GROUPS_FILTER: "(&(objectClass=group)(objectCategory=Group))"
+  ALPINE_LDAP_USER_GROUPS_FILTER: "(member:1.2.840.113556.1.4.1941:={USER_DN})"
+  ALPINE_LDAP_USER_PROVISIONING: "true"
+  ALPINE_LDAP_TEAM_SYNCHRONIZATION: "true"
+  ALPINE_HTTP_PROXY_ADDRESS: proxy-server.com
+  ALPINE_HTTP_PROXY_PORT: 8080
+
+secretsEnv:
+  # Permet de spécifier la liste des secrets à monter et les clés à injecter en variable d'environnements
+  - secretName: db-dependency-track
+    env:
+      ALPINE_DATABASE_USERNAME: username
+      ALPINE_DATABASE_PASSWORD: password
+  - secretName: ldap-auth
+    env:
+      ALPINE_LDAP_SERVER_URL: LDAP_URL
+      ALPINE_LDAP_BIND_USERNAME: USERNAME
+      ALPINE_LDAP_BIND_PASSWORD: PASSWORD
+  - secretName: proxy-auth
+    env:
+      ALPINE_HTTP_PROXY_USERNAME: username
+      ALPINE_HTTP_PROXY_PASSWORD: password
+
+
+ingress:
+  enabled: true
+  #annotations:
+  #  traefik.ingress.kubernetes.io/redirect-entry-point: https
+  #  traefik.ingress.kubernetes.io/redirect-permanent: "true"
+  path: /
+  hosts:
+   - dependency-track.your.domain.com
+
+resources: {}
+  #limits:
+  # cpu: 1
+  # memory: 5120Mi
+  #requests:
+  # cpu: 1
+  # memory: 5120Mi
+
