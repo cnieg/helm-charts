@@ -37,8 +37,8 @@ env:
   ALPINE_LDAP_USER_GROUPS_FILTER: "(member:1.2.840.113556.1.4.1941:={USER_DN})"
   ALPINE_LDAP_USER_PROVISIONING: "true"
   ALPINE_LDAP_TEAM_SYNCHRONIZATION: "true"
-  ALPINE_HTTP_PROXY_ADDRESS: proxy-server.com
-  ALPINE_HTTP_PROXY_PORT: 8080
+# ALPINE_HTTP_PROXY_ADDRESS: proxy-server.com
+# ALPINE_HTTP_PROXY_PORT: 8080
 
 secretsEnv:
   # Permet de spécifier la liste des secrets à monter et les clés à injecter en variable d'environnements
