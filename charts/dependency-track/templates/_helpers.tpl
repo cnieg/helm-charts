@@ -30,3 +30,16 @@ Create chart name and version as used by the chart label.
 {{- define "dependency-track.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{/*
+Common labels
+*/}}
+{{- define "dependency-track.labels" -}}
+app.kubernetes.io/name: {{ include "dependency-track.name" . }}
+helm.sh/chart: {{ include "dependency-track.chart" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
