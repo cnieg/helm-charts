@@ -58,13 +58,14 @@ secretsEnv:
 
 
 ingress:
-  enabled: true
+  enabled: false
+# enabled: true
   #annotations:
   #  traefik.ingress.kubernetes.io/redirect-entry-point: https
   #  traefik.ingress.kubernetes.io/redirect-permanent: "true"
-  path: /
-  hosts:
-   - dependency-track.your.domain.com
+# path: /
+# hosts:
+#  - dependency-track.your.domain.com
 
 resources: {}
   #limits:
