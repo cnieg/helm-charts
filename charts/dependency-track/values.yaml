@@ -40,21 +40,21 @@ env:
 # ALPINE_HTTP_PROXY_ADDRESS: proxy-server.com
 # ALPINE_HTTP_PROXY_PORT: 8080
 
-secretsEnv:
-  # Permet de spécifier la liste des secrets à monter et les clés à injecter en variable d'environnements
-  - secretName: db-dependency-track
-    env:
-      ALPINE_DATABASE_USERNAME: username
-      ALPINE_DATABASE_PASSWORD: password
-  - secretName: ldap-auth
-    env:
-      ALPINE_LDAP_SERVER_URL: LDAP_URL
-      ALPINE_LDAP_BIND_USERNAME: USERNAME
-      ALPINE_LDAP_BIND_PASSWORD: PASSWORD
-  - secretName: proxy-auth
-    env:
-      ALPINE_HTTP_PROXY_USERNAME: username
-      ALPINE_HTTP_PROXY_PASSWORD: password
+#secretsEnv:
+#  # Permet de spécifier la liste des secrets à monter et les clés à injecter en variable d'environnements
+# - secretName: db-dependency-track
+#   env:
+#     ALPINE_DATABASE_USERNAME: username
+#     ALPINE_DATABASE_PASSWORD: password
+# - secretName: ldap-auth
+#   env:
+#     ALPINE_LDAP_SERVER_URL: LDAP_URL
+#     ALPINE_LDAP_BIND_USERNAME: USERNAME
+#      ALPINE_LDAP_BIND_PASSWORD: PASSWORD
+# - secretName: proxy-auth
+#   env:
+#     ALPINE_HTTP_PROXY_USERNAME: username
+#     ALPINE_HTTP_PROXY_PASSWORD: password
 
 
 ingress:
