@@ -45,10 +45,10 @@ spec:
             httpGet:
               path: /castlemock
               port: http
-          readinessProbe:
-            httpGet:
-              path: /castlemock
-              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 1
           resources:
       {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
