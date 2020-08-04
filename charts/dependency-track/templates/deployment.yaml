@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "dependency-track.fullname" . }}
+  name: {{ include "dependency-track.fullname" . }}
   labels:
-    app: {{ template "dependency-track.name" . }}
-    chart: {{ template "dependency-track.chart" . }}
+    app: {{ include "dependency-track.name" . }}
+    chart: {{ include "dependency-track.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "dependency-track.name" . }}
-      release: {{ .Release.Name }}
+      app.kubernetes.io/name: {{ include "dependency-track.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "dependency-track.name" . }}
+        app: {{ include "dependency-track.name" . }}
         release: {{ .Release.Name }}
     spec:
       volumes:
@@ -63,4 +63,3 @@ spec:
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
-
