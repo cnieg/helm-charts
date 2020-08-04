@@ -5,7 +5,7 @@ description: A Helm chart for Dependency-Track
 home: https://docs.dependencytrack.org/
 sources:
   - https://github.com/DependencyTrack/dependency-track/tree/master
-mainteners:
+maintainers:
   - name: CNIEG
     email: maintainers@cnieg.fr
 icon: https://docs.dependencytrack.org/images/dt-logo-white-text.svg
