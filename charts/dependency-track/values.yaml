@@ -40,7 +40,7 @@ env:
 # ALPINE_HTTP_PROXY_ADDRESS: proxy-server.com
 # ALPINE_HTTP_PROXY_PORT: 8080
 
-#secretsEnv:
+# secretsEnv:
 # This allows to specify a list of secrets/keys to inject as environment variables
 # - secretName: db-dependency-track
 #   env:
@@ -60,19 +60,19 @@ env:
 ingress:
   enabled: false
 # enabled: true
-  #annotations:
-  #  traefik.ingress.kubernetes.io/redirect-entry-point: https
-  #  traefik.ingress.kubernetes.io/redirect-permanent: "true"
+# annotations:
+#    traefik.ingress.kubernetes.io/redirect-entry-point: https
+#    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 # path: /
 # hosts:
 #  - dependency-track.your.domain.com
 
 resources: {}
-  # This allow to explicitly set allocated resources per pod
-  #limits:
-  # cpu: 1
-  # memory: 5120Mi
-  #requests:
-  # cpu: 1
-  # memory: 5120Mi
+# This allow to explicitly set allocated resources per pod
+# limits:
+#    cpu: 1
+#    memory: 5120Mi
+# requests:
+#    cpu: 1
+#    memory: 5120Mi
 
