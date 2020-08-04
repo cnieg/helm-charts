@@ -3,10 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "dependency-track.fullname" . }}
   labels:
-    app: {{ include "dependency-track.name" . }}
-    chart: {{ include "dependency-track.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+{{ include "dependency-track.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
