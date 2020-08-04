@@ -41,7 +41,7 @@ env:
 # ALPINE_HTTP_PROXY_PORT: 8080
 
 #secretsEnv:
-#  # Permet de spécifier la liste des secrets à monter et les clés à injecter en variable d'environnements
+# This allows to specify a list of secrets/keys to inject as environment variables
 # - secretName: db-dependency-track
 #   env:
 #     ALPINE_DATABASE_USERNAME: username
