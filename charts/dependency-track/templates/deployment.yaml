@@ -48,7 +48,7 @@ spec:
           resources:
 {{ toYaml .Values.resources | indent 12 }}
           env:
-            {{- /* Variable d'environnements issues de la liste des secrets*/}}
+            {{- /* Environment variables from secrets list */}}
             {{- range .Values.secretsEnv }}
             {{- $secretName := .secretName }}
             {{- range $key, $value :=  .env }}
