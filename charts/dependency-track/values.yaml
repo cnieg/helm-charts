@@ -68,6 +68,7 @@ ingress:
 #  - dependency-track.your.domain.com
 
 resources: {}
+  # This allow to explicitly set allocated resources per pod
   #limits:
   # cpu: 1
   # memory: 5120Mi
