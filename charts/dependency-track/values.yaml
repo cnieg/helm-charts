@@ -67,6 +67,11 @@ ingress:
 # hosts:
 #  - dependency-track.your.domain.com
 
+persistence:
+  enabled: false
+  accessMode: ReadWriteOnce
+  size: 128Mi
+
 resources: {}
 # This allow to explicitly set allocated resources per pod
 # limits:
