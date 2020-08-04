@@ -31,6 +31,12 @@ spec:
       serviceAccountName: {{ include "castlemock.serviceAccountName" . }}
       securityContext:
       {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.persistence.enabled }}
+      volumes:
+        - name: castlemock-storage
+          persistentVolumeClaim:
+            claimName: {{ template "castlemock.name" . }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -45,12 +51,22 @@ spec:
             httpGet:
               path: /castlemock
               port: http
-            initialDelaySeconds: 15
+            initialDelaySeconds: 35
             periodSeconds: 5
             timeoutSeconds: 3
             failureThreshold: 1
+          env:
+            {{- with .Values.javaOpts }}
+            - name: JAVA_OPTS
+              value: "{{ . }}"
+          {{- end }}
           resources:
-      {{- toYaml .Values.resources | nindent 12 }}
+          {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.persistence.enabled }}
+          volumeMounts:
+            - mountPath: "/root/.castlemock"
+              name: castlemock-storage
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
       {{- toYaml . | nindent 8 }}
