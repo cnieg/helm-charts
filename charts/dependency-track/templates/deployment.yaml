@@ -8,8 +8,8 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "dependency-track.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      app: {{ template "dependency-track.name" . }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
