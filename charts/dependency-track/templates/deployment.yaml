@@ -23,7 +23,7 @@ spec:
             claimName: {{ .Values.persistence.existingClaim | default (include "dependency-track.name" .) }}
           {{- else }}
           emptyDir: {}
-          {{- end -}}
+          {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
