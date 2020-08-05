@@ -72,11 +72,11 @@ persistence:
   accessMode: ReadWriteOnce
   size: 128Mi
 
-resources: {}
+resources:
 # This allow to explicitly set allocated resources per pod
 # limits:
 #    cpu: 1
 #    memory: 5120Mi
   requests:
-    cpu: 2
+     cpu: 2
 #    memory: 5120Mi
