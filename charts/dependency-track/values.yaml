@@ -78,5 +78,5 @@ resources:
 #    cpu: 1
 #    memory: 5120Mi
   requests:
-     cpu: 2
-#    memory: 5120Mi
+    cpu: 2
+#   memory: 5120Mi
