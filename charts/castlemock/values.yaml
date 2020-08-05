@@ -47,7 +47,7 @@ ingress:
   # kubernetes.io/tls-acme: "true"
   hosts:
     - host: chart-example.local
-      paths: []
+      paths: [/castlemock]
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -56,7 +56,7 @@ persistence:
   enabled: false
   accessMode: ReadWriteOnce
   size: 512Mi
-  storageClass: "-"
+  storageClass:
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -82,3 +82,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# Additional environment variables for castlemock
+javaOpts: ""
