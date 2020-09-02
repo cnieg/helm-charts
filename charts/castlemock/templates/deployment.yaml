@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "castlemock.fullname" . }}
+  labels:
+  {{- include "castlemock.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "castlemock.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/name: {{ include "castlemock.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "castlemock.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/name: {{ include "castlemock.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "castlemock.serviceAccountName" . }}
+      securityContext:
+      {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.persistence.enabled }}
+      volumes:
+        - name: castlemock-storage
+          persistentVolumeClaim:
+            claimName: {{ template "castlemock.name" . }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /castlemock
+              port: http
+            initialDelaySeconds: 35
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 1
+          env:
+            {{- with .Values.javaOpts }}
+            - name: JAVA_OPTS
+              value: "{{ . }}"
+          {{- end }}
+          resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.persistence.enabled }}
+          volumeMounts:
+            - mountPath: "/root/.castlemock"
+              name: castlemock-storage
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+      {{- toYaml . | nindent 8 }}
+  {{- end }}
