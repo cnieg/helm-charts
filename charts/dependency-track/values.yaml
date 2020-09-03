@@ -76,7 +76,7 @@ resources:
 # This allow to explicitly set allocated resources per pod
   limits:
      cpu: 2
-#    memory: 5120Mi
+     memory: 5120Mi
   requests:
      cpu: 2
-#   memory: 5120Mi
+     memory: 5120Mi
