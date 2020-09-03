@@ -74,7 +74,7 @@ persistence:
 
 resources:
 # This allow to explicitly set allocated resources per pod
-# limits:
+  limits:
      cpu: 2
 #    memory: 5120Mi
   requests:
