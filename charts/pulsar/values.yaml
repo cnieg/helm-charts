@@ -125,27 +125,27 @@ extra:
 images:
   zookeeper:
     repository: apachepulsar/pulsar
-    tag: 2.5.1
+    tag: 2.6.1
     pullPolicy: IfNotPresent
   bookie:
     repository: apachepulsar/pulsar
-    tag: 2.5.1
+    tag: 2.6.1
     pullPolicy: IfNotPresent
   autorecovery:
     repository: apachepulsar/pulsar
-    tag: 2.5.1
+    tag: 2.6.1
     pullPolicy: IfNotPresent
   broker:
     repository: apachepulsar/pulsar
-    tag: 2.5.1
+    tag: 2.6.1
     pullPolicy: IfNotPresent
   proxy:
     repository: apachepulsar/pulsar
-    tag: 2.5.1
+    tag: 2.6.1
     pullPolicy: IfNotPresent
   functions:
     repository: apachepulsar/pulsar
-    tag: 2.5.1
+    tag: 2.6.1
   prometheus:
     repository: prom/prometheus
     tag: v1.6.3
@@ -313,8 +313,7 @@ zookeeper:
   ## templates/zookeeper-configmap.yaml
   ##
   configData:
-    PULSAR_MEM: >
-      "
+    BOOKIE_MEM: >
       -Xms64m -Xmx128m
       -Dcom.sun.management.jmxremote
       -Djute.maxbuffer=10485760
@@ -324,12 +323,9 @@ zookeeper:
       -XX:+DisableExplicitGC
       -XX:+PerfDisableSharedMem
       -Dzookeeper.forceSync=no
-      "
     PULSAR_GC: >
-      "
       -XX:+UseG1GC
       -XX:MaxGCPauseMillis=10
-      "
   ## Zookeeper service
   ## templates/zookeeper-service.yaml
   ##
@@ -356,7 +352,7 @@ bookkeeper:
     image:
       # the image used for running `bookkeeper-cluster-initialize` job
       repository: apachepulsar/pulsar
-      tag: 2.5.1
+      tag: 2.6.1
       pullPolicy: IfNotPresent
     ## Set the resources used for running `bin/bookkeeper shell initnewcluster`
     ##
@@ -443,20 +439,10 @@ bookkeeper:
   configData:
     # `BOOKIE_MEM` is used for `bookie shell`
     BOOKIE_MEM: >
-      "
       -Xms128m
       -Xmx256m
       -XX:MaxDirectMemorySize=256m
-      "
-    # we use `bin/pulsar` for starting bookie daemons
-    PULSAR_MEM: >
-      "
-      -Xms128m
-      -Xmx256m
-      -XX:MaxDirectMemorySize=256m
-      "
     PULSAR_GC: >
-      "
       -XX:+UseG1GC
       -XX:MaxGCPauseMillis=10
       -XX:+ParallelRefProcEnabled
@@ -476,7 +462,6 @@ bookkeeper:
       -verbosegc
       -Xloggc:/var/log/bookie-gc.log
       -XX:G1LogLevel=finest
-      "
     # configure the memory settings based on jvm memory settings
     dbStorage_writeCacheMaxSizeMb: "32"
     dbStorage_readAheadCacheMaxSizeMb: "32"
@@ -524,9 +509,7 @@ autorecovery:
   ##
   configData:
     BOOKIE_MEM: >
-      "
       -Xms64m -Xmx64m
-      "
 
 ## Pulsar Zookeeper metadata. The metadata will be deployed as
 ## soon as the last zookeeper node is reachable. The deployment
@@ -539,7 +522,7 @@ pulsar_metadata:
   image:
     # the image used for running `pulsar-cluster-initialize` job
     repository: apachepulsar/pulsar
-    tag: 2.5.1
+    tag: 2.6.1
     pullPolicy: IfNotPresent
   ## set an existing configuration store
   configurationStore: {}
@@ -601,7 +584,6 @@ broker:
   ##
   configData:
     PULSAR_MEM: >
-      "
       -Xms128m -Xmx256m -XX:MaxDirectMemorySize=128m
       -Dio.netty.leakDetectionLevel=disabled
       -Dio.netty.recycler.linkCapacity=1024
@@ -615,12 +597,9 @@ broker:
       -XX:-ResizePLAB
       -XX:+ExitOnOutOfMemoryError
       -XX:+PerfDisableSharedMem
-      "
     PULSAR_GC: >
-      "
       -XX:+UseG1GC
       -XX:MaxGCPauseMillis=10
-      "
     managedLedgerDefaultEnsembleSize: "2"
     managedLedgerDefaultWriteQuorum: "2"
     managedLedgerDefaultAckQuorum: "1"
@@ -686,7 +665,6 @@ proxy:
   ##
   configData:
     PULSAR_MEM: >
-      "
       -Xms64m -Xmx64m -XX:MaxDirectMemorySize=64m
       -Dio.netty.leakDetectionLevel=disabled
       -Dio.netty.recycler.linkCapacity=1024
@@ -700,12 +678,9 @@ proxy:
       -XX:-ResizePLAB
       -XX:+ExitOnOutOfMemoryError
       -XX:+PerfDisableSharedMem
-      "
     PULSAR_GC: >
-      "
       -XX:+UseG1GC
       -XX:MaxGCPauseMillis=10
-      "
   ## Proxy service
   ## templates/proxy-service.yaml
   ##
@@ -791,11 +766,9 @@ toolset:
   ##
   configData:
     PULSAR_MEM: >
-      "
       -Xms64M
       -Xmx128M
       -XX:MaxDirectMemorySize=128M
-      "
 
 #############################################################
 ### Monitoring Stack : Prometheus / Grafana
