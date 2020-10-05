@@ -313,8 +313,11 @@ zookeeper:
   ## templates/zookeeper-configmap.yaml
   ##
   configData:
-    BOOKIE_MEM: >
+    PULSAR_MEM: >
       -Xms64m -Xmx128m
+    PULSAR_GC: >
+      -XX:+UseG1GC
+      -XX:MaxGCPauseMillis=10
       -Dcom.sun.management.jmxremote
       -Djute.maxbuffer=10485760
       -XX:+ParallelRefProcEnabled
@@ -323,9 +326,6 @@ zookeeper:
       -XX:+DisableExplicitGC
       -XX:+PerfDisableSharedMem
       -Dzookeeper.forceSync=no
-    PULSAR_GC: >
-      -XX:+UseG1GC
-      -XX:MaxGCPauseMillis=10
   ## Zookeeper service
   ## templates/zookeeper-service.yaml
   ##
@@ -585,6 +585,9 @@ broker:
   configData:
     PULSAR_MEM: >
       -Xms128m -Xmx256m -XX:MaxDirectMemorySize=128m
+    PULSAR_GC: >
+      -XX:+UseG1GC
+      -XX:MaxGCPauseMillis=10
       -Dio.netty.leakDetectionLevel=disabled
       -Dio.netty.recycler.linkCapacity=1024
       -XX:+ParallelRefProcEnabled
@@ -597,9 +600,6 @@ broker:
       -XX:-ResizePLAB
       -XX:+ExitOnOutOfMemoryError
       -XX:+PerfDisableSharedMem
-    PULSAR_GC: >
-      -XX:+UseG1GC
-      -XX:MaxGCPauseMillis=10
     managedLedgerDefaultEnsembleSize: "2"
     managedLedgerDefaultWriteQuorum: "2"
     managedLedgerDefaultAckQuorum: "1"
