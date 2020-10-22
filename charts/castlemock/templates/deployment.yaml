@@ -47,14 +47,14 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+          {{- if .Values.livenessProbe }}
           livenessProbe:
-            httpGet:
-              path: /castlemock
-              port: http
-            initialDelaySeconds: 35
-            periodSeconds: 5
-            timeoutSeconds: 3
-            failureThreshold: 1
+{{ toYaml .Values.livenessProbe | indent 12 }}
+          {{- end }}
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+{{ toYaml .Values.readinessProbe | indent 12 }}
+          {{- end }}
           env:
             {{- with .Values.javaOpts }}
             - name: JAVA_OPTS

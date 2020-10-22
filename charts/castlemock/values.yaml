@@ -70,6 +70,15 @@ resources: {}
   #   cpu: 100m
 #   memory: 400Mi
 
+livenessProbe:
+  httpGet:
+    path: /castlemock
+    port: http
+  initialDelaySeconds: 35
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 1
+
 autoscaling:
   enabled: false
   minReplicas: 1
