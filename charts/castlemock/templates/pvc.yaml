@@ -5,6 +5,10 @@ metadata:
   name: {{ template "castlemock.name" . }}
   labels:
   {{ include "castlemock.labels" . | nindent 4 }}
+  {{- with .Values.persistence.annotations }}
+  annotations:
+  {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode | quote }}
