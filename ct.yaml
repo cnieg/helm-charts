@@ -1,4 +1,3 @@
 chart-repos:
   - elastic=https://helm.elastic.co
-  - stable=https://kubernetes-charts.storage.googleapis.com
 helm-extra-args: --timeout 500s
