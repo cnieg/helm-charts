@@ -37,7 +37,7 @@ The following table lists the configurable parameters of the Passbolt chart and 
 | Parameter                       | Description                                              | Default                     |
 | ------------------------------- | -------------------------------------------------------- | --------------------------- |
 | `image.repository`              | image repository                                         | `passbolt`                  |
-| `image.tag`                     | `passbolt` image tag.                                    | `2.13.1-debian`             |
+| `image.tag`                     | `passbolt` image tag.                                    | `2.13.5-debian`             |
 | `image.pullPolicy`              | Image pull policy                                        | `IfNotPresent`              |
 | `imagePullSecrets`              | imagePullSecrets to use for private repositories         | `[]`                        |
 | `nameOverride`                  | Override chart name                                      | ""                          |
