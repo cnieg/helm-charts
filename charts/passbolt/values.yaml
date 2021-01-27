@@ -49,8 +49,10 @@ ingress:
   #      - passbolt.organization.com
 
 env:
-  # DATASOURCES_DEFAULT_HOST: db-mysql
-  # DATASOURCES_DEFAULT_DATABASE: passbolt
+  DATASOURCES_DEFAULT_HOST: passbolt-mariadb
+  DATASOURCES_DEFAULT_DATABASE: passbolt
+  DATASOURCES_DEFAULT_USERNAME: passbolt
+  DATASOURCES_DEFAULT_PASSWORD: passbolt
   # EMAIL_DEFAULT_FROM: noreply@example.com
   # EMAIL_TRANSPORT_DEFAULT_HOST: smtp.example.com
   # EMAIL_TRANSPORT_DEFAULT_PORT: 25
@@ -79,8 +81,6 @@ passbolt:
 
 mariadb:
   enabled: true
-  image:
-    debug: true
   auth:
     database: passbolt
     username: passbolt

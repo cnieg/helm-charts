@@ -80,13 +80,13 @@ spec:
             httpGet:
               path: /healthcheck/status.json
               port: http
-            initialDelaySeconds: 10
+            initialDelaySeconds: 60
             timeoutSeconds: 10
           readinessProbe:
             httpGet:
               path: /healthcheck/status.json
               port: http
-            initialDelaySeconds: 20
+            initialDelaySeconds: 60
             timeoutSeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
