@@ -11,3 +11,8 @@ sources:
 maintainers:
 - name: CNIEG
   email: maintainers@cnieg.fr
+dependencies:
+- name: mariadb
+  version: "8.0.7"
+  repository: "https://charts.bitnami.com/bitnami"
+  condition: mariadb.enabled
