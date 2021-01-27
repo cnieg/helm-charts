@@ -81,6 +81,7 @@ passbolt:
 
 mariadb:
   enabled: true
+  fullnameOverride: passbolt-mariadb
   auth:
     database: passbolt
     username: passbolt
