@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "passbolt.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "passbolt.fullname" . }}:{{ .Values.service.port }}/healthcheck/status.json']
   restartPolicy: Never
