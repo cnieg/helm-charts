@@ -50,7 +50,11 @@ spec:
               value: "{{ $value }}"
             {{- end }}
             - name: APP_FULL_BASE_URL
+            {{- if .Values.passbolt.baseUrl }}
               value: https://{{ .Values.passbolt.baseUrl }}
+            {{- else }}
+              value: https://{{ template "passbolt.name" . }}:{{ .Values.service.port }}
+            {{- end }}
           volumeMounts:
             {{- if .Values.persistence.enabled }}
             - name: data

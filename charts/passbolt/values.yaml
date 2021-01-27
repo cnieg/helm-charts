@@ -75,8 +75,8 @@ persistence: {}
   # accessMode: ReadWriteOnce
   # size: 512Mi
 
-passbolt:
-  baseUrl: passbolt.organization.com
+passbolt: {}
+  # baseUrl: passbolt.organization.com
   # pro: false
 
 mariadb:
