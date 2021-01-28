@@ -16,7 +16,7 @@ service:
 env:
   ALPINE_DATABASE_MODE: internal
 # Environement variables to bypass cpu control
-  JAVA_OPTIONS: -XX:ActiveProcessorCount=2
+  JAVA_OPTIONS: -XX:ActiveProcessorCount=2 -Xmx4G
 # ALPINE_DATABASE_MODE: external
 # ALPINE_DATABASE_URL: jdbc:postgresql://db-postgres:5432/dtrack"
 # ALPINE_DATABASE_DRIVER: org.postgresql.Driver
