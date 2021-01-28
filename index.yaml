@@ -142,6 +142,23 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/clamapi-0.1.0/clamapi-0.1.0.tgz
     version: 0.1.0
+  dependency-track:
+  - apiVersion: v1
+    appVersion: 3.8.0
+    created: "2021-01-28T13:03:17.161193286Z"
+    description: A Helm chart for Dependency-Track
+    digest: 8c2591c533f388d7c2463053aada159323209d2c9400ce81db070c5e60091619
+    home: https://docs.dependencytrack.org/
+    icon: https://docs.dependencytrack.org/images/dt-logo-white-text.svg
+    maintainers:
+    - email: maintainers@cnieg.fr
+      name: CNIEG
+    name: dependency-track
+    sources:
+    - https://github.com/DependencyTrack/dependency-track/tree/master
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/dependency-track-0.0.1/dependency-track-0.0.1.tgz
+    version: 0.0.1
   elastic-stack:
   - apiVersion: v1
     appVersion: 7.7.1
