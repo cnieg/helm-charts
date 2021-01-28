@@ -52,7 +52,6 @@ env:
 #     ALPINE_HTTP_PROXY_USERNAME: username
 #     ALPINE_HTTP_PROXY_PASSWORD: password
 
-
 ingress:
   enabled: false
 # enabled: true
@@ -81,4 +80,3 @@ resources: {}
   # requests:
   #   cpu: 2
   #   memory: 5120Mi
-
