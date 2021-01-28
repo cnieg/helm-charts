@@ -1,0 +1,106 @@
+# Default values for passbolt.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: passbolt/passbolt
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+podDisruptionBudget:
+  enabled: true
+  rule:
+    type: minAvailable
+    value: 1
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: passbolt.organization.com
+      paths: []
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - passbolt.organization.com
+
+env:
+  DATASOURCES_DEFAULT_HOST: passbolt-mariadb
+  DATASOURCES_DEFAULT_DATABASE: passbolt
+  DATASOURCES_DEFAULT_USERNAME: passbolt
+  DATASOURCES_DEFAULT_PASSWORD: passbolt
+  # EMAIL_DEFAULT_FROM: noreply@example.com
+  # EMAIL_TRANSPORT_DEFAULT_HOST: smtp.example.com
+  # EMAIL_TRANSPORT_DEFAULT_PORT: 25
+  # EMAIL_TRANSPORT_DEFAULT_TIMEOUT: 30
+  # PASSBOLT_REGISTRATION_PUBLIC: true
+  PASSBOLT_EMAIL_SHOW_SECRET: false
+  PASSBOLT_EMAIL_SHOW_URI: false
+  PASSBOLT_EMAIL_SHOW_USERNAME: false
+  PASSBOLT_EMAIL_SEND_PASSWORD_CREATE: false
+  PASSBOLT_EMAIL_SEND_PASSWORD_UPDATE: false
+
+secretsEnv: []
+  # - secretName: db-passbolt
+  #   env:
+  #     DATASOURCES_DEFAULT_USERNAME: username
+  #     DATASOURCES_DEFAULT_PASSWORD: password
+
+persistence: {}
+  # enabled: true
+  # accessMode: ReadWriteOnce
+  # size: 512Mi
+
+passbolt: {}
+  # baseUrl: passbolt.organization.com
+  # pro: false
+
+mariadb:
+  enabled: true
+  fullnameOverride: passbolt-mariadb
+  auth:
+    database: passbolt
+    username: passbolt
+    password: passbolt
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 50m
+  #   memory: 256Mi
+  # requests:
+  #   cpu: 40m
+  #   memory: 192Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

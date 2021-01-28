@@ -1,4 +1,4 @@
 chart-repos:
   - elastic=https://helm.elastic.co
-  - stable=https://kubernetes-charts.storage.googleapis.com
+  - bitnami=https://charts.bitnami.com/bitnami
 helm-extra-args: --timeout 500s
