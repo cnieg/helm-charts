@@ -13,10 +13,6 @@ service:
   type: ClusterIP
   port: 80
 
-nfs:
-  server: nfsserveur.your.domain.com
-  path: /nfsserver/dependency-track/data
-
 env:
   ALPINE_DATABASE_MODE: internal
 # ALPINE_DATABASE_MODE: external
@@ -70,7 +66,9 @@ ingress:
 persistence:
   enabled: false
   accessMode: ReadWriteOnce
-  size: 128Mi
+  size: 512M
+  storageClass: "-"
+  existingClaim: ""
 
 resources:
 # This allow to explicitly set allocated resources per pod
