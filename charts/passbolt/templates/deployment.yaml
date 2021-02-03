@@ -60,7 +60,7 @@ spec:
               value: passbolt
             - name: DATASOURCES_DEFAULT_PASSWORD
               value: passbolt
-            {{- end -}}
+            {{- end }}
           volumeMounts:
             {{- if .Values.persistence.enabled }}
             - name: data
