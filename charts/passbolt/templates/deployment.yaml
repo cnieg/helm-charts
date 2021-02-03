@@ -55,11 +55,9 @@ spec:
             {{- else }}
               value: https://{{ template "passbolt.name" . }}:{{ .Values.service.port }}
             {{- end }}
-            {{- if not .Values.env.DATASOURCES_DEFAULT_USERNAME }}
+            {{- if empty .Values.secretsEnv }}
             - name: DATASOURCES_DEFAULT_USERNAME
               value: passbolt
-            {{- end -}}
-            {{- if not .Values.env.DATASOURCES_DEFAULT_PASSWORD }}
             - name: DATASOURCES_DEFAULT_PASSWORD
               value: passbolt
             {{- end -}}
