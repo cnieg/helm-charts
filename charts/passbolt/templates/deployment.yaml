@@ -55,7 +55,7 @@ spec:
             {{- else }}
               value: https://{{ template "passbolt.name" . }}:{{ .Values.service.port }}
             {{- end }}
-            {{- if empty .Values.secretsEnv }}
+            {{- if .Values.mariadb.enabled }}
             - name: DATASOURCES_DEFAULT_USERNAME
               value: passbolt
             - name: DATASOURCES_DEFAULT_PASSWORD
