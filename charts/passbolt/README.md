@@ -26,7 +26,7 @@ To uninstall/delete the deployment:
 ```bash
 $ helm list
 NAME           REVISION    UPDATED                     STATUS      CHART              NAMESPACE
-kindly-newt    1           Mon Oct  5 11:08:43 2020    DEPLOYED    passbolt-1.0.0    default
+kindly-newt    1           Mon Oct  5 11:08:43 2020    DEPLOYED    passbolt-1.0.1    default
 $ helm delete kindly-newt
 ```
 
