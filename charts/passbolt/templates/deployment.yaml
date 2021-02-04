@@ -35,6 +35,27 @@ spec:
               containerPort: 80
               protocol: TCP
           env:
+            - name: DATASOURCES_DEFAULT_HOST
+              value: {{ .Values.db.host }}
+            - name: DATASOURCES_DEFAULT_DATABASE
+              value: {{ .Values.db.name }}
+            {{- if .Values.db.existingSecret }}
+            - name: DATASOURCES_DEFAULT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.db.existingSecret.name }}
+                  key: {{ .Values.db.existingSecret.usernameKey }}
+            - name: DATASOURCES_DEFAULT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.db.existingSecret.name }}
+                  key: {{ .Values.db.existingSecret.passwordKey }}
+            {{- else if .Values.mariadb.enabled }}
+            - name: DATASOURCES_DEFAULT_USERNAME
+              value: {{ .Values.mariadb.auth.username }}
+            - name: DATASOURCES_DEFAULT_PASSWORD
+              value: {{ .Values.mariadb.auth.password }}
+            {{- end }}
             {{- range .Values.secretsEnv }}
               {{- $secretName := .secretName }}
               {{- range $key, $value :=  .env }}
@@ -54,12 +75,6 @@ spec:
               value: https://{{ .Values.passbolt.baseUrl }}
             {{- else }}
               value: https://{{ template "passbolt.name" . }}:{{ .Values.service.port }}
-            {{- end }}
-            {{- if empty .Values.secretsEnv }}
-            - name: DATASOURCES_DEFAULT_USERNAME
-              value: passbolt
-            - name: DATASOURCES_DEFAULT_PASSWORD
-              value: passbolt
             {{- end }}
           volumeMounts:
             {{- if .Values.persistence.enabled }}

@@ -49,18 +49,16 @@ ingress:
   #      - passbolt.organization.com
 
 env:
-  DATASOURCES_DEFAULT_HOST: passbolt-mariadb
-  DATASOURCES_DEFAULT_DATABASE: passbolt
-  # EMAIL_DEFAULT_FROM: noreply@example.com
-  # EMAIL_TRANSPORT_DEFAULT_HOST: smtp.example.com
-  # EMAIL_TRANSPORT_DEFAULT_PORT: 25
-  # EMAIL_TRANSPORT_DEFAULT_TIMEOUT: 30
-  # PASSBOLT_REGISTRATION_PUBLIC: true
   PASSBOLT_EMAIL_SHOW_SECRET: false
   PASSBOLT_EMAIL_SHOW_URI: false
   PASSBOLT_EMAIL_SHOW_USERNAME: false
   PASSBOLT_EMAIL_SEND_PASSWORD_CREATE: false
   PASSBOLT_EMAIL_SEND_PASSWORD_UPDATE: false
+  # PASSBOLT_REGISTRATION_PUBLIC: true
+  # EMAIL_DEFAULT_FROM: noreply@example.com
+  # EMAIL_TRANSPORT_DEFAULT_HOST: smtp.example.com
+  # EMAIL_TRANSPORT_DEFAULT_PORT: 25
+  # EMAIL_TRANSPORT_DEFAULT_TIMEOUT: 30
 
 secretsEnv: []
   # - secretName: db-passbolt
@@ -73,9 +71,13 @@ persistence: {}
   # accessMode: ReadWriteOnce
   # size: 512Mi
 
-passbolt: {}
-  # baseUrl: passbolt.organization.com
-  # pro: false
+db:
+  host: passbolt-mariadb
+  name: passbolt
+  # existingSecret:
+  #   name: db-passbolt
+  #   usernameKey: username
+  #   passwordKey: password
 
 mariadb:
   enabled: true
@@ -84,6 +86,10 @@ mariadb:
     database: passbolt
     username: passbolt
     password: passbolt
+
+passbolt: {}
+  # baseUrl: passbolt.organization.com
+  # pro: false
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
