@@ -63,6 +63,13 @@ The following table lists the configurable parameters of the Passbolt chart and 
 | `persistence.storageClass`      | Storage class to be used                                 | ""                          |
 | `persistence.accessMode`        | Volumes access mode to be set                            | `ReadWriteOnce`             |
 | `persistence.size`              | Size of the volume                                       | 512Mi                       |
+| `db.host`                       | Hostname of MariaDB                                      | `passbolt-mariadb`          |
+| `db.name`                       | Database name used by Passbolt                           | `passbolt`                  |
+| `mariadb.enabled`               | Flag for provisioning an embedded MariaDB instance       | true                        |
+| `mariadb.fullnameOverride`      | Service name for accessing embedded MariaDB instance     | `passbolt-mariadb`          |
+| `mariadb.auth.database`         | Default name for database to create                      | `passbolt`                  |
+| `mariadb.auth.username`         | Default username for the database to create              | `passbolt`                  |
+| `mariadb.auth.password`         | Default password for the database to create              | `password`                  |
 | `passbolt.baseUrl`              | Base URL where Passbolt will be accessible               | `passbolt.organization.com` |
 | `passbolt.pro`                  | Flag for enabling pro license                            | false                       |
 | `resources`                     | Passbolt Pod resource requests & limits                  | `{}`                        |
@@ -106,14 +113,16 @@ $ kubectl apply -f db-passbolt.yaml
 4. Set the following values of the chart:
 
 ```yaml
-env:
-  DATASOURCES_DEFAULT_HOST: db-mysql
-  DATASOURCES_DEFAULT_DATABASE: passbolt
-secretsEnv: 
-  - secretName: db-passbolt
-  env:
-    DATASOURCES_DEFAULT_USERNAME: username
-    DATASOURCES_DEFAULT_PASSWORD: password
+db:
+  host: db-mysql
+  name: passbolt
+  existingSecret:
+    name: db-passbolt
+    usernameKey: username
+    passwordKey: password
+
+mariadb:
+  enabled: false
 ```
 
 ### Enabling pro license
