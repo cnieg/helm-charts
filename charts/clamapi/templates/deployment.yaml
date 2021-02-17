@@ -37,6 +37,10 @@ spec:
               value: {{ .Values.clamav.timeout | quote }}
             - name: SERVICES_CLAMAV_PORT
               value: {{ default "3310" .Values.clamav.externalPort | quote }}
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key | quote }}
+              value: {{ $value | quote }}
+            {{- end }}
           {{- if .Values.livenessProbe }}
           livenessProbe:
 {{ toYaml .Values.livenessProbe | indent 12 }}
