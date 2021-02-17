@@ -68,6 +68,25 @@ entries:
   clamapi:
   - apiVersion: v1
     appVersion: 2.0.4
+    created: "2021-02-17T13:01:51.471466346Z"
+    dependencies:
+    - condition: clamav.enabled
+      name: clamav
+      repository: https://charts.helm.sh/stable
+      version: 1.0.5
+    description: A Helm chart for Kubernetes
+    digest: 7f06ea0fe16faa7ba94cbd5bad157aaa47c21203005022b832a5c4135a8ab698
+    home: https://github.com/cnieg/helm-charts/
+    maintainers:
+    - name: audig
+    name: clamapi
+    sources:
+    - https://github.com/audig/clamapi
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/clamapi-1.1.0/clamapi-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v1
+    appVersion: 2.0.4
     created: "2020-07-08T11:51:07.500725984Z"
     dependencies:
     - condition: clamav.enabled
