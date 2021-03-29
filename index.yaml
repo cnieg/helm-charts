@@ -439,6 +439,22 @@ entries:
   maildev:
   - apiVersion: v1
     appVersion: 1.1.0
+    created: "2021-03-29T08:55:43.114552474Z"
+    description: A Helm chart for maildev
+    digest: e62fd4f45084a2bc9d97afddaacd67e8ba4916f8f2f3d598762d16bd7713c47c
+    home: https://github.com/maildev/maildev
+    icon: https://raw.githubusercontent.com/maildev/maildev/master/app/favicon.ico
+    maintainers:
+    - email: maintainers@cnieg.fr
+      name: audig
+    name: maildev
+    sources:
+    - https://github.com/maildev/maildev
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/maildev-1.1.0/maildev-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v1
+    appVersion: 1.1.0
     created: "2020-05-20T10:15:50.661452283Z"
     description: A Helm chart for maildev
     digest: 3526b5461a2c373cd3c456bac122bc51fee14e11507ac51cefd3148847b99ad7
