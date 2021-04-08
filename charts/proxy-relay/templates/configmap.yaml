@@ -126,7 +126,6 @@ data:
     </IfModule>
 
   proxy-html.conf: |-
-
     <VirtualHost *:80>
 
       ProxyRequests Off
@@ -139,8 +138,39 @@ data:
       ProxyRemote * {{ .Values.proxyUrl }}
       {{- end}}
 
+      {{- if .Values.remoteUrl }}
       ProxyPass / {{ .Values.remoteUrl }}
       ProxyPassReverse / {{ .Values.remoteUrl }}
+
+      <Proxy *>
+        AllowOverride None
+        Order deny,allow
+        Allow from all
+      </Proxy>
+    {{- end}}
+      <Location /server-status>
+        SetHandler server-status
+        Order deny,allow
+        Deny from all
+        Allow from all
+      </Location>
+    </VirtualHost>
+    {{- range .Values.additionnalReverseProxyServices }}
+    <VirtualHost *:80>
+
+      ServerAlias {{ .name }}*
+      ProxyRequests Off
+      ProxyVia Off
+
+      SSLProxyEngine on
+
+      ProxyPass /server-status !
+    {{- if .proxyUrl }}
+      ProxyRemote * {{ .proxyUrl }}
+    {{- end}}
+
+      ProxyPass / {{ .remoteUrl }}
+      ProxyPassReverse / {{ .remoteUrl }}
 
       <Proxy *>
         AllowOverride None
@@ -155,3 +185,4 @@ data:
         Allow from all
       </Location>
     </VirtualHost>
+    {{- end }}

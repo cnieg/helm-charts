@@ -25,26 +25,38 @@ ingress:
     - host: chart-example.local
       paths: ["/"]
 
-  tls: []
+  tls: [ ]
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
 
-remoteUrl: {}
+remoteUrl: { }
 
 # If you have a proxy you can set it here
 # proxyUrl: http://myproxycompany:8080
-proxyUrl: {}
+proxyUrl: { }
 
-extraEnv: {}
+#Can be set to add extra virtual host and kubernetes services
+additionnalReverseProxyServices: { }
+#  #Name will be used for servername in virtualhost of httpd
+#  - name: relais-proxy-myapps
+#    alias: relais-proxy-myapps.mydomain.com
+#    remoteUrl: https://myexternalapp.domain.com
+#    #If you have a proxy you can set it here
+#    proxyUrl: http://myproxycompany:8080
+
+
+
+
+extraEnv: { }
   ## Extra environment variables to be injected
   # DATABASE_ENGINE: mysql
   # DATABASE_HOST: mysql
-  # DATABASE_NAME: spring
-  # DATABASE_USERNAME: spring
+# DATABASE_NAME: spring
+# DATABASE_USERNAME: spring
 # DATABASE_PASSWORD: spring
 
-secretEnv: {}
+secretEnv: { }
   # Exra environment variables from secret to be inject
   # - secretName: mysecret
   #   env:
