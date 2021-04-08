@@ -84,7 +84,23 @@ data:
     LogLevel warn
 
     <IfModule log_config_module>
-      LogFormat "%v:%p %h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %T %D" vhost_combined
+      #LogFormat "%v:%p %h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %T %D" vhost_combined
+      LogFormat "{ \
+          \"@timestamp\": \"%{%Y-%m-%dT%H:%M:%S%z}t\", \
+          \"@version\": \"1\", \
+          \"message\": \"%h %l %u %t \\\"%r\\\" %>s %b\", \
+          \"url\": \"%V\", \
+          \"clientip\": \"%a\", \
+          \"duration\": %D, \
+          \"status\": %>s, \
+          \"request\": \"%U%q\", \
+          \"urlpath\": \"%U\", \
+          \"urlquery\": \"%q\", \
+          \"bytes\": %B, \
+          \"method\": \"%m\", \
+          \"referer\": \"%{Referer}i\", \
+          \"useragent\": \"%{User-agent}i\" \
+         }" vhost_combined
       LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
       LogFormat "%h %l %u %t \"%r\" %>s %b" common
       LogFormat "%{Referer}i -> %U" referer
