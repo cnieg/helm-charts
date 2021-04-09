@@ -48,10 +48,10 @@ additionnalReverseProxyServices: {}
 extraEnv: {}
   ## Extra environment variables to be injected
   # DATABASE_ENGINE: mysql
-# DATABASE_HOST: mysql
-# DATABASE_NAME: spring
-# DATABASE_USERNAME: spring
-# DATABASE_PASSWORD: spring
+  # DATABASE_HOST: mysql
+  # DATABASE_NAME: spring
+  # DATABASE_USERNAME: spring
+  # DATABASE_PASSWORD: spring
 
 secretEnv: {}
   # Exra environment variables from secret to be inject
@@ -60,8 +60,8 @@ secretEnv: {}
   #     MYVAR1: Key1InMySecret
   #     MYVAR2: Key2InMySecret
   # - secretName: mysecret2
-#   env:
-#     MYVAR3: Key3InMySecret
+  #   env:
+  #     MYVAR3: Key3InMySecret
 
 resources: {}
 # We usually recommend not to specify default resources and to leave this as a conscious
