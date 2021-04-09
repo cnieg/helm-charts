@@ -75,6 +75,12 @@ resources: {}
 #    cpu: 100m
 #    memory: 128Mi
 
+hpa: {}
+#  minReplicas: 2
+#  maxReplicas: 4
+#  cpuMax: 80
+#  memoryMax: 70
+
 ## uncomment and modify the following livenessProbe and readinessProbe.
 livenessProbe:
   httpGet:
