@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "dependency-track.fullname" . }}
+  name: {{ include "dependency-track.fullname" . }}-frontend
   labels:
 {{ include "dependency-track.labels" . | indent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.frontend.replicaCount }}
   selector:
     matchLabels:
       app: {{ template "dependency-track.name" . }}
@@ -14,27 +14,17 @@ spec:
     metadata:
       labels:
         app: {{ include "dependency-track.name" . }}
+        type: frontend
         release: {{ .Release.Name }}
     spec:
-      volumes:
-        - name: data
-          {{- if .Values.persistence.enabled }}
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistence.existingClaim | default (include "dependency-track.name" .) }}
-          {{- else }}
-          emptyDir: {}
-          {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
+          imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 8080
               protocol: TCP
-          volumeMounts:
-          - name: data
-            mountPath: /data
           livenessProbe:
             httpGet:
               port: 8080
@@ -46,10 +36,12 @@ spec:
               path: /
             initialDelaySeconds: 45
           resources:
-{{ toYaml .Values.resources | indent 12 }}
+{{ toYaml .Values.frontend.resources | indent 12 }}
           env:
+            - name: API_BASE_URL
+              value: "http://{{ include "dependency-track.fullname" . }}-frontend:{{ .Values.backend.service.port }}"
             {{- /* Environment variables from secrets list */}}
-            {{- range .Values.secretsEnv }}
+            {{- range .Values.frontend.secretsEnv }}
             {{- $secretName := .secretName }}
             {{- range $key, $value :=  .env }}
             - name: {{ $key }}
@@ -59,7 +51,7 @@ spec:
                   key: {{ $value }}
             {{- end }}
             {{- end }}
-            {{- range $key, $value :=  .Values.env }}
+            {{- range $key, $value :=  .Values.frontend.env }}
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
