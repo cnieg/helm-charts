@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "dependency-track.fullname" . }}-frontend
+  labels:
+{{ include "dependency-track.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.frontend.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "dependency-track.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "dependency-track.name" . }}
+        type: frontend
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
+          imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /
+            initialDelaySeconds: 45
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /
+            initialDelaySeconds: 45
+          resources:
+{{ toYaml .Values.frontend.resources | indent 12 }}
+          env:
+            - name: API_BASE_URL
+              value: "http://{{ include "dependency-track.fullname" . }}-frontend:{{ .Values.backend.service.port }}"
+            {{- /* Environment variables from secrets list */}}
+            {{- range .Values.frontend.secretsEnv }}
+            {{- $secretName := .secretName }}
+            {{- range $key, $value :=  .env }}
+            - name: {{ $key }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretName }}
+                  key: {{ $value }}
+            {{- end }}
+            {{- end }}
+            {{- range $key, $value :=  .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}

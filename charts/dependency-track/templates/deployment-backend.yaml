@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "dependency-track.fullname" . }}
+  name: {{ include "dependency-track.fullname" . }}-backend
   labels:
 {{ include "dependency-track.labels" . | indent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.backend.replicaCount }}
   selector:
     matchLabels:
       app: {{ template "dependency-track.name" . }}
@@ -18,16 +18,16 @@ spec:
     spec:
       volumes:
         - name: data
-          {{- if .Values.persistence.enabled }}
+          {{- if .Values.backend.persistence.enabled }}
           persistentVolumeClaim:
-            claimName: {{ .Values.persistence.existingClaim | default (include "dependency-track.name" .) }}
+            claimName: {{ .Values.backend.persistence.existingClaim | default (include "dependency-track.name" .) }}
           {{- else }}
           emptyDir: {}
           {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          imagePullPolicy: {{ .Values.backend.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 8080
@@ -46,7 +46,7 @@ spec:
               path: /
             initialDelaySeconds: 45
           resources:
-{{ toYaml .Values.resources | indent 12 }}
+{{ toYaml .Values.backend.resources | indent 12 }}
           env:
             {{- /* Environment variables from secrets list */}}
             {{- range .Values.secretsEnv }}
