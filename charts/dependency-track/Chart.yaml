@@ -9,4 +9,4 @@ maintainers:
   - name: CNIEG
     email: maintainers@cnieg.fr
 icon: 'https://docs.dependencytrack.org/images/dt-logo-white-text.svg'
-appVersion: 4.2.1
+appVersion: 4.2.0

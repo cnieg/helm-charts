@@ -7,7 +7,7 @@ frontend:
 
   image:
     repository: dependencytrack/frontend
-    tag: 4.2.1
+    tag: 4.2.0
     pullPolicy: IfNotPresent
 
   service:
@@ -64,7 +64,7 @@ backend:
 
   image:
     repository: dependencytrack/apiserver
-    tag: 4.2.1
+    tag: 4.2.0
     pullPolicy: IfNotPresent
 
   service:
