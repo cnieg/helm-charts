@@ -7,13 +7,13 @@ metadata:
 {{ include "dependency-track.labels" . | indent 4 }}
 spec:
   accessModes:
-    - {{ .Values.persistence.accessMode | quote }}
+    - {{ .Values.backend.persistence.accessMode | quote }}
   resources:
     requests:
-      storage: {{ .Values.persistence.size | quote }}
-  {{- if .Values.persistence.storageClass }}
-  {{- if (not (eq "-" .Values.persistence.storageClass)) }}
-  storageClassName: "{{ .Values.persistence.storageClass }}"
+      storage: {{ .Values.backend.persistence.size | quote }}
+  {{- if .Values.backend.persistence.storageClass }}
+  {{- if (not (eq "-" .Values.backend.persistence.storageClass)) }}
+  storageClassName: "{{ .Values.backend.persistence.storageClass }}"
   {{- end }}
   {{- end }}
   {{- end }}
