@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: owasp/dependency-track
-  tag: 3.8.0
+  tag: 4.2.1
   pullPolicy: IfNotPresent
 
 service:
