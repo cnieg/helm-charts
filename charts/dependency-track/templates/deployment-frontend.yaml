@@ -39,8 +39,10 @@ spec:
           resources:
 {{ toYaml .Values.frontend.resources | indent 12 }}
           env:
+            {{- if not .Values.frontend.ingress.enabled }}
             - name: API_BASE_URL
-              value: "http://{{ include "dependency-track.fullname" . }}-frontend:{{ .Values.backend.service.port }}"
+              value: "http://{{ include "dependency-track.fullname" . }}-backend:{{ .Values.backend.service.port }}"
+            {{- end }}
             {{- /* Environment variables from secrets list */}}
             {{- range .Values.frontend.secretsEnv }}
             {{- $secretName := .secretName }}
