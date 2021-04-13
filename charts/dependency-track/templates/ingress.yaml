@@ -31,5 +31,10 @@ spec:
             backend:
               serviceName: {{ $fullName }}-frontend
               servicePort: http
+          - path: {{ $ingressPath }}api
+            backend:
+              serviceName: {{ $fullName }}-backend
+              servicePort: http
+
   {{- end }}
 {{- end }}
