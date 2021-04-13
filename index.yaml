@@ -164,6 +164,22 @@ entries:
   dependency-track:
   - apiVersion: v2
     appVersion: 4.2.0
+    created: "2021-04-13T07:13:55.781006182Z"
+    description: A Helm chart for Dependency-Track
+    digest: c499c35954ffa77f6cf73d526a0c9e1892b1cb2941651cb48808aacfe3e35cc6
+    home: https://docs.dependencytrack.org/
+    icon: https://docs.dependencytrack.org/images/dt-logo-white-text.svg
+    maintainers:
+    - email: maintainers@cnieg.fr
+      name: CNIEG
+    name: dependency-track
+    sources:
+    - https://github.com/DependencyTrack/dependency-track/tree/master
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/dependency-track-2.0.2/dependency-track-2.0.2.tgz
+    version: 2.0.2
+  - apiVersion: v2
+    appVersion: 4.2.0
     created: "2021-04-12T15:16:36.609320436Z"
     description: A Helm chart for Dependency-Track
     digest: 12cc2b5e59bf7e2b96295552deaa1799390d5a1c9c55f95a68493c78c8f8c338
