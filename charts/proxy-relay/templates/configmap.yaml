@@ -84,11 +84,24 @@ data:
     LogLevel warn
 
     <IfModule log_config_module>
-      LogFormat "%v:%p %h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %T %D" vhost_combined
-      LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
-      LogFormat "%h %l %u %t \"%r\" %>s %b" common
-      LogFormat "%{Referer}i -> %U" referer
-      LogFormat "%{User-agent}i" agent
+      #LogFormat "%v:%p %h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %T %D" vhost_combined
+      LogFormat "{ \
+          \"@timestamp\": \"%{%Y-%m-%dT%H:%M:%S%z}t\", \
+          \"@version\": \"1\", \
+          \"message\": \"%h %l %u %t \\\"%r\\\" %>s %b\", \
+          \"url\": \"%V\", \
+          \"clientip\": \"%a\", \
+          \"duration\": %D, \
+          \"status\": %>s, \
+          \"request\": \"%U%q\", \
+          \"urlpath\": \"%U\", \
+          \"urlquery\": \"%q\", \
+          \"bytes\": %B, \
+          \"method\": \"%m\", \
+          \"referer\": \"%{Referer}i\", \
+          \"useragent\": \"%{User-agent}i\" \
+         }" vhost_combined
+
       SetEnvIf Request_URI "^/server-status$" nologging
       <IfModule logio_module>
         LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
@@ -126,7 +139,6 @@ data:
     </IfModule>
 
   proxy-html.conf: |-
-
     <VirtualHost *:80>
 
       ProxyRequests Off
@@ -139,8 +151,39 @@ data:
       ProxyRemote * {{ .Values.proxyUrl }}
       {{- end}}
 
+      {{- if .Values.remoteUrl }}
       ProxyPass / {{ .Values.remoteUrl }}
       ProxyPassReverse / {{ .Values.remoteUrl }}
+
+      <Proxy *>
+        AllowOverride None
+        Order deny,allow
+        Allow from all
+      </Proxy>
+    {{- end}}
+      <Location /server-status>
+        SetHandler server-status
+        Order deny,allow
+        Deny from all
+        Allow from all
+      </Location>
+    </VirtualHost>
+    {{- range .Values.additionnalReverseProxyServices }}
+    <VirtualHost *:80>
+
+      ServerAlias {{ .name }}*
+      ProxyRequests Off
+      ProxyVia Off
+
+      SSLProxyEngine on
+
+      ProxyPass /server-status !
+    {{- if .proxyUrl }}
+      ProxyRemote * {{ .proxyUrl }}
+    {{- end}}
+
+      ProxyPass / {{ .remoteUrl }}
+      ProxyPassReverse / {{ .remoteUrl }}
 
       <Proxy *>
         AllowOverride None
@@ -155,3 +198,4 @@ data:
         Allow from all
       </Location>
     </VirtualHost>
+    {{- end }}

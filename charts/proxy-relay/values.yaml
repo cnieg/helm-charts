@@ -36,13 +36,22 @@ remoteUrl: {}
 # proxyUrl: http://myproxycompany:8080
 proxyUrl: {}
 
+# Can be set to add extra virtual host and kubernetes services
+additionnalReverseProxyServices: {}
+#  #Name will be used for servername in virtualhost of httpd
+#  - name: relais-proxy-myapps
+#    alias: relais-proxy-myapps.mydomain.com
+#    remoteUrl: https://myexternalapp.domain.com
+#    #If you have a proxy you can set it here
+#    proxyUrl: http://myproxycompany:8080
+
 extraEnv: {}
   ## Extra environment variables to be injected
   # DATABASE_ENGINE: mysql
   # DATABASE_HOST: mysql
   # DATABASE_NAME: spring
   # DATABASE_USERNAME: spring
-# DATABASE_PASSWORD: spring
+  # DATABASE_PASSWORD: spring
 
 secretEnv: {}
   # Exra environment variables from secret to be inject
@@ -52,7 +61,7 @@ secretEnv: {}
   #     MYVAR2: Key2InMySecret
   # - secretName: mysecret2
   #   env:
-#     MYVAR3: Key3InMySecret
+  #     MYVAR3: Key3InMySecret
 
 resources: {}
 # We usually recommend not to specify default resources and to leave this as a conscious
@@ -65,6 +74,12 @@ resources: {}
 #  requests:
 #    cpu: 100m
 #    memory: 128Mi
+
+hpa: {}
+#  minReplicas: 2
+#  maxReplicas: 4
+#  cpuMax: 80
+#  memoryMax: 70
 
 ## uncomment and modify the following livenessProbe and readinessProbe.
 livenessProbe:

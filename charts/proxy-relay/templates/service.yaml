@@ -1,3 +1,9 @@
+{{- $fullName := include "proxy-relay.fullname" . -}}
+  {{- $labels := include "proxy-relay.labels" . -}}
+  {{- $name := include "proxy-relay.name" . -}}
+  {{- $port := .Values.service.port -}}
+  {{- $type := .Values.service.type -}}
+  {{- $ReleaseName := .Release.Name -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -14,3 +20,23 @@ spec:
   selector:
     app: {{ template "proxy-relay.name" . }}
     release: {{ .Release.Name }}
+---
+{{- range .Values.additionnalReverseProxyServices }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .name }}
+  labels:
+{{ $labels | indent 4 }}
+spec:
+  type: {{ $type }}
+  ports:
+    - port: {{ $port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ $name }}
+    release: {{ $ReleaseName }}
+---
+{{- end }}
