@@ -11,7 +11,7 @@ image:
 
 
 clamav:
-  #Deployment of clamav can be disabled to use an existing clamav, you must adjust host & port to target your clamav instance
+  # Deployment of clamav can be disabled to use an existing clamav, you must adjust host & port to target your clamav instance
   enabled: true
   host: clamav
   port: 3310
