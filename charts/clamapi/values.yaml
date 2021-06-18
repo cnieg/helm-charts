@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: audig/clamapi
-  tag: 2.1.0
+  tag: 2.1.6
   pullPolicy: IfNotPresent
 
 
