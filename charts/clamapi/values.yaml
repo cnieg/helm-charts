@@ -6,15 +6,15 @@ replicaCount: 1
 
 image:
   repository: audig/clamapi
-  tag: 2.1.0
+  tag: 2.1.6
   pullPolicy: IfNotPresent
 
 
 clamav:
+  #Deployment of clamav can be disabled to use an existing clamav, you must adjust host & port to target your clamav instance
   enabled: true
-  # If clamav enabled false, host & port can be specified to use an external clamav
-  # externalHost:
-  # externalPort:
+  host: clamav
+  port: 3310
   timeout: 1000
   kubeMeta:
     deploymentApiVersion: apps/v1
