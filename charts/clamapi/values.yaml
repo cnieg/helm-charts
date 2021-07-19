@@ -13,6 +13,7 @@ image:
 clamav:
   # Deployment of clamav can be disabled to use an existing clamav, you must adjust host & port to target your clamav instance
   enabled: true
+  fullnameOverride: clamav
   host: clamav
   port: 3310
   timeout: 1000
