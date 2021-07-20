@@ -32,11 +32,11 @@ spec:
               protocol: TCP
           env:
             - name: SERVICES_CLAMAV_HOST
-              value:  {{ .Values.clamav.externalHost | default (printf "%s-clamav" .Release.Name) }}
+              value:  {{ .Values.clamav.host  }}
             - name: SERVICES_CLAMAV_TIMEOUT
               value: {{ .Values.clamav.timeout | quote }}
             - name: SERVICES_CLAMAV_PORT
-              value: {{ default "3310" .Values.clamav.externalPort | quote }}
+              value: {{ .Values.clamav.port | quote }}
             {{- range $key, $value := .Values.env }}
             - name: {{ $key | quote }}
               value: {{ $value | quote }}
