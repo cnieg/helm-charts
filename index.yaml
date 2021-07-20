@@ -68,6 +68,25 @@ entries:
   clamapi:
   - apiVersion: v1
     appVersion: 2.1.6
+    created: "2021-07-20T06:43:45.153650666Z"
+    dependencies:
+    - condition: clamav.enabled
+      name: clamav
+      repository: https://wiremind.github.io/wiremind-helm-charts
+      version: 1.3.2
+    description: A Helm chart for Kubernetes
+    digest: ecd6133fefda53bedf8b9e5bddef57c57c961ac0700dd4314fbfabc844816d93
+    home: https://github.com/cnieg/helm-charts/
+    maintainers:
+    - name: audig
+    name: clamapi
+    sources:
+    - https://github.com/audig/clamapi
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/clamapi-1.2.2/clamapi-1.2.2.tgz
+    version: 1.2.2
+  - apiVersion: v1
+    appVersion: 2.1.6
     created: "2021-06-18T18:04:44.648043769Z"
     dependencies:
     - condition: clamav.enabled
