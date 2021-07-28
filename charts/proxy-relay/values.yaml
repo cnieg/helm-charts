@@ -44,6 +44,36 @@ additionnalReverseProxyServices: {}
 #    remoteUrl: https://myexternalapp.domain.com
 #    #If you have a proxy you can set it here
 #    proxyUrl: http://myproxycompany:8080
+#    #If you want to call lua scripts, you can set them here
+#    lua:
+#      - directive: LuaHookAuthChecker
+#        functionName: authcheck_hook
+#        parameters:
+#          - param1
+#          - param2
+
+luaHandlers: {}
+#  |-
+#    -- Content file which can evaluate by services
+#    require 'apache2'
+#    function authcheck_hook(r)
+#      auth = r.headers_in['Authorization']
+#      if auth ~= nil then
+#        r.user = 'foo'
+#      end
+#      if r.user == nil then
+#        r:debug("authcheck: user is nil, returning 401")
+#        r.err_headers_out['WWW-Authenticate'] = 'Basic realm="WallyWorld"'
+#        return 401
+#      elseif r.user == "foo" then
+#        r:debug('user foo: OK')
+#      else
+#        r:debug("authcheck: user='" .. r.user .. "'")
+#        r.err_headers_out['WWW-Authenticate'] = 'Basic realm="WallyWorld"'
+#        return 401
+#      end
+#      return apache2.OK
+#    end
 
 extraEnv: {}
   ## Extra environment variables to be injected
