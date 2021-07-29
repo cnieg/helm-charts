@@ -145,9 +145,11 @@ data:
       SSLRandomSeed connect builtin
     </IfModule>
 
+  {{- if .Values.luaHandlers }}
   handlers.lua: |-
-    -- all methods handlers
-    {{ .Values.luaHandlers | indent 4 }}
+    {{ .Values.luaHandlers | nindent 4 }}
+  {{- end}}
+
 
   proxy-html.conf: |-
     <VirtualHost *:80>
