@@ -147,7 +147,7 @@ data:
 
   handlers.lua: |-
     -- all methods handlers
-    {{ .Values.luaHandlers }}
+    {{ .Values.luaHandlers | indent 4 }}
 
   proxy-html.conf: |-
     <VirtualHost *:80>
@@ -194,7 +194,7 @@ data:
     {{- end}}
 
     {{- range .lua }}
-       {{ .directive }} handlers.lua {{ .functionName }} {{ .parameters }}
+      {{ .directive }} handlers.lua {{ .functionName }} {{ .parameters }}
     {{- end}}
 
       ProxyPass / {{ .remoteUrl }}
