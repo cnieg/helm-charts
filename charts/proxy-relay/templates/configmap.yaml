@@ -196,7 +196,7 @@ data:
     {{- end}}
 
     {{- range .lua }}
-      {{ .directive }} handlers.lua {{ .functionName }} {{ .parameters }}
+      {{ .directive }} /usr/local/apache2/conf/extra/handlers.lua {{ .functionName }} {{ .parameters }}
     {{- end}}
 
       ProxyPass / {{ .remoteUrl }}
