@@ -52,6 +52,11 @@ spec:
             - mountPath: /usr/local/apache2/conf/extra/proxy-html.conf
               name: config
               subPath: proxy-html.conf
+            {{- if .Values.luaHandlers }}
+            - mountPath: /usr/local/apache2/conf/extra/handlers.lua
+              name: config
+              subPath: handlers.lua
+            {{- end}}
           ports:
             - name: http
               containerPort: 80

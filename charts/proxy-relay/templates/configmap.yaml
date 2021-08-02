@@ -51,6 +51,13 @@ data:
     LoadModule dir_module modules/mod_dir.so
     LoadModule alias_module modules/mod_alias.so
     LoadModule ssl_module modules/mod_ssl.so
+    {{- if .Values.luaHandlers }}
+    LoadModule lua_module modules/mod_lua.so
+
+    <Files "handlers.lua">
+      SetHandler lua-script
+    </Files>
+    {{- end}}
 
     <IfModule unixd_module>
       User daemon
@@ -138,6 +145,12 @@ data:
       SSLRandomSeed connect builtin
     </IfModule>
 
+  {{- if .Values.luaHandlers }}
+  handlers.lua: |-
+    {{ .Values.luaHandlers | nindent 4 }}
+  {{- end}}
+
+
   proxy-html.conf: |-
     <VirtualHost *:80>
 
@@ -180,6 +193,10 @@ data:
       ProxyPass /server-status !
     {{- if .proxyUrl }}
       ProxyRemote * {{ .proxyUrl }}
+    {{- end}}
+
+    {{- range .lua }}
+      {{ .directive }} handlers.lua {{ .functionName }} {{ .parameters }}
     {{- end}}
 
       ProxyPass / {{ .remoteUrl }}
