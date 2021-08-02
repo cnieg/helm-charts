@@ -676,6 +676,22 @@ entries:
   proxy-relay:
   - apiVersion: v1
     appVersion: 2.4.39
+    created: "2021-08-02T08:06:40.100844349Z"
+    description: A Helm chart to proxy request to another url with company proxy or
+      not
+    digest: 2d89fd4d401cd28538714f6dca16bd96403e52c85621838dd37420a9309c6191
+    home: https://httpd.apache.org/docs/2.4/fr/programs/httpd.html
+    maintainers:
+    - name: audig
+    name: proxy-relay
+    sources:
+    - https://github.com/cnieg/helm-charts/tree/master/charts/proxy-relay
+    - https://cnieg.github.io/helm-charts
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/proxy-relay-2.1.0/proxy-relay-2.1.0.tgz
+    version: 2.1.0
+  - apiVersion: v1
+    appVersion: 2.4.39
     created: "2021-04-12T07:13:33.086155895Z"
     description: A Helm chart to proxy request to another url with company proxy or
       not
