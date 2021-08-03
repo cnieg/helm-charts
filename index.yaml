@@ -218,6 +218,20 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/clamapi-0.1.0/clamapi-0.1.0.tgz
     version: 0.1.0
+  default-chart:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-08-03T12:49:31.781366838Z"
+    description: A Helm chart for Kubernetes
+    digest: 81e97315ca693d37b015383db8305cb4536aeda41f65d4bd4da767ba95c9b591
+    home: https://github.com/cnieg/helm-charts/
+    maintainers:
+    - name: audig
+    name: default-chart
+    type: application
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/default-chart-1.0.0/default-chart-1.0.0.tgz
+    version: 1.0.0
   dependency-track:
   - apiVersion: v2
     appVersion: 4.2.0
