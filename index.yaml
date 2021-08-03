@@ -221,6 +221,19 @@ entries:
   default-chart:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-08-03T13:22:42.070033659Z"
+    description: A Helm chart for Kubernetes
+    digest: 2aade5c2042b60bac99e3d55601cc3698902ac47d497d2a44e7f1fe52f5150d7
+    home: https://github.com/cnieg/helm-charts/
+    maintainers:
+    - name: audig
+    name: default-chart
+    type: application
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/default-chart-1.0.2/default-chart-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-08-03T13:08:53.323383613Z"
     description: A Helm chart for Kubernetes
     digest: 867b4bed693b6fbf36b5ad4481dfc1f20e7ec26420bf78cabafa92f367fd67cf
