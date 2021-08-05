@@ -1,0 +1,14 @@
+{{- if .Values.podDisruptionBudget -}}
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "default-chart.fullname" . }}
+  labels:
+{{ include "default-chart.labels" . | indent 4 }}
+spec:
+  minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "default-chart.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  {{- end }}
