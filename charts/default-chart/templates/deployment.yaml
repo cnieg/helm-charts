@@ -1,3 +1,4 @@
+{{- $chartName := include "default-chart.name" . -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -48,14 +49,17 @@ spec:
             - name: http
               containerPort: {{ .Values.service.containerPort }}
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
+          {{- if .Values.persistence.enabled }}
+          volumeMounts:
+            {{- range .Values.persistence.volumes }}
+            - mountPath: {{ .mountPoint }}
+              name: {{ .name }}
+              {{- if .subPath }}
+              subPath: {{ .subPath }}
+              {{- end }}
+              readOnly: {{ .readOnly | default false }}
+            {{- end }}
+          {{- end }}
           {{- if .Values.livenessProbe }}
           livenessProbe:
 {{ toYaml .Values.livenessProbe | indent 12 }}
@@ -68,7 +72,7 @@ spec:
 {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
-        {{- toYaml . | nindent 8 }}
+{{- toYaml . | nindent 8 }}
       {{- end }}
     {{- with .Values.affinity }}
       affinity:
@@ -76,5 +80,18 @@ spec:
     {{- end }}
     {{- with .Values.tolerations }}
       tolerations:
-    {{- toYaml . | nindent 8 }}
-  {{- end }}
+{{- toYaml . | nindent 8 }}
+    {{- end }}
+{{- if and .Values.persistence.enabled }}
+      volumes:
+        {{- range .Values.persistence.volumes }}
+        - name: {{ .name }}
+          {{- if .secretName }}
+          secret:
+            secretName: {{ .secretName }}
+          {{- else }}
+          persistentVolumeClaim:
+            claimName: {{ $chartName }}-{{ .name }}
+          {{- end }}
+        {{- end }}
+      {{- end }}

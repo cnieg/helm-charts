@@ -1,0 +1,28 @@
+{{- $chartName := include "default-chart.name" . -}}
+{{- $labels := include "default-chart.labels" . -}}
+{{- if and .Values.persistence.enabled }}
+  {{- range .Values.persistence.volumes }}
+    {{- if not .secretName }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $chartName }}-{{ .name }}
+  labels:
+{{ $labels | indent 4 }}
+  {{- with .annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+  {{- end }}
+spec:
+  accessModes:
+    - {{ .accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .size | quote }}
+      {{- if .storageClass }}
+  storageClassName: "{{ .storageClass }}"
+      {{- end }}
+---
+    {{- end }}
+  {{- end }}
+{{- end }}

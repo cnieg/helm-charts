@@ -77,6 +77,40 @@ readinessProbe:
   initialDelaySeconds: 10
   periodSeconds: 10
 
+persistence:
+  enabled: false
+  volumes: []
+#    - name: fichiers
+#      size: 10Gi
+#      mountPoint: /opt/apps/fichiers
+#      accessMode: ReadWriteMany
+#      storageClass: ""
+#      annotations:
+#        cnieg.fr/samba-share: "true"
+#    - name: temp
+#      size: 2Gi
+#      mountPoint: /opt/apps/temp
+#      accessMode: ReadWriteMany
+#      storageClass: nfs-client
+#      annotations: {}
+#    - name: cacerts
+#      secretName: cacerts
+#      mountPoint: /usr/local/openjdk-11/lib/security/cacerts
+#      subPath: cacerts
+#      readOnly: true
+
+podDisruptionBudget:
+  enabled: false
+  rule:
+    type: minAvailable
+    value: 1
+
+hpa:
+  enabled: false
+  maxReplicas: 4
+  cpuMax: 85
+  memoryMax: 85
+
 nodeSelector: {}
 
 tolerations: []
