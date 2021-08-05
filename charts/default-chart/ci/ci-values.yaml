@@ -1,0 +1,31 @@
+ingress:
+  enabled: true
+  hosts:
+    - host: app.mydomain.fr
+      paths: ["/"]
+
+env:
+  ENV_KEY: env_value
+
+resources:
+  limits:
+    cpu: "0.5"
+    memory: 128Mi
+  requests:
+    cpu: "0.5"
+    memory: 128Mi
+
+persistence:
+  enabled: true
+  volumes:
+    - name: data-repository
+      size: 512Mi
+      mountPoint: /data/repository
+      accessMode: ReadWriteOnce
+      storageClass: ""
+
+podDisruptionBudget:
+  enabled: true
+
+hpa:
+  enabled: true
