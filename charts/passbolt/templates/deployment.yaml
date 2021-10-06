@@ -85,10 +85,10 @@ spec:
               mountPath : /var/www/passbolt/webroot/img/public/Avatar
               subPath: avatar
             {{- end }}
-            {{- if .Values.passbolt.pro }}
+            {{- if .Values.passbolt.license.enabled }}
             - name: license
               mountPath: /var/www/passbolt/config/license
-              subPath: subscription_key.txt
+              subPath: {{ .Values.passbolt.license.existingSecret.licenseKey }}
               readOnly: true
             {{- end }}
           livenessProbe:
@@ -106,10 +106,10 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-        {{- if .Values.passbolt.pro }}
+        {{- if .Values.passbolt.license.enabled }}
         - name: license
           secret:
-            secretName: {{ template "passbolt.name" . }}-key
+            secretName: {{ .Values.passbolt.license.existingSecret.name | default (include "passbolt.fullname" .) "-key" }}
         {{- end }}
         - name: data
           {{- if .Values.persistence.enabled }}
