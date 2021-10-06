@@ -87,9 +87,13 @@ mariadb:
     username: passbolt
     password: passbolt
 
-passbolt: {}
+passbolt:
+  license:
+    enabled: false
+  #   existingSecret:
+  #     name: passbolt-secret-license
+  #     licenseKey: subscription_key.txt
   # baseUrl: passbolt.organization.com
-  # pro: false
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
