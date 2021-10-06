@@ -109,7 +109,7 @@ spec:
         {{- if .Values.passbolt.license.enabled }}
         - name: license
           secret:
-            secretName: {{ .Values.passbolt.license.existingSecret.name | default (include "passbolt.fullname" .) "-key" }}
+            secretName: {{ .Values.passbolt.license.existingSecret.name }}
         {{- end }}
         - name: data
           {{- if .Values.persistence.enabled }}
