@@ -1,0 +1,253 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "livenessProbe": {
+      "type": "object",
+      "properties": {
+        "initialDelaySeconds": {
+          "type": "integer"
+        },
+        "httpGet": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "port": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "port"
+          ]
+        },
+        "periodSeconds": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "initialDelaySeconds",
+        "httpGet",
+        "periodSeconds"
+      ]
+    },
+    "podAnnotations": {
+      "type": "object"
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "pullPolicy": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        },
+        "repository": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "pullPolicy",
+        "tag",
+        "repository"
+      ]
+    },
+    "clamav": {
+      "type": "object",
+      "properties": {
+        "fullnameOverride": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "host": {
+          "type": "string"
+        },
+        "timeout": {
+          "type": "integer"
+        },
+        "port": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "fullnameOverride",
+        "enabled",
+        "host",
+        "timeout",
+        "port"
+      ]
+    },
+    "podDisruptionBudget": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "rule": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "type",
+            "value"
+          ]
+        }
+      },
+      "required": [
+        "enabled",
+        "rule"
+      ]
+    },
+    "replicaCount": {
+      "type": "integer"
+    },
+    "ingress": {
+      "type": "object",
+      "properties": {
+        "tls": {
+          "type": "array",
+          "items": {}
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "hosts": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "paths": {
+                  "type": "array",
+                  "items": {}
+                },
+                "host": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "paths",
+                "host"
+              ]
+            }
+          ]
+        },
+        "annotations": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "tls",
+        "enabled",
+        "hosts",
+        "annotations"
+      ]
+    },
+    "fullnameOverride": {
+      "type": "string"
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "type",
+        "port"
+      ]
+    },
+    "nodeSelector": {
+      "type": "object"
+    },
+    "affinity": {
+      "type": "object"
+    },
+    "nameOverride": {
+      "type": "string"
+    },
+    "env": {
+      "type": "object"
+    },
+    "readinessProbe": {
+      "type": "object",
+      "properties": {
+        "initialDelaySeconds": {
+          "type": "integer"
+        },
+        "httpGet": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "port": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "port"
+          ]
+        },
+        "periodSeconds": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "initialDelaySeconds",
+        "httpGet",
+        "periodSeconds"
+      ]
+    },
+    "tolerations": {
+      "type": "array",
+      "items": {}
+    },
+    "hpa": {
+      "type": "object"
+    },
+    "imagePullSecrets": {
+      "type": "array",
+      "items": {}
+    },
+    "resources": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "livenessProbe",
+    "podAnnotations",
+    "image",
+    "clamav",
+    "podDisruptionBudget",
+    "replicaCount",
+    "ingress",
+    "fullnameOverride",
+    "service",
+    "nodeSelector",
+    "affinity",
+    "nameOverride",
+    "env",
+    "readinessProbe",
+    "tolerations",
+    "hpa",
+    "imagePullSecrets",
+    "resources"
+  ]
+}
