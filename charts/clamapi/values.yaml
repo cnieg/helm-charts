@@ -17,8 +17,6 @@ clamav:
   host: clamav
   port: 3310
   timeout: 1000
-  kubeMeta:
-    deploymentApiVersion: apps/v1
 
 env: {}
 #  SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE: 10MB
