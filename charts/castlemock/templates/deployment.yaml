@@ -11,8 +11,6 @@ spec:
   selector:
     matchLabels:
       {{- include "castlemock.selectorLabels" . | nindent 6 }}
-      app.kubernetes.io/name: {{ include "castlemock.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -21,8 +19,6 @@ spec:
       {{- end }}
       labels:
         {{- include "castlemock.selectorLabels" . | nindent 8 }}
-        app.kubernetes.io/name: {{ include "castlemock.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
