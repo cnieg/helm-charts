@@ -250,6 +250,7 @@ zookeeper:
   # so the metrics are correctly rendered in grafana dashboard
   component: zookeeper
   # the number of zookeeper servers to run. it should be an odd number larger than or equal to 3.
+  priorityClassName: ""
   replicaCount: 2
   updateStrategy:
     type: RollingUpdate
@@ -348,6 +349,7 @@ bookkeeper:
   component: bookie
   ## BookKeeper Cluster Initialize
   ## templates/bookkeeper-cluster-initialize.yaml
+  priorityClassName: ""
   metadata:
     image:
       # the image used for running `bookkeeper-cluster-initialize` job
@@ -543,6 +545,7 @@ broker:
   # use a component name that matches your grafana configuration
   # so the metrics are correctly rendered in grafana dashboard
   component: broker
+  priorityClassName: ""
   replicaCount: 2
   ports:
     http: 8080

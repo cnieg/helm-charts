@@ -47,6 +47,9 @@ spec:
 {{ toYaml . | indent 8 }}
 {{- end }}
     spec:
+      {{- if .Values.bookkeeper.priorityClassName }}
+      priorityClassName: {{ .Values.bookkeeper.priorityClassName }}
+      {{- end }}
     {{- if .Values.bookkeeper.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.bookkeeper.nodeSelector | indent 8 }}
