@@ -44,6 +44,9 @@ spec:
       annotations:
 {{ toYaml .Values.zookeeper.annotations | indent 8 }}
     spec:
+      {{- if .Values.zookeeper.priorityClassName }}
+      priorityClassName: {{ .Values.zookeeper.priorityClassName }}
+      {{- end }}
     {{- if .Values.zookeeper.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.zookeeper.nodeSelector | indent 8 }}
