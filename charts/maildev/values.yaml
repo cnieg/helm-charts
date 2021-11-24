@@ -1,6 +1,7 @@
 # Default values for maildev.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+# Update 2021-11 hisdad update api versions. update ingress.
 
 replicaCount: 1
 
@@ -53,11 +54,15 @@ cron:
 
 ingress:
   enabled: false
+  spec:
+  # ingressClassName is standard for 1.19+
+    ingressClassName: nginx  
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/ingress.class: nginx    (Obsolete)
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: maildev.yourdomain.com
+      # paths: ["/male", "/mail"]  would route on both uris
       paths: ["/"]
 
   tls: []
