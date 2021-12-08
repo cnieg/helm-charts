@@ -56,7 +56,8 @@ ingress:
   enabled: false
   spec:
   # ingressClassName is standard for 1.19+
-    ingressClassName: nginx  
+  # ingressClassName: nginx
+    ingressClassName:
   annotations: {}
     # kubernetes.io/ingress.class: nginx    (Obsolete)
     # kubernetes.io/tls-acme: "true"

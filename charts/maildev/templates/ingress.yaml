@@ -11,7 +11,9 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
+{{- if .Values.ingress.spec.ingressClassName }}
   ingressClassName: {{ .Values.ingress.spec.ingressClassName | quote}}
+{{- end }}
 {{- if .Values.ingress.tls }}
   tls:
   {{- range .Values.ingress.tls }}
@@ -33,7 +35,7 @@ spec:
         backend:
           service:
             name: {{ $fullName }}-http
-            port: 
+            port:
               number: 80
         {{- end }}
   {{- end }}
