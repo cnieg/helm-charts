@@ -32,7 +32,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
               protocol: TCP
           env:
             - name: DATASOURCES_DEFAULT_HOST
@@ -79,15 +79,15 @@ spec:
           volumeMounts:
             {{- if .Values.persistence.enabled }}
             - name: data
-              mountPath: /var/www/passbolt/config/gpg
+              mountPath: /etc/passbolt/gpg
               subPath: gpg
             - name : data
-              mountPath : /var/www/passbolt/webroot/img/public/Avatar
+              mountPath : /usr/share/php/passbolt/webroot/img/public/Avatar
               subPath: avatar
             {{- end }}
             {{- if .Values.passbolt.license.enabled }}
             - name: license
-              mountPath: /var/www/passbolt/config/license
+              mountPath: /etc/passbolt/license/{{ .Values.passbolt.license.existingSecret.licenseKey }}
               subPath: {{ .Values.passbolt.license.existingSecret.licenseKey }}
               readOnly: true
             {{- end }}
