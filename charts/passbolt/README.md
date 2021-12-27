@@ -148,5 +148,9 @@ $ kubectl apply -f passbolt-key.yaml
 
 ```yaml
 passbolt:
-  pro: true
+  license:
+    enabled: true
+    existingSecret:
+      name: passbolt-key
+      licenseKey: subscription_key.txt
 ```
