@@ -2,8 +2,8 @@ apiVersion: v2
 name: castlemock
 description: Castlemock webapp chart
 type: application
-version: 0.1.5
-appVersion: 1.49
+version: 0.1.6
+appVersion: latest
 home: https://github.com/castlemock/castlemock
 sources:
   - https://github.com/cnieg/helm-charts/tree/master/charts/castlemock
