@@ -87,7 +87,7 @@ spec:
             {{- end }}
             {{- if .Values.passbolt.license.enabled }}
             - name: license
-              mountPath: /etc/passbolt/license/{{ .Values.passbolt.license.existingSecret.licenseKey }}
+              mountPath: /etc/passbolt/license
               subPath: {{ .Values.passbolt.license.existingSecret.licenseKey }}
               readOnly: true
             {{- end }}
