@@ -751,6 +751,28 @@ entries:
     version: 1.0.0
   passbolt:
   - apiVersion: v2
+    appVersion: 3.4.0-ce-non-root
+    created: "2021-12-27T09:30:50.81450317Z"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.0.7
+    description: A Helm chart to deploy Passbolt
+    digest: 55aadfbe8dd80a29e11e848d7fdb3b7c38874fe79872fd553917415e612544e7
+    home: http://passbolt.com
+    maintainers:
+    - email: maintainers@cnieg.fr
+      name: CNIEG
+    name: passbolt
+    sources:
+    - https://github.com/cnieg/helm-charts/tree/master/charts/passbolt
+    - https://github.com/passbolt
+    type: application
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/passbolt-1.1.0/passbolt-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
     appVersion: 2.13.5-debian
     created: "2021-10-06T11:58:56.600094375Z"
     dependencies:
