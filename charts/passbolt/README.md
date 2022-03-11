@@ -19,6 +19,14 @@ $ helm repo add github-cnieg https://cnieg.github.io/helm-charts
 $ helm install github-cnieg/passbolt
 ```
 
+After startup of the main pod, you need to manually create the first administrator with the following command inside the container :
+
+```bash
+bin/cake passbolt register_user -u <email> -f <firstname> -l <lastname> -r admin
+```
+
+Then, follow the instructions printed on screen.
+
 ## Uninstalling the chart
 
 To uninstall/delete the deployment:
