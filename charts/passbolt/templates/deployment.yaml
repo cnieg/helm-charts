@@ -56,6 +56,22 @@ spec:
             - name: DATASOURCES_DEFAULT_PASSWORD
               value: {{ .Values.mariadb.auth.password }}
             {{- end }}
+            - name: EMAIL_TRANSPORT_DEFAULT_HOST
+              value: "{{ .Values.email.host }}"
+            - name: EMAIL_TRANSPORT_DEFAULT_PORT
+              value: {{ .Values.email.port }}
+            - name: EMAIL_DEFAULT_FROM
+              value: "{{ .Values.email.from }}"
+            {{- if .Values.email.username }}
+            - name: EMAIL_TRANSPORT_DEFAULT_USERNAME
+              value: "{{ .Values.email.username }}"
+            {{- end }}
+            {{- if .Values.email.password }}
+            - name: EMAIL_TRANSPORT_DEFAULT_PASSWORD
+              value: "{{ .Values.email.password }}"
+            {{- end }}
+            - name: EMAIL_TRANSPORT_DEFAULT_TIMEOUT
+              value: {{ .Values.email.timeout }}
             {{- range .Values.secretsEnv }}
               {{- $secretName := .secretName }}
               {{- range $key, $value :=  .env }}
