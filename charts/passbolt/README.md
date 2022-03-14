@@ -64,6 +64,13 @@ The following table lists the configurable parameters of the Passbolt chart and 
 | `ingress.hosts[0].host`         | Hostname to your Passbolt installation                   | `passbolt.organization.com` |
 | `ingress.hosts[0].paths`        | Paths within the URL structure                           | `[]`                        |
 | `ingress.tls`                   | Ingress secrets for TLS certificates                     | `[]`                        |
+| `ingress.className`             | Ingress className for multi ingress env                  | `nginx`                     |
+| `email.host`                    | Email server host name                                   | `smtp.example.com`          |
+| `email.port`                    | Email server port number                                 | `25`                        |
+| `email.from`                    | Email from field                                         | `noreply@example.com`       |
+| `email.username`                | Username for login to email server                       | `nil`                       |
+| `email.password`                | Password for login to email server                       | `nil`                       |
+| `email.timeout`                 | Email default connection timeout                         | `30`                        |
 | `env`                           | Environment variables to attach to the pods              | `nil`                       |
 | `secretsEnv`                    | Environment variables to attach to the pods from secrets | `nil`                       |
 | `persistence.enabled`           | Flag for enabling persistent storage                     | false                       |

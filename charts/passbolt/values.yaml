@@ -44,6 +44,7 @@ ingress:
     - host: passbolt.organization.com
       paths: []
   tls: []
+  className: "nginx"
   #  - secretName: chart-example-tls
   #    hosts:
   #      - passbolt.organization.com
@@ -55,10 +56,6 @@ env:
   PASSBOLT_EMAIL_SEND_PASSWORD_CREATE: false
   PASSBOLT_EMAIL_SEND_PASSWORD_UPDATE: false
   # PASSBOLT_REGISTRATION_PUBLIC: true
-  # EMAIL_DEFAULT_FROM: noreply@example.com
-  # EMAIL_TRANSPORT_DEFAULT_HOST: smtp.example.com
-  # EMAIL_TRANSPORT_DEFAULT_PORT: 25
-  # EMAIL_TRANSPORT_DEFAULT_TIMEOUT: 30
 
 secretsEnv: []
   # - secretName: db-passbolt
@@ -70,6 +67,12 @@ persistence: {}
   # enabled: true
   # accessMode: ReadWriteOnce
   # size: 512Mi
+
+email:
+  host: "smtp.example.com"
+  port: 25
+  from: "noreply@example.com"
+  timeout: 30
 
 db:
   host: passbolt-mariadb
