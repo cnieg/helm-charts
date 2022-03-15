@@ -59,7 +59,7 @@ spec:
             - name: EMAIL_TRANSPORT_DEFAULT_HOST
               value: "{{ .Values.email.host }}"
             - name: EMAIL_TRANSPORT_DEFAULT_PORT
-              value: {{ .Values.email.port }}
+              value: "{{ .Values.email.port }}"
             - name: EMAIL_DEFAULT_FROM
               value: "{{ .Values.email.from }}"
             {{- if .Values.email.username }}
@@ -71,7 +71,7 @@ spec:
               value: "{{ .Values.email.password }}"
             {{- end }}
             - name: EMAIL_TRANSPORT_DEFAULT_TIMEOUT
-              value: {{ .Values.email.timeout }}
+              value: "{{ .Values.email.timeout }}"
             {{- range .Values.secretsEnv }}
               {{- $secretName := .secretName }}
               {{- range $key, $value :=  .env }}
