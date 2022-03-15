@@ -44,7 +44,7 @@ ingress:
     - host: passbolt.organization.com
       paths: []
   tls: []
-  className: "nginx"
+  # className: "nginx"
   #  - secretName: chart-example-tls
   #    hosts:
   #      - passbolt.organization.com
