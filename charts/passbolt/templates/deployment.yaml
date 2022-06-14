@@ -18,6 +18,7 @@ spec:
       labels:
         {{- include "passbolt.selectorLabels" . | nindent 8 }}
     spec:
+      serviceAccountName: {{ include "passbolt.serviceAccountName" . }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
