@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "dependency-track.fullname" . }}-backend
+  labels:
+{{ include "dependency-track.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.backend.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "dependency-track.name" . }}
+      type: backend
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "dependency-track.name" . }}
+        type: backend
+        release: {{ .Release.Name }}
+    spec:
+      volumes:
+        - name: data
+          {{- if .Values.backend.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.backend.persistence.existingClaim | default (include "dependency-track.name" .) }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          imagePullPolicy: {{ .Values.backend.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+          - name: data
+            mountPath: /data
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /
+            initialDelaySeconds: 45
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /
+            initialDelaySeconds: 45
+          resources:
+{{ toYaml .Values.backend.resources | indent 12 }}
+          env:
+            {{- /* Environment variables from secrets list */}}
+            {{- range .Values.backend.secretsEnv }}
+            {{- $secretName := .secretName }}
+            {{- range $key, $value :=  .env }}
+            - name: {{ $key }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretName }}
+                  key: {{ $value }}
+            {{- end }}
+            {{- end }}
+            {{- range $key, $value :=  .Values.backend.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}

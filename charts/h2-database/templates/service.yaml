@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "h2-database.name" . }}
+  labels:
+{{ include "h2-database.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: db
+      protocol: TCP
+      name: db
+    - port: {{ .Values.service.portUi}}
+      targetPort: ui
+      protocol: TCP
+      name: ui
+  selector:
+    app: {{ template "h2-database.name" . }}
+    release: {{ .Release.Name }}

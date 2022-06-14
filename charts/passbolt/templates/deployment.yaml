@@ -1,0 +1,148 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "passbolt.fullname" . }}
+  labels:
+    {{- include "passbolt.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "passbolt.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "passbolt.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: DATASOURCES_DEFAULT_HOST
+              value: {{ .Values.db.host }}
+            - name: DATASOURCES_DEFAULT_DATABASE
+              value: {{ .Values.db.name }}
+            {{- if .Values.db.existingSecret }}
+            - name: DATASOURCES_DEFAULT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.db.existingSecret.name }}
+                  key: {{ .Values.db.existingSecret.usernameKey }}
+            - name: DATASOURCES_DEFAULT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.db.existingSecret.name }}
+                  key: {{ .Values.db.existingSecret.passwordKey }}
+            {{- else if .Values.mariadb.enabled }}
+            - name: DATASOURCES_DEFAULT_USERNAME
+              value: {{ .Values.mariadb.auth.username }}
+            - name: DATASOURCES_DEFAULT_PASSWORD
+              value: {{ .Values.mariadb.auth.password }}
+            {{- end }}
+            - name: EMAIL_TRANSPORT_DEFAULT_HOST
+              value: "{{ .Values.email.host }}"
+            - name: EMAIL_TRANSPORT_DEFAULT_PORT
+              value: "{{ .Values.email.port }}"
+            - name: EMAIL_DEFAULT_FROM
+              value: "{{ .Values.email.from }}"
+            {{- if .Values.email.username }}
+            - name: EMAIL_TRANSPORT_DEFAULT_USERNAME
+              value: "{{ .Values.email.username }}"
+            {{- end }}
+            {{- if .Values.email.password }}
+            - name: EMAIL_TRANSPORT_DEFAULT_PASSWORD
+              value: "{{ .Values.email.password }}"
+            {{- end }}
+            - name: EMAIL_TRANSPORT_DEFAULT_TIMEOUT
+              value: "{{ .Values.email.timeout }}"
+            {{- range .Values.secretsEnv }}
+              {{- $secretName := .secretName }}
+              {{- range $key, $value :=  .env }}
+            - name: {{ $key }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretName }}
+                  key: {{ $value }}
+              {{- end }}
+            {{- end }}
+            {{- range $key, $value := .Values.env }}
+            - name: "{{ $key }}"
+              value: "{{ $value }}"
+            {{- end }}
+            - name: APP_FULL_BASE_URL
+            {{- if .Values.passbolt.baseUrl }}
+              value: https://{{ .Values.passbolt.baseUrl }}
+            {{- else }}
+              value: https://{{ template "passbolt.name" . }}:{{ .Values.service.port }}
+            {{- end }}
+          volumeMounts:
+            {{- if .Values.persistence.enabled }}
+            - name: data
+              mountPath: /etc/passbolt/gpg
+              subPath: gpg
+            - name : data
+              mountPath : /usr/share/php/passbolt/webroot/img/public/Avatar
+              subPath: avatar
+            {{- end }}
+            {{- if .Values.passbolt.license.enabled }}
+            - name: license
+              mountPath: /etc/passbolt/license
+              subPath: {{ .Values.passbolt.license.existingSecret.licenseKey }}
+              readOnly: true
+            {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /healthcheck/status.json
+              port: http
+            initialDelaySeconds: 60
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /healthcheck/status.json
+              port: http
+            initialDelaySeconds: 60
+            timeoutSeconds: 10
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        {{- if .Values.passbolt.license.enabled }}
+        - name: license
+          secret:
+            secretName: {{ .Values.passbolt.license.existingSecret.name }}
+        {{- end }}
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "passbolt.fullname" .) }}
+          {{- else }}
+          emptyDir: {}
+          {{- end -}}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

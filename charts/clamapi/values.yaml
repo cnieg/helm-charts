@@ -1,0 +1,93 @@
+# Default values for clamapi.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: audig/clamapi
+  tag: 2.1.6
+  pullPolicy: IfNotPresent
+
+
+clamav:
+  # Deployment of clamav can be disabled to use an existing clamav, you must adjust host & port to target your clamav instance
+  enabled: true
+  fullnameOverride: clamav
+  host: clamav
+  port: 3310
+  timeout: 1000
+
+env: {}
+#  SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE: 10MB
+#  SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE: 10MB
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+podDisruptionBudget:
+  # Makes sense to enable when replicaCount is >= 2
+  enabled: false
+  rule:
+    type: minAvailable
+    value: 1
+
+podAnnotations: {}
+#  prometheus.io/scrape: "true"
+#  prometheus.io/path: "/actuator/prometheus"
+
+ingress:
+  enabled: false
+  annotations: {}
+  # kubernetes.io/ingress.class: nginx
+  # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths: []
+
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 256Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+livenessProbe:
+  httpGet:
+    path: /actuator/health/liveness
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 10
+readinessProbe:
+  httpGet:
+    path: /actuator/health/readiness
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 10
+
+hpa: {}
+#  minReplicas: 2
+#  maxReplicas: 4
+#  cpuMax: 80
+#  memoryMax: 70
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

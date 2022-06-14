@@ -1,0 +1,19 @@
+{{- if and .Values.backend.persistence.enabled (not .Values.backend.persistence.existingClaim) }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ include "dependency-track.fullname" . }}
+  labels:
+{{ include "dependency-track.labels" . | indent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.backend.persistence.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.backend.persistence.size | quote }}
+  {{- if .Values.backend.persistence.storageClass }}
+  {{- if (not (eq "-" .Values.backend.persistence.storageClass)) }}
+  storageClassName: "{{ .Values.backend.persistence.storageClass }}"
+  {{- end }}
+  {{- end }}
+  {{- end }}

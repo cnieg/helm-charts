@@ -1,0 +1,132 @@
+# Default values for proxy-relay.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: httpd
+  tag: 2.4.39
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {}
+  # kubernetes.io/ingress.class: nginx
+  # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths: ["/"]
+
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+remoteUrl: {}
+
+# If you have a proxy you can set it here
+# proxyUrl: http://myproxycompany:8080
+proxyUrl: {}
+
+# Can be set to add extra virtual host and kubernetes services
+additionnalReverseProxyServices: {}
+#  #Name will be used for servername in virtualhost of httpd
+#  - name: relais-proxy-myapps
+#    alias: relais-proxy-myapps.mydomain.com
+#    remoteUrl: https://myexternalapp.domain.com
+#    #If you have a proxy you can set it here
+#    proxyUrl: http://myproxycompany:8080
+#    #If you want to call lua scripts, you can set them here
+#    lua:
+#      - directive: LuaHookAuthChecker
+#        functionName: authcheck_hook
+#        parameters:
+#          - param1
+#          - param2
+
+luaHandlers: {}
+#  |-
+#    -- Content file which can evaluate by services
+#    require 'apache2'
+#    function authcheck_hook(r)
+#      auth = r.headers_in['Authorization']
+#      if auth ~= nil then
+#        r.user = 'foo'
+#      end
+#      if r.user == nil then
+#        r:debug("authcheck: user is nil, returning 401")
+#        r.err_headers_out['WWW-Authenticate'] = 'Basic realm="WallyWorld"'
+#        return 401
+#      elseif r.user == "foo" then
+#        r:debug('user foo: OK')
+#      else
+#        r:debug("authcheck: user='" .. r.user .. "'")
+#        r.err_headers_out['WWW-Authenticate'] = 'Basic realm="WallyWorld"'
+#        return 401
+#      end
+#      return apache2.OK
+#    end
+
+extraEnv: {}
+  ## Extra environment variables to be injected
+  # DATABASE_ENGINE: mysql
+  # DATABASE_HOST: mysql
+  # DATABASE_NAME: spring
+  # DATABASE_USERNAME: spring
+  # DATABASE_PASSWORD: spring
+
+secretEnv: {}
+  # Exra environment variables from secret to be inject
+  # - secretName: mysecret
+  #   env:
+  #     MYVAR1: Key1InMySecret
+  #     MYVAR2: Key2InMySecret
+  # - secretName: mysecret2
+  #   env:
+  #     MYVAR3: Key3InMySecret
+
+resources: {}
+# We usually recommend not to specify default resources and to leave this as a conscious
+# choice for the user. This also increases chances charts run on environments with little
+# resources, such as Minikube. If you do want to specify resources, uncomment the following
+# lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+#  limits:
+#    cpu: 100m
+#    memory: 128Mi
+#  requests:
+#    cpu: 100m
+#    memory: 128Mi
+
+hpa: {}
+#  minReplicas: 2
+#  maxReplicas: 4
+#  cpuMax: 80
+#  memoryMax: 70
+
+## uncomment and modify the following livenessProbe and readinessProbe.
+livenessProbe:
+  httpGet:
+    path: /server-status
+    port: http
+#   initialDelaySeconds: 300
+#   periodSeconds: 10
+readinessProbe:
+  httpGet:
+    path: /server-status
+    port: http
+#   initialDelaySeconds: 60
+#   periodSeconds: 10
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

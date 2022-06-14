@@ -1,0 +1,12 @@
+apiVersion: v2
+name: dependency-track
+version: 2.0.3
+description: A Helm chart for Dependency-Track
+home: 'https://docs.dependencytrack.org/'
+sources:
+  - https://github.com/DependencyTrack/dependency-track/tree/master
+maintainers:
+  - name: CNIEG
+    email: maintainers@cnieg.fr
+icon: 'https://docs.dependencytrack.org/images/dt-logo-white-text.svg'
+appVersion: 4.2.0
