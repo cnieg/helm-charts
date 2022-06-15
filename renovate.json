@@ -1,5 +1,8 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
-  "bumpVersion": "patch"
+  "extends": [
+    "config:base"
+  ],
+  "bumpVersion": "patch",
+  "lockFileMaintenance": { "enabled": true, "schedule": ["every weekday"] },
+  "rebaseWhen": "behind-base-branch"
 }
