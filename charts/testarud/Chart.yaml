@@ -5,12 +5,12 @@ type: application
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 0.0.1
+version: 0.0.2
 
 # This is the version of the base chart we're using in requirements.yaml
 appVersion: 9.8.2
 
 dependencies:
 - name: traefik
-  version: "9.8.2"
+  version: "9.20.1"
   repository: https://helm.traefik.io/traefik
