@@ -1,11 +1,12 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "gantt.fullname" . -}}
+{{- $fullName := include "default-chart.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-{{ include "gantt.labels" . | indent 4 }}
+    {{- include "default-chart.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -30,7 +31,7 @@ spec:
           - path: {{ . }}
             backend:
               serviceName: {{ $fullName }}
-              servicePort: http
+              servicePort: {{ $svcPort }}
         {{- end }}
   {{- end }}
 {{- end }}
