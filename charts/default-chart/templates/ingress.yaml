@@ -30,15 +30,23 @@ spec:
   {{- end }}
 {{- end }}
   rules:
-  {{- range .Values.ingress.hosts }}
+    {{- range .Values.ingress.hosts }}
     - host: {{ .host | quote }}
       http:
         paths:
-        {{- range .paths }}
-          - path: {{ . }}
+          {{- range .paths }}
+          - path: {{ .path }}
             backend:
+            {{- if semverCompare ">=1.19" $kubeVer }}
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $svcPort }}
+            pathType: Prefix
+            {{- else }}
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
-        {{- end }}
-  {{- end }}
+            {{- end }}
+          {{- end }}
+    {{- end }}
 {{- end }}
