@@ -528,6 +528,47 @@ entries:
   elastic-stack:
   - apiVersion: v1
     appVersion: 7.7.1
+    created: "2022-06-16T21:00:52.441507888Z"
+    dependencies:
+    - alias: master
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: 7.17.3
+    - alias: data
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: 7.17.3
+    - alias: client
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: 7.17.3
+    - condition: kibana.enabled
+      name: kibana
+      repository: https://helm.elastic.co
+      version: 7.17.3
+    - condition: logstash.enabled
+      name: logstash
+      repository: https://helm.elastic.co
+      version: 7.17.3
+    - condition: filebeat.enabled
+      name: filebeat
+      repository: https://helm.elastic.co
+      version: 7.17.3
+    description: A Helm chart for ELK
+    digest: a2d87b1d4da584af47dbb4564911386a155ca7dc7eeadf7c56cf0f38a66baa84
+    home: https://www.elastic.co/products
+    icon: https://helm.elastic.co/icons/elasticsearch.png
+    maintainers:
+    - email: maintainers@cnieg.fr
+      name: audig
+    name: elastic-stack
+    sources:
+    - https://github.com/elastic/helm-charts/tree/master/elasticsearch
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/elastic-stack-1.1.3/elastic-stack-1.1.3.tgz
+    version: 1.1.3
+  - apiVersion: v1
+    appVersion: 7.7.1
     created: "2022-06-16T20:49:53.514449307Z"
     dependencies:
     - alias: master
@@ -1359,4 +1400,4 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/spring-boot-0.1.0/spring-boot-0.1.0.tgz
     version: 0.1.0
-generated: "2022-06-16T20:49:53.514729711Z"
+generated: "2022-06-16T21:00:52.442005491Z"
