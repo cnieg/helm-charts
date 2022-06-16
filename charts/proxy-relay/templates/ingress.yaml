@@ -40,7 +40,7 @@ spec:
               service:
                 name: {{ $fullName }}
                 port:
-                  number: http
+                  name: http
             pathType: Prefix
             {{- else }}
               serviceName: {{ $fullName }}
