@@ -1192,6 +1192,22 @@ entries:
   proxy-relay:
   - apiVersion: v1
     appVersion: 2.4.39
+    created: "2022-06-16T22:56:40.709315257Z"
+    description: A Helm chart to proxy request to another url with company proxy or
+      not
+    digest: 3d96683a86e8d54399a405011dccd9dce6f9317326ce52a6720c9707d10e56db
+    home: https://httpd.apache.org/docs/2.4/fr/programs/httpd.html
+    maintainers:
+    - name: audig
+    name: proxy-relay
+    sources:
+    - https://github.com/cnieg/helm-charts/tree/master/charts/proxy-relay
+    - https://cnieg.github.io/helm-charts
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/proxy-relay-2.1.2/proxy-relay-2.1.2.tgz
+    version: 2.1.2
+  - apiVersion: v1
+    appVersion: 2.4.39
     created: "2021-08-02T12:03:23.451999577Z"
     description: A Helm chart to proxy request to another url with company proxy or
       not
@@ -1416,4 +1432,4 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/spring-boot-0.1.0/spring-boot-0.1.0.tgz
     version: 0.1.0
-generated: "2022-06-16T21:02:35.891607095Z"
+generated: "2022-06-16T22:56:40.709860699Z"
