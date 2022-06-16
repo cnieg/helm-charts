@@ -1,16 +1,11 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "default-chart.fullname" . -}}
-{{- $svcPort := .Values.service.port -}}
-{{- if semverCompare ">=1.18.x" .Capabilities.KubeVersion.GitVersion -}}
-apiVersion: networking.k8s.io/v1
-{{- else -}}
-apiVersion: networking.k8s.io/v1beta1
-{{- end }}
+{{- $fullName := include "gantt.fullname" . -}}
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "default-chart.labels" . | nindent 4 }}
+{{ include "gantt.labels" . | indent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -35,7 +30,7 @@ spec:
           - path: {{ . }}
             backend:
               serviceName: {{ $fullName }}
-              servicePort: {{ $svcPort }}
+              servicePort: http
         {{- end }}
   {{- end }}
 {{- end }}
