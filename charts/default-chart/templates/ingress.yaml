@@ -35,7 +35,7 @@ spec:
       http:
         paths:
           {{- range .paths }}
-          - path: {{ .path }}
+          - path: {{ . }}
             backend:
             {{- if semverCompare ">=1.19" $kubeVer }}
               service:
