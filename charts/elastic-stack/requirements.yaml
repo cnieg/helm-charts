@@ -16,7 +16,7 @@ dependencies:
   repository: https://helm.elastic.co
   condition: kibana.enabled
 - name: logstash
-  version: 7.7.1
+  version: 7.17.3
   repository: https://helm.elastic.co
   condition: logstash.enabled
 - name: filebeat
