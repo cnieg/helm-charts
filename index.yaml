@@ -690,6 +690,22 @@ entries:
   gantt:
   - apiVersion: v1
     appVersion: 1.0.6
+    created: "2022-06-16T20:03:08.382720177Z"
+    description: Web app to make gantt diagrams
+    digest: 45a3141ab0b776fd93ea6c52aee3d35a794a11685beac2b69368134823eb956f
+    home: https://github.com/cnieg/gantt
+    maintainers:
+    - email: maintainers@cnieg.fr
+      name: CNIEG
+    name: gantt
+    sources:
+    - https://github.com/cnieg/helm-charts/tree/master/charts/gantt
+    - https://github.com/cnieg/gantt
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/gantt-1.0.3/gantt-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v1
+    appVersion: 1.0.6
     created: "2020-09-08T12:29:58.685422053Z"
     description: Web app to make gantt diagrams
     digest: 1c639450d71dd100e4a7c9375ea29ef816c4d3a8452a5815ce31d278baad8afe
@@ -1302,4 +1318,4 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/spring-boot-0.1.0/spring-boot-0.1.0.tgz
     version: 0.1.0
-generated: "2022-06-16T20:00:07.493073185Z"
+generated: "2022-06-16T20:03:08.383146676Z"
