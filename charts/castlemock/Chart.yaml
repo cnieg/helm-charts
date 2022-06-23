@@ -2,7 +2,7 @@ apiVersion: v2
 name: castlemock
 description: Castlemock webapp chart
 type: application
-version: 2.0.0
+version: 2.0.1
 appVersion: latest
 home: https://github.com/castlemock/castlemock
 sources:
