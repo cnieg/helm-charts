@@ -3,6 +3,22 @@ entries:
   castlemock:
   - apiVersion: v2
     appVersion: latest
+    created: "2022-06-23T13:33:17.15780928Z"
+    description: Castlemock webapp chart
+    digest: 8505636a4467b2881fb120a5402bf74fd0245a991fef227284faa9fc1970024b
+    home: https://github.com/castlemock/castlemock
+    maintainers:
+    - email: maintainers@cnieg.fr
+      name: CNIEG
+    name: castlemock
+    sources:
+    - https://github.com/cnieg/helm-charts/tree/master/charts/castlemock
+    type: application
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/castlemock-2.0.1/castlemock-2.0.1.tgz
+    version: 2.0.1
+  - apiVersion: v2
+    appVersion: latest
     created: "2022-06-23T13:27:20.220182024Z"
     description: Castlemock webapp chart
     digest: e105eda740d9b3fe74eb61c372bc95ae5c3969cee5da4c3b2fc3f8760db2ce1d
@@ -1448,4 +1464,4 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/spring-boot-0.1.0/spring-boot-0.1.0.tgz
     version: 0.1.0
-generated: "2022-06-23T13:27:20.220535264Z"
+generated: "2022-06-23T13:33:17.158089784Z"
