@@ -86,6 +86,8 @@ email:
 db:
   host: passbolt-mariadb
   name: passbolt
+  username: username
+  password: password
   # existingSecret:
   #   name: db-passbolt
   #   usernameKey: username

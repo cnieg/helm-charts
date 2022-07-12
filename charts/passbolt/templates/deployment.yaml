@@ -56,6 +56,11 @@ spec:
               value: {{ .Values.mariadb.auth.username }}
             - name: DATASOURCES_DEFAULT_PASSWORD
               value: {{ .Values.mariadb.auth.password }}
+            {{- else if and .Values.db.username .Values.db.password }}
+            - name: DATASOURCES_DEFAULT_USERNAME
+              value: {{ .Values.db.username }}
+            - name: DATASOURCES_DEFAULT_PASSWORD
+              value: {{ .Values.db.password }}
             {{- end }}
             - name: EMAIL_TRANSPORT_DEFAULT_HOST
               value: "{{ .Values.email.host }}"
