@@ -29,17 +29,18 @@ spec:
         paths:
           - path: {{ $ingressPath }}
             pathType: Prefix
-                backend:
-                  service:
-                    name: {{ $fullName }}-frontend
-                    port:
-                      name: http
+              backend:
+                service:
+                  name: {{ $fullName }}-frontend
+                  port:
+                    name: http
           - path: {{ $ingressPath }}api
             pathType: Prefix
-                  backend:
-                    service:
-                      name: {{ $fullName }}-backend
-                      port:
-                        name: http
+              backend:
+                service:
+                  name: {{ $fullName }}-backend
+                  port:
+                    name: http
+
   {{- end }}
 {{- end }}
