@@ -1,6 +1,6 @@
 apiVersion: v2
 name: dependency-track
-version: 2.0.5
+version: 3.0.0
 description: A Helm chart for Dependency-Track
 home: 'https://docs.dependencytrack.org/'
 sources:
