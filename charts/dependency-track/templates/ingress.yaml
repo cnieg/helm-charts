@@ -1,7 +1,7 @@
 {{- if .Values.frontend.ingress.enabled -}}
 {{- $fullName := include "dependency-track.fullname" . -}}
 {{- $ingressPath := .Values.frontend.ingress.path -}}
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
@@ -28,13 +28,18 @@ spec:
       http:
         paths:
           - path: {{ $ingressPath }}
-            backend:
-              serviceName: {{ $fullName }}-frontend
-              servicePort: http
+            pathType: Prefix
+                backend:
+                  service:
+                    name: {{ $fullName }}-frontend
+                    port:
+                      name: http
           - path: {{ $ingressPath }}api
-            backend:
-              serviceName: {{ $fullName }}-backend
-              servicePort: http
-
+            pathType: Prefix
+                  backend:
+                    service:
+                      name: {{ $fullName }}-backend
+                      port:
+                        name: http
   {{- end }}
 {{- end }}
