@@ -29,11 +29,11 @@ spec:
         {{- range .paths }}
           - path: {{ . }}
             pathType: Prefix
-              backend:
-                service:
-                  name: {{ $fullName }}
-                  port:
-                    name: http
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  name: http
         {{- end }}
   {{- end }}
 {{- end }}
