@@ -50,7 +50,9 @@ jobs:
       - name: Run chart-testing (install)
         run: ct install --config ct.yaml
 
-
+      - name: Add dependency (wiremind-helm-charts)
+        run: helm repo add wiremind-helm-charts https://wiremind.github.io/wiremind-helm-charts
+        
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.4.0
         if: github.ref == 'refs/heads/master'
