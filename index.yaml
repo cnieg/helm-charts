@@ -148,6 +148,25 @@ entries:
   clamapi:
   - apiVersion: v1
     appVersion: 2.1.6
+    created: "2022-07-19T20:55:05.30007491Z"
+    dependencies:
+    - condition: clamav.enabled
+      name: clamav
+      repository: https://wiremind.github.io/wiremind-helm-charts
+      version: 2.4.0
+    description: A Helm chart for Kubernetes
+    digest: 71bab3fcab1fa99b10a75ce9baadb71676861851738f8a44be228279e3a0c074
+    home: https://github.com/cnieg/helm-charts/
+    maintainers:
+    - name: audig
+    name: clamapi
+    sources:
+    - https://github.com/audig/clamapi
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/clamapi-2.0.1/clamapi-2.0.1.tgz
+    version: 2.0.1
+  - apiVersion: v1
+    appVersion: 2.1.6
     created: "2022-05-25T12:56:16.047635633Z"
     dependencies:
     - condition: clamav.enabled
@@ -442,6 +461,22 @@ entries:
     - https://github.com/cnieg/helm-charts/releases/download/default-chart-1.0.0/default-chart-1.0.0.tgz
     version: 1.0.0
   dependency-track:
+  - apiVersion: v2
+    appVersion: 4.2.0
+    created: "2022-07-19T20:55:05.415600851Z"
+    description: A Helm chart for Dependency-Track
+    digest: 8f908305caaf3b2212c7a20a2ec807cba62ea32db56c982b59180e8cf6bab9d6
+    home: https://docs.dependencytrack.org/
+    icon: https://docs.dependencytrack.org/images/dt-logo-white-text.svg
+    maintainers:
+    - email: maintainers@cnieg.fr
+      name: CNIEG
+    name: dependency-track
+    sources:
+    - https://github.com/DependencyTrack/dependency-track/tree/master
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/dependency-track-3.0.0/dependency-track-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v2
     appVersion: 4.2.0
     created: "2022-06-16T21:02:35.891405687Z"
@@ -833,6 +868,22 @@ entries:
   gantt:
   - apiVersion: v1
     appVersion: 1.0.6
+    created: "2022-07-19T20:55:05.518834249Z"
+    description: Web app to make gantt diagrams
+    digest: 7eb834c2a8e97b3ef7aab1e463a8ffcc5aa9945c8e8298f0a381f77cbf822a60
+    home: https://github.com/cnieg/gantt
+    maintainers:
+    - email: maintainers@cnieg.fr
+      name: CNIEG
+    name: gantt
+    sources:
+    - https://github.com/cnieg/helm-charts/tree/master/charts/gantt
+    - https://github.com/cnieg/gantt
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/gantt-2.0.0/gantt-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v1
+    appVersion: 1.0.6
     created: "2022-06-16T20:03:08.382720177Z"
     description: Web app to make gantt diagrams
     digest: 45a3141ab0b776fd93ea6c52aee3d35a794a11685beac2b69368134823eb956f
@@ -992,6 +1043,28 @@ entries:
     - https://github.com/cnieg/helm-charts/releases/download/maildev-1.0.0/maildev-1.0.0.tgz
     version: 1.0.0
   passbolt:
+  - apiVersion: v2
+    appVersion: 3.4.0-ce-non-root
+    created: "2022-07-19T20:55:05.613052743Z"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.1.0
+    description: A Helm chart to deploy Passbolt
+    digest: 3a806ec10364162c9d21b64e584e62044df09ad3dc19e567215e07022fed3948
+    home: http://passbolt.com
+    maintainers:
+    - email: maintainers@cnieg.fr
+      name: CNIEG
+    name: passbolt
+    sources:
+    - https://github.com/cnieg/helm-charts/tree/master/charts/passbolt
+    - https://github.com/passbolt
+    type: application
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/passbolt-1.1.7/passbolt-1.1.7.tgz
+    version: 1.1.7
   - apiVersion: v2
     appVersion: 3.4.0-ce-non-root
     created: "2022-07-12T06:43:21.100763422Z"
@@ -1499,4 +1572,4 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/spring-boot-0.1.0/spring-boot-0.1.0.tgz
     version: 0.1.0
-generated: "2022-07-12T06:43:21.101241628Z"
+generated: "2022-07-19T20:55:05.613275546Z"
