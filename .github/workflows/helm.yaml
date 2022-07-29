@@ -50,8 +50,8 @@ jobs:
       - name: Run chart-testing (install)
         run: ct install --config ct.yaml
 
-      - name: Add dependency (wiremind-helm-charts)
-        run: helm repo add wiremind-helm-charts https://wiremind.github.io/wiremind-helm-charts
+      - name: Helm add repo dependencies
+        run: while read -r line; do echo helm repo add $line | grep = | sed 's/- //g' | sed 's/=/ /g' | bash; done < ct.yaml
         
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.4.0
