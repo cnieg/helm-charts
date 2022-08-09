@@ -1,6 +1,6 @@
 dependencies:
 - name: clamav
   repository: https://wiremind.github.io/wiremind-helm-charts
-  version: 2.4.0
-digest: sha256:a7b54b74091635454d8521312a1a8824b13ae7a17a4774f4044e85e9e6362061
-generated: "2022-05-25T12:26:12.5706808+02:00"
+  version: 2.4.1
+digest: sha256:f3b68793081e3147852759c4f66be4e790aa5f69423fcf94586e38e2251ae332
+generated: "2022-07-22T14:36:33.0472564+02:00"
