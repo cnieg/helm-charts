@@ -13,6 +13,6 @@ maintainers:
   email: maintainers@cnieg.fr
 dependencies:
 - name: mariadb
-  version: "11.2.2"
+  version: "11.3.1"
   repository: "https://charts.bitnami.com/bitnami"
   condition: mariadb.enabled
