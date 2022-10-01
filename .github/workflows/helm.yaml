@@ -30,7 +30,7 @@ jobs:
           python-version: 3.7
 
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.3.0
+        uses: helm/chart-testing-action@v2.3.1
 
       - name: Run chart-testing (list-changed)
         id: list-changed
@@ -54,7 +54,7 @@ jobs:
         run: while read -r line; do echo helm repo add $line | grep = | sed 's/- //g' | sed 's/=/ /g' | bash; done < ct.yaml
         
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.4.0
+        uses: helm/chart-releaser-action@v1.4.1
         if: github.ref == 'refs/heads/master'
         env:
           CR_TOKEN: "${{ secrets.CR_TOKEN }}"
