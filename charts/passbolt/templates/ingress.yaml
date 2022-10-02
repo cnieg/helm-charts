@@ -2,7 +2,7 @@
 {{- $fullName := include "passbolt.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
 {{- $kubeVer := .Capabilities.KubeVersion.GitVersion -}}
-{{- if semverCompare ">=1.19" $kubeVer -}}
+{{- if semverCompare ">=1.19-0" $kubeVer -}}
 apiVersion: networking.k8s.io/v1
 {{- else if semverCompare ">=1.14-0" $kubeVer -}}
 apiVersion: networking.k8s.io/v1beta1
@@ -40,7 +40,7 @@ spec:
           {{- range .paths }}
           - path: {{ .path }}
             backend:
-            {{- if semverCompare ">=1.19" $kubeVer }}
+            {{- if semverCompare ">=1.19-0" $kubeVer }}
               service:
                 name: {{ $fullName }}
                 port:

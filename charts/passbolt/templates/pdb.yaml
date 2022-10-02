@@ -1,5 +1,10 @@
 {{- if .Values.podDisruptionBudget.enabled -}}
+{{- $kubeVer := .Capabilities.KubeVersion.GitVersion -}}
+{{- if semverCompare ">=1.21-0" $kubeVer -}}
 apiVersion: policy/v1
+{{- else -}}
+apiVersion: policy/v1beta1
+{{- end }}
 kind: PodDisruptionBudget
 metadata:
   name: {{ include "passbolt.fullname" . }}
