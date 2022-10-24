@@ -1,5 +1,5 @@
 {{- if .Values.hpa.enabled -}}
-apiVersion: autoscaling/v2beta1
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "default-chart.fullname" . }}
@@ -13,12 +13,16 @@ spec:
   minReplicas: {{ .Values.replicaCount }}
   maxReplicas: {{ .Values.hpa.maxReplicas }}
   metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        targetAverageUtilization: {{ .Values.hpa.cpuMax }}
-    - type: Resource
-      resource:
-        name: memory
-        targetAverageUtilization: {{ .Values.hpa.memoryMax }}
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: {{ .Values.hpa.cpuMax }}
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: {{ .Values.hpa.memoryMax }}
   {{- end }}
