@@ -1,10 +1,5 @@
 {{- if .Values.hpa.enabled -}}
-{{- $kubeVer := .Capabilities.KubeVersion.GitVersion -}}
-{{- if semverCompare ">=1.22-0" $kubeVer -}}
 apiVersion: autoscaling/v2
-{{- else -}}
-apiVersion: autoscaling/v2beta1
-{{- end }}
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "default-chart.fullname" . }}
@@ -21,9 +16,9 @@ spec:
     - type: Resource
       resource:
         name: cpu
-        targetAverageUtilization: {{ .Values.hpa.cpuMax }}
+        averageUtilization: {{ .Values.hpa.cpuMax }}
     - type: Resource
       resource:
         name: memory
-        targetAverageUtilization: {{ .Values.hpa.memoryMax }}
+        averageUtilization: {{ .Values.hpa.memoryMax }}
   {{- end }}
