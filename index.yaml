@@ -396,6 +396,19 @@ entries:
   default-chart:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2022-11-09T20:56:14.219785592Z"
+    description: A Helm chart for Kubernetes
+    digest: 244718737733729721d3b54b202bed10c0a68f8b987acb174ee2d9d0a56195a8
+    home: https://github.com/cnieg/helm-charts/
+    maintainers:
+    - name: audig
+    name: default-chart
+    type: application
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/default-chart-3.0.5/default-chart-3.0.5.tgz
+    version: 3.0.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2022-10-24T09:36:06.526671574Z"
     description: A Helm chart for Kubernetes
     digest: fd21847877b2afd90e4fb3f7423d1fe1c6744ea9699cdff724c58f4f285eb742
@@ -1854,4 +1867,4 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/spring-boot-0.1.0/spring-boot-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-09T20:52:48.510269286Z"
+generated: "2022-11-09T20:56:14.22028582Z"
