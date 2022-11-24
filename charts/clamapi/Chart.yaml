@@ -5,7 +5,7 @@ name: clamapi
 home: https://github.com/cnieg/helm-charts/
 sources:
   - https://github.com/audig/clamapi
-version: 2.0.3
+version: 2.0.4
 maintainers:
   - name: audig
 dependencies:
