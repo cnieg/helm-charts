@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: v2
 appVersion: 2.1.6
 description: A Helm chart for Kubernetes
 name: clamapi
@@ -8,3 +8,8 @@ sources:
 version: 2.0.3
 maintainers:
   - name: audig
+dependencies:
+- name: clamav
+  version: 2.6.0
+  repository: https://wiremind.github.io/wiremind-helm-charts
+  condition: clamav.enabled
