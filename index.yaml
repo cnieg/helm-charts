@@ -540,6 +540,22 @@ entries:
   dependency-track:
   - apiVersion: v2
     appVersion: 4.2.0
+    created: "2022-11-24T22:38:57.193986476Z"
+    description: A Helm chart for Dependency-Track
+    digest: 3b6626479a4bb1c25e91fd1679dc8198a8d3ee639ea33506fe46c2ec92731aa3
+    home: https://docs.dependencytrack.org/
+    icon: https://docs.dependencytrack.org/images/dt-logo-white-text.svg
+    maintainers:
+    - email: maintainers@cnieg.fr
+      name: CNIEG
+    name: dependency-track
+    sources:
+    - https://github.com/DependencyTrack/dependency-track/tree/master
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/dependency-track-3.0.5/dependency-track-3.0.5.tgz
+    version: 3.0.5
+  - apiVersion: v2
+    appVersion: 4.2.0
     created: "2022-11-24T22:25:03.052917444Z"
     description: A Helm chart for Dependency-Track
     digest: 07827dd79575436136820966386e0091026a254993bdf1fa31a6bbc23f823334
@@ -1946,4 +1962,4 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/spring-boot-0.1.0/spring-boot-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-24T22:25:03.053476749Z"
+generated: "2022-11-24T22:38:57.194379379Z"
