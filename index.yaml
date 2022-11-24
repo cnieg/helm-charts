@@ -1186,6 +1186,28 @@ entries:
   passbolt:
   - apiVersion: v2
     appVersion: 3.4.0-ce-non-root
+    created: "2022-11-24T21:29:27.893009682Z"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.4.0
+    description: A Helm chart to deploy Passbolt
+    digest: 93c3bb3809bd3aa9bf8b1f65460e5e949208ee90190ce9998ec1844241bc38e7
+    home: http://passbolt.com
+    maintainers:
+    - email: maintainers@cnieg.fr
+      name: CNIEG
+    name: passbolt
+    sources:
+    - https://github.com/cnieg/helm-charts/tree/master/charts/passbolt
+    - https://github.com/passbolt
+    type: application
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/passbolt-1.1.15/passbolt-1.1.15.tgz
+    version: 1.1.15
+  - apiVersion: v2
+    appVersion: 3.4.0-ce-non-root
     created: "2022-11-09T20:52:48.510043184Z"
     dependencies:
     - condition: mariadb.enabled
@@ -1867,4 +1889,4 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/spring-boot-0.1.0/spring-boot-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-09T20:56:14.22028582Z"
+generated: "2022-11-24T21:29:27.893289703Z"
