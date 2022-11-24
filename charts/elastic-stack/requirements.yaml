@@ -1,14 +1,14 @@
 dependencies:
 - name: elasticsearch
-  version: 7.17.3
+  version: 8.5.1
   repository: https://helm.elastic.co
   alias: master
 - name: elasticsearch
-  version: 7.17.3
+  version: 8.5.1
   repository: https://helm.elastic.co
   alias: data
 - name: elasticsearch
-  version: 7.17.3
+  version: 8.5.1
   repository: https://helm.elastic.co
   alias: client
 - name: kibana
@@ -20,6 +20,6 @@ dependencies:
   repository: https://helm.elastic.co
   condition: logstash.enabled
 - name: filebeat
-  version: 7.17.3
+  version: 8.5.1
   repository: https://helm.elastic.co
   condition: filebeat.enabled
