@@ -1,5 +1,5 @@
 {{- if .Values.hpa -}}
-apiVersion: autoscaling/v2beta1
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "clamapi.fullname" . }}
@@ -12,13 +12,14 @@ spec:
     name: {{ include "clamapi.fullname" . }}
   minReplicas: {{ .Values.replicaCount }}
   maxReplicas: {{ .Values.hpa.maxReplicas }}
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        targetAverageUtilization: {{ .Values.hpa.cpuMax }}
-    - type: Resource
-      resource:
-        name: memory
-        targetAverageUtilization: {{ .Values.hpa.memoryMax }}
+  behavior:
+    metrics:
+      - type: Resource
+        resource:
+          name: cpu
+          targetAverageUtilization: {{ .Values.hpa.cpuMax }}
+      - type: Resource
+        resource:
+          name: memory
+          targetAverageUtilization: {{ .Values.hpa.memoryMax }}
   {{- end }}
