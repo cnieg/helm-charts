@@ -148,6 +148,25 @@ entries:
   clamapi:
   - apiVersion: v1
     appVersion: 2.1.6
+    created: "2023-02-27T15:08:39.30584453Z"
+    dependencies:
+    - condition: clamav.enabled
+      name: clamav
+      repository: https://wiremind.github.io/wiremind-helm-charts
+      version: 2.7.0
+    description: A Helm chart for Kubernetes
+    digest: 7a672c4c28e55d8ab8c17327fccde6bf68084616d9f73b33f7a7e85f3ae48dea
+    home: https://github.com/cnieg/helm-charts/
+    maintainers:
+    - name: audig
+    name: clamapi
+    sources:
+    - https://github.com/audig/clamapi
+    urls:
+    - https://github.com/cnieg/helm-charts/releases/download/clamapi-2.0.4/clamapi-2.0.4.tgz
+    version: 2.0.4
+  - apiVersion: v1
+    appVersion: 2.1.6
     created: "2022-09-04T10:54:16.618702126Z"
     dependencies:
     - condition: clamav.enabled
@@ -1962,4 +1981,4 @@ entries:
     urls:
     - https://github.com/cnieg/helm-charts/releases/download/spring-boot-0.1.0/spring-boot-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-24T22:38:57.194379379Z"
+generated: "2023-02-27T15:08:39.306362538Z"
