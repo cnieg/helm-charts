@@ -67,7 +67,7 @@ backend:
     tag: 4.6.3
     pullPolicy: IfNotPresent
     
-  podAnnotations:
+  Annotations:
     co.elastic.logs/enabled: "true"
     co.elastic.logs/processors.1.add_fields.target: "data_stream"
     co.elastic.logs/processors.1.add_fields.fields.category: "app"
