@@ -10,6 +10,8 @@ frontend:
     tag: 4.6.1
     pullPolicy: IfNotPresent
 
+  podAnnotations: {}
+  
   service:
     type: ClusterIP
     port: 80
@@ -67,10 +69,7 @@ backend:
     tag: 4.6.3
     pullPolicy: IfNotPresent
     
-  annotations:
-    co.elastic.logs/enabled: "true"
-    co.elastic.logs/processors.1.add_fields.target: "data_stream"
-    co.elastic.logs/processors.1.add_fields.fields.category: "app"
+  podAnnotations: {}
     
   service:
     type: ClusterIP

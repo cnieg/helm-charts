@@ -17,6 +17,10 @@ spec:
         app: {{ include "dependency-track.name" . }}
         type: frontend
         release: {{ .Release.Name }}
+      {{- with .Values.frontend.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
