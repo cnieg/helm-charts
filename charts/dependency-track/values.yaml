@@ -11,7 +11,7 @@ frontend:
     pullPolicy: IfNotPresent
 
   podAnnotations: {}
-  
+
   service:
     type: ClusterIP
     port: 80
@@ -68,9 +68,9 @@ backend:
     repository: dependencytrack/apiserver
     tag: 4.6.3
     pullPolicy: IfNotPresent
-    
+
   podAnnotations: {}
-    
+
   service:
     type: ClusterIP
     port: 80
