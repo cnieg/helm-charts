@@ -17,6 +17,10 @@ spec:
         app: {{ include "dependency-track.name" . }}
         type: backend
         release: {{ .Release.Name }}
+      {{- with .Values.backend.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
     spec:
       volumes:
         - name: data
