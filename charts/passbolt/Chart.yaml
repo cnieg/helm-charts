@@ -1,7 +1,7 @@
 apiVersion: v2
 name: passbolt
 type: application
-version: 1.1.15
+version: 1.1.16
 appVersion: "3.4.0-ce-non-root"
 description: A Helm chart to deploy Passbolt
 home: http://passbolt.com
@@ -13,6 +13,6 @@ maintainers:
   email: maintainers@cnieg.fr
 dependencies:
 - name: mariadb
-  version: "11.4.0"
+  version: "11.5.7"
   repository: "https://charts.bitnami.com/bitnami"
   condition: mariadb.enabled
