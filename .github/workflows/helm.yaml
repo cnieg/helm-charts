@@ -54,7 +54,7 @@ jobs:
         run: while read -r line; do echo helm repo add $line | grep = | sed 's/- //g' | sed 's/=/ /g' | bash; done < ct.yaml
         
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.4.1
+        uses: helm/chart-releaser-action@v1.5.0
         if: github.ref == 'refs/heads/master'
         env:
           CR_TOKEN: "${{ secrets.CR_TOKEN }}"
