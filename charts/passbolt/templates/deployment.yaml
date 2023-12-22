@@ -33,7 +33,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: {{ .Values.httpPort }}
+              containerPort: {{ .Values.deployment.port }}
               protocol: TCP
           env:
             - name: DATASOURCES_DEFAULT_HOST
