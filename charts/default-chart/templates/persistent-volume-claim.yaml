@@ -2,7 +2,7 @@
 {{- $labels := include "default-chart.labels" . -}}
 {{- if and .Values.persistence.enabled }}
   {{- range .Values.persistence.volumes }}
-    {{- if not .secretName }}
+    {{- if not (or .secretName .configMapName) }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:

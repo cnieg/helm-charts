@@ -93,6 +93,9 @@ spec:
           {{- if .secretName }}
           secret:
             secretName: {{ .secretName }}
+          {{- else if .configMapName }}
+          configMap:
+            name: {{ .configMapName }}
           {{- else }}
           persistentVolumeClaim:
             claimName: {{ $chartName }}-{{ .name }}
